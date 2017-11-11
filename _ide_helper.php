@@ -72,7 +72,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function afterBootstrapping($bootstrapper, $callback)
         {
-            \Illuminate\Foundation\Application::afterBootstrapping($bootstrapper, $callback);
+            \Illuminate\Foundation\FApplication::afterBootstrapping($bootstrapper, $callback);
         }
         
         /**
