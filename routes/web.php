@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/client1', function () {
+    return view('client.welcome');
+});
+
+Route::get("/admin/article", "Auth\LoginController@showLoginForm");
+Route::get("/admin/product", "Admin\ArticleController@");

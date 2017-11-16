@@ -1,0 +1,116 @@
+CREATE TABLE IF NOT EXISTS `web`.`Article` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `short` VARCHAR(400) NOT NULL,
+  `full` VARCHAR(2000) NOT NULL,
+  `imageId` VARCHAR(200) NOT NULL,
+  `date` VARCHAR(20) NOT NULL,
+  `type` INT NOT NULL,
+  PRIMARY KEY (`id`))
+
+CREATE TABLE IF NOT EXISTS `web`.`Product` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NOT NULL,
+  `description` VARCHAR(2000) NOT NULL,
+  `ageFrom` INT NOT NULL,
+  `ageTo` INT NOT NULL,
+  `imageId` VARCHAR(200) NOT NULL,
+  `cost` DOUBLE NOT NULL,
+  `discount` DOUBLE NOT NULL,
+  `category` INT NOT NULL,
+  `portionType` INT NOT NULL,
+  `portionSize` DOUBLE NOT NULL,
+  `portionTotal` INT NOT NULL,
+  `maxTime` INT NOT NULL,
+  `breakTime` INT NOT NULL,
+  `instock` INT NOT NULL,
+  PRIMARY KEY (`id`))
+
+CREATE TABLE IF NOT EXISTS `web`.`ArticleProduct` (
+  `idArticle` INT NOT NULL,
+  `idProduct` INT NOT NULL,
+  INDEX `id_idx` (`idArticle` ASC),
+  INDEX `id_idx1` (`idProduct` ASC),
+  CONSTRAINT `id`
+    FOREIGN KEY (`idArticle`)
+    REFERENCES `web`.`Article` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id`
+    FOREIGN KEY (`idProduct`)
+    REFERENCES `web`.`Product` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+
+    CREATE TABLE IF NOT EXISTS `web`.`Order` (
+      `id` INT NOT NULL AUTO_INCREMENT,
+      `date` DATE NOT NULL,
+      `productListId` INT NOT NULL,
+      `cost` INT NOT NULL,
+      PRIMARY KEY (`id`))
+
+    CREATE TABLE IF NOT EXISTS `web`.`ProductList` (
+      `idProduct` INT NOT NULL,
+      `amount` INT NOT NULL,
+      `id` INT NOT NULL,
+      `idOrder` INT NULL,
+      INDEX `id_idx` (`idProduct` ASC),
+      PRIMARY KEY (`id`),
+      CONSTRAINT `id`
+        FOREIGN KEY (`idProduct`)
+        REFERENCES `web`.`Product` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+      CONSTRAINT `idOrder`
+        FOREIGN KEY (`id`)
+        REFERENCES `web`.`Order` (`id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION)
+
+    CREATE TABLE IF NOT EXISTS `web`.`Client` (
+      `id` INT NOT NULL AUTO_INCREMENT,
+      `email` VARCHAR(45) NOT NULL,
+      `password` VARCHAR(45) NOT NULL,
+      `age` INT NOT NULL,
+      `weight` DOUBLE NOT NULL,
+      `gender` INT NOT NULL,
+      `trainingSchedule` INT NOT NULL,
+      `trainingType` INT NOT NULL,
+      PRIMARY KEY (`id`))
+
+      CREATE TABLE IF NOT EXISTS `web`.`BodyTypeStrategy` (
+        `id` INT NOT NULL,
+        `bodyType` INT NULL,
+        `portionSize` INT NULL,
+        `portionType` INT NULL,
+        PRIMARY KEY (`id`))
+
+
+      CREATE TABLE IF NOT EXISTS `web`.`ProductTypeStrategy` (
+        `id` INT NOT NULL AUTO_INCREMENT,
+        `productType` INT NOT NULL,
+        `ageFrom` INT NOT NULL,
+        `ageTo` INT NOT NULL,
+        `trainingType` INT NOT NULL,
+        PRIMARY KEY (`id`))
+
+      CREATE TABLE IF NOT EXISTS `web`.`Product_BodyTypeStrategy` (
+        `idProductTypeStrategy` INT NOT NULL,
+        `idBodyTypeStrategy` INT NOT NULL,
+        INDEX `id_idx` (`idProductTypeStrategy` ASC),
+        INDEX `id_idx1` (`idBodyTypeStrategy` ASC),
+        CONSTRAINT `id`
+          FOREIGN KEY (`idProductTypeStrategy`)
+          REFERENCES `web`.`ProductTypeStrategy` (`id`)
+          ON DELETE NO ACTION
+          ON UPDATE NO ACTION,
+        CONSTRAINT `id`
+          FOREIGN KEY (`idBodyTypeStrategy`)
+          REFERENCES `web`.`BodyTypeStrategy` (`id`)
+          ON DELETE NO ACTION
+          ON UPDATE NO ACTION)
+      
+
+
+
+
+
