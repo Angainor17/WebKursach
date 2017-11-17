@@ -19,5 +19,8 @@ Route::get('/client1', function () {
     return view('client.welcome');
 });
 
-Route::get("/admin/article", "Auth\LoginController@showLoginForm");
-Route::get("/admin/product", "Admin\ArticleController@");
+Route::get("/admin/article", "Admin\ArticleController@getView");
+Route::get("/admin", "Admin\ArticleController@getView");
+Route::get("/admin/product", "Admin\ProductArticle@getView");
+Route::get("/admin/nutritionstrategy", "Admin\NutritionStrategy@getView");
+

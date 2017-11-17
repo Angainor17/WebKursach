@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: angai
  * Date: 16.11.2017
- * Time: 20:41
+ * Time: 20:52
  */
 
 namespace App\Http\Controllers\Admin;
@@ -11,10 +11,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
-class ArticleController extends Controller
+class ProductArticle extends Controller
 {
-    public function getView()
+    function getView()
     {
-        return view("admin.article",["pageName"=>"article"]);
+        return view("admin.products",["pageName"=>"product"]);
     }
+
 }
