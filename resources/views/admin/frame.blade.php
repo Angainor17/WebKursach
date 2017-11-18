@@ -11,7 +11,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
     <style>
 
         html, body {
@@ -23,26 +29,18 @@
             margin: 0;
         }
 
-        .header {
-            height: 200px;
-            background-color: #a066b3;
-            margin-bottom: 10px;
-        }
-
     </style>
-    <script>
-        function getClass(currentRow, seletedRow) {
-            if (currentRow == seletedRow) {
-                return "nav-link active";
-            } else {
-                return "nav-link";
-            }
-        }
-    </script>
 </head>
 
 <body>
-<div style="width: 200px; margin-top: 50px; margin-left: 20px;  border-style: solid;border-width: 1px;border-color: #1f648b" >
+
+<div class="container" style="border: 2px #1f648b;float: right;vertical-align: bottom; text-align: center">
+    @section("content")
+
+    @show
+</div>
+
+<div style="width: 200px; vertical-align: top; margin-top: 150px; margin-left: 20px;  border-style: solid;border-width: 1px;border-color: #1f648b">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link" id="v-pills-home-tab" data-toggle="pill"
            href="{{url("/admin/article")}}"
@@ -68,13 +66,13 @@
 
     <div class="tab-content" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-            ...
+
         </div>
-        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...
+        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
         </div>
-        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...
+        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
         </div>
-        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...
+        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
         </div>
     </div>
 </div>

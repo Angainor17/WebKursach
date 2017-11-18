@@ -17,4 +17,8 @@ class NutritionStrategy extends Controller
     {
         return view("admin.nutritionstrategy", ["pageName"=>"nutritionstrategy"]);
     }
+
+    public function delete(){
+
+    }
 }

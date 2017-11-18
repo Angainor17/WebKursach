@@ -18,9 +18,19 @@ Route::get('/', function () {
 Route::get('/client1', function () {
     return view('client.welcome');
 });
+Route::get("/admin", "Admin\ArticleController@getView");
+
+Route::get("/admin/articleList", "Admin\ArticleController@getArticleDataTable");
+Route::get('/admin/deletearticle', 'Admin\ArticleController@deleteRow');
 
 Route::get("/admin/article", "Admin\ArticleController@getView");
-Route::get("/admin", "Admin\ArticleController@getView");
+
+
 Route::get("/admin/product", "Admin\ProductArticle@getView");
+
+
 Route::get("/admin/nutritionstrategy", "Admin\NutritionStrategy@getView");
+Route::get("/admin/delete", "Admin\NutritionStrategy@getView");
+
+
 
