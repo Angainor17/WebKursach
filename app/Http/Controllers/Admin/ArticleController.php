@@ -9,25 +9,47 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Article;
-use App\Http\ArticleType;
+use App\Http\BusinessModel\ArticleType;
 use App\Http\Controllers\Controller;
+use App\Http\DBModel\Article;
 use Yajra\Datatables\Datatables;
 
 
 class ArticleController extends Controller
 {
 
-    public function getArticleList()
+    public function deleteRow($id)
     {
-        return "111";
+        Article::destroy(["id" => $id]);
     }
 
-    public function deleteRow()
+    public function addItem()
     {
-//        $id = Input::get("id", 0);
-        Article::destroy(["id" => 5]);
-        return "";
+        $article = new Article;
+
+//        $article2 = collect(["id" => 1000,
+//            "short" => "z",
+//            "full" => "z",
+//            "imageId" => "z",
+//            "date" => "z",
+//            "type" => 2,
+//            "short_en" => "z",
+//            "full_en" => "z",
+//            "title" => "z",
+//            "title_en" => "z"
+//        ]);
+
+
+        $article->short = "z";
+        $article->full = "z";
+        $article->imageId = "z";
+        $article->date = "z";
+        $article->type = 2;
+        $article->short_en = "z";
+        $article->full_en = "z";
+        $article->title = "z";
+        $article->title_en = "z";
+        $article->save();
     }
 
     public function getArticleDataTable()
@@ -49,11 +71,11 @@ class ArticleController extends Controller
 
     public function getView()
     {
+        $this->addItem();
         return view(
             "admin.article",
             [
-                "pageName" => "article",
-                "articles" => $this->getArticleList(),
+                "pageName" => "article"
             ]
         );
     }

@@ -3,8 +3,6 @@
 @section("title","Article")
 
 @section("content")
-    <p>{{$articles}}</p>
-
     <div style="margin-bottom: 20px; margin-right: 200px; margin-left: 100px">
         <form>
             <div class="form-group row">
@@ -80,9 +78,6 @@
         </form>
     </div>
 
-
-
-
     <table class="table table-bordered" id="articles-table">
         <thead>
         <tr>
@@ -93,14 +88,13 @@
             <th>Type</th>
         </tr>
         </thead>
-
     </table>
 
     <script>
         var table;
         $(function () {
             table = $('#articles-table').DataTable({
-                processing: true,
+                processing: false,
                 serverSide: true,
                 ajax: {
                     url: '/admin/articleList'
@@ -110,12 +104,18 @@
                     {data: 'short', name: 'short'},
                     {data: 'full', name: 'full'},
                     {data: 'date', name: 'date'},
-                    {data: 'type', name: 'type'}
+                    {data: 'type', name: 'type'},
                 ]
             });
         });
 
         $(document).ready(function () {
+            doOnStart();
+        });
+    </script>
+
+    <script>
+        function doOnStart() {
             $('#articles-table tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
@@ -128,16 +128,21 @@
 
             $("#deleteBtn").click(function () {
                     $.ajax({
-                        url: '/admin/deletearticle/' + $('#articles-table').DataTable().row('.selected').id,
+                        url: '/admin/deletearticle/' + $('#articles-table').DataTable().row('.selected').data().id,
                         type: 'GET',
                         success: function (result) {
-
+                            refreshTable();
+                            //$('#articles-table').DataTable().ajax.reload();
                         }
                     });
                     $('#articles-table').DataTable().row('.selected').remove().draw();
                 }
             );
-        });
+        }
+
+        function refreshTable() {
+            $('#articles-table').DataTable().ajax.reload();
+        }
     </script>
 
 @endsection

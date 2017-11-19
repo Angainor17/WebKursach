@@ -21,7 +21,7 @@ Route::get('/client1', function () {
 Route::get("/admin", "Admin\ArticleController@getView");
 
 Route::get("/admin/articleList", "Admin\ArticleController@getArticleDataTable");
-Route::get('/admin/deletearticle', 'Admin\ArticleController@deleteRow');
+Route::get('/admin/deletearticle/{id}', 'Admin\ArticleController@deleteRow');
 
 Route::get("/admin/article", "Admin\ArticleController@getView");
 
@@ -30,7 +30,7 @@ Route::get("/admin/product", "Admin\ProductArticle@getView");
 
 
 Route::get("/admin/nutritionstrategy", "Admin\NutritionStrategy@getView");
-Route::get("/admin/delete", "Admin\NutritionStrategy@getView");
+Route::get("/admin/nuttitionstategydelete", "Admin\NutritionStrategy@getView");
 
 
 

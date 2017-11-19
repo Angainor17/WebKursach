@@ -14,4 +14,5 @@ use Illuminate\Database\Eloquent\Model;
 class ProductBodyTypeStrategy extends Model
 {
     protected $table = "Product_BodyTypeStrategy";
+    public $timestamps = false;
 }

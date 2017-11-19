@@ -14,4 +14,5 @@ use Illuminate\Database\Eloquent\Model;
 class ProductList extends Model
 {
     protected $table = "ProductList";
+    public $timestamps = false;
 }

@@ -6,7 +6,7 @@
  * Time: 9:53
  */
 
-namespace App\Http;
+namespace App\Http\DBModel;
 
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,4 +14,5 @@ use Illuminate\Database\Eloquent\Model;
 class NutritionStrategy extends Model
 {
     protected $table = "ProductTypeStrategy";
+    public $timestamps = false;
 }

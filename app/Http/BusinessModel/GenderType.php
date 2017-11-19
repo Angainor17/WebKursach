@@ -2,36 +2,37 @@
 /**
  * Created by PhpStorm.
  * User: angai
- * Date: 17.11.2017
- * Time: 21:37
+ * Date: 18.11.2017
+ * Time: 10:36
  */
 
 namespace App\Http\BusinessModel;
 
 
-class ArticleType
+class GenderType
 {
-    public static $NEWS = 'News';
-    public static $ACTION = 'Action';
+    public static $MALE = 'male';
+    public static $FEMALE = 'female';
 
     public static function toString($number)
     {
         switch ($number) {
             case 1:
-                return ArticleType::$NEWS;
+                return GenderType::$MALE;
             case 2:
-                return ArticleType::$ACTION;
+                return GenderType::$FEMALE;
             default:
                 return "";
         }
     }
 
+
     public function toInt($string)
     {
         switch ($string) {
-            case ArticleType::$NEWS:
+            case GenderType::$MALE:
                 return 1;
-            case ArticleType::$ACTION:
+            case GenderType::$FEMALE:
                 return 2;
             default:
                 return 0;
