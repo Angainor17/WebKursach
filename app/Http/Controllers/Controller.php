@@ -24,8 +24,10 @@ class Controller extends BaseController
                 $file->move(
                     public_path() . '/uploads', $fileName
                 );
+                return $fileName;
             }
         }
+        return "moimage.png";
     }
 
     protected function getDateFormat()

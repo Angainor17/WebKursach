@@ -30,7 +30,17 @@ Route::get("/admin/article", "Admin\ArticleController@getView");
 
 
 Route::post('/admin/uploadFile', 'Admin\ArticleController@uploadFile');
-Route::get("/admin/product", "Admin\ProductArticle@getView");
+
+
+Route::get("/admin/product", "Admin\ProductController@getView");
+Route::get("/admin/product/list", "Admin\ProductController@getView@getArticleDataTable");
+Route::get('/admin/product/delete/{id}', 'Admin\ProductController@deleteRow');
+Route::post('/admin/product/add', 'Admin\ProductController@addItem');
+Route::post('/admin/product/update', 'Admin\ProductController@');
+Route::get('/admin/product/get/{id}', 'Admin\ProductController@getProductById');
+
+
+
 
 Route::get("/admin/nutritionstrategy", "Admin\NutritionStrategy@getView");
 Route::get("/admin/nuttitionstategydelete", "Admin\NutritionStrategy@getView");

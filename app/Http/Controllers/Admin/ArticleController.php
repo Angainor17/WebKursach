@@ -34,12 +34,18 @@ class ArticleController extends Controller
         $content = $request->getContent(false);
         $array = json_decode($content, true);
 
-//        Article::where("id", $array['id'])
-//            ->update(
-//                [
-//                    'short' => 'Dm'
-//                ]
-//            );
+        Article::where("id", $array['id'])
+            ->update(
+                [
+                    'short' => $array['short'],
+                    'short_en' => $array['short_en'],
+                    'full' => $array['full'],
+                    'full_en' => $array['full_en'],
+                    'title' => $array['title'],
+                    'title_en' => $array['title_en'],
+                    'type' => $array['type']
+                ]
+            );
         return $array['id'];
     }
 

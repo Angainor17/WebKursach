@@ -9,11 +9,13 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Http\BusinessModel\CategoryType;
 use App\Http\Controllers\Controller;
 use App\Http\DBModel\Product;
+use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
-class ProductArticle extends Controller
+class ProductController extends Controller
 {
     function getView()
     {
@@ -62,19 +64,51 @@ class ProductArticle extends Controller
         Product::destroy(["id" => $id]);
     }
 
-    public function getArticleDataTable()
+    public function updateItem(Request $request)
     {
-        return Datatables::of(Article::all(
+        $content = $request->getContent(false);
+        $array = json_decode($content, true);
+
+        Product::where("id", $array['id'])
+            ->update(
+                [
+                    'name' => 'name',
+                    'name_en' => 'name_en',
+                    'description_en' => 'description_en',
+                    'description' => 'description',
+                    'ageFrom' => 'ageFrom',
+                    'ageTo' => 'ageTo',
+                    'imageId' => 'imageId',
+                    'discount' => 'discount',
+                    'cost' => 'cost',
+                    'category' => 'category',
+                    'portionType' => 'portionType',
+                    'portionSize' => 'portionSize',
+                    'portionTotal' => 'portionTotal',
+                    'maxTime' => 'maxTime',
+                    'breakTime' => 'breakTime',
+                    'instock' => 'instock',
+                ]
+            );
+        return $array['id'];
+    }
+
+    public function getProductsDataTable()
+    {
+        return Datatables::of(Product::all(
             [
                 "id",
-                "short",
-                "full",
-                "date",
-                "type"
+                "name",
+                "description",
+                "category",
+                "cost"
             ]
         ))
-            ->editColumn("type", function ($type) {
-                return ArticleType::toString($type->type);
+            ->editColumn("category", function ($category) {
+                return CategoryType::toString($category->category);
+            })
+            ->editColumn("cost", function ($cost) {
+                return $cost->cost . 'руб';
             })
             ->make(true);
     }

@@ -66,13 +66,11 @@
                 <div class="col-sm-10">
                     <div style="float: left; margin-bottom: 50px">
                         <p>
-                            <button id="deleteBtn" type="button" class="btn btn-outline-primary">Delete</button>
+                            <button id="deleteBtn" type="button" class="btn btn-default">Delete</button>
 
-                            <button style="margin-left: 30px" type="button" id="addBtn"
-                                    class="btn btn-outline-primary">Add
+                            <button style="margin-left: 30px" type="button" id="addBtn" class="btn btn-default">Add
                             </button>
-                            <button style="margin-left: 30px" type="button" id="editBtn"
-                                    class="btn btn-outline-primary">Edit
+                            <button style="margin-left: 30px" type="button" id="editBtn" class="btn btn-default">Edit
                             </button>
                         </p>
                     </div>
@@ -120,6 +118,7 @@
 
     <script>
         function doOnStart() {
+            $("#editBtn").text("Edit");
             cleanAllFields();
             $('#articles-table tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
@@ -146,8 +145,14 @@
             );
 
             $("#editBtn").click(function () {
-                    if ($("#editBtn").text() == 'Edit\n' || $("#editBtn").text() == 'Edit') {
-                        if ($('#articles-table').DataTable().row('.selected').count() > 0) {
+                    if ($('#articles-table').DataTable().row('.selected').count() > 0) {
+                        var eee = $("#editBtn").text();
+                        if ($("#editBtn").text() == "Edit\n" || $("#editBtn").text() == 'Edit') {
+                            scrollUp();
+                            setBtnEnable('#addBtn', false);
+                            setBtnEnable('#deleteBtn', false);
+
+                            editId = $('#articles-table').DataTable().row('.selected').data().id;
                             $.ajax({
                                 url: '/admin/article/get/' + $('#articles-table').DataTable().row('.selected').data().id,
                                 type: 'GET',
@@ -155,77 +160,39 @@
                                     var jsonObject = JSON.parse(result);
                                     var item = jsonObject[0];
 
-                                    editId = item.id;
-
                                     $('#inputTitleRu').val(item.title);
                                     $('#inputTitleEn').val(item.title_en);
                                     $('#inputShortRu').val(item.short);
                                     $('#inputShortEn').val(item.short_en);
                                     $('#inputFullRu').val(item.full);
                                     $('#inputFullEn').val(item.full_en);
-                                    $("#editBtn").text("Update\n");
+
+                                    if (item.full_en === 1) {
+                                        $('#inputRbAction').prop('checked', false);
+                                        $('#inputRbNews').prop('checked', true);
+                                    } else {
+                                        $('#inputRbAction').prop('checked', true);
+                                        $('#inputRbNews').prop('checked', false);
+                                    }
+
+                                    $("#editBtn").text("Update");
                                 }
                             });
+                        } else {
+                            $("#editBtn").text("Edit");
+                            alert(editId);
+                            updateById(editId);
+                            setBtnEnable('#addBtn', true);
+                            setBtnEnable('#deleteBtn', true);
                         }
                     } else {
-                        $("#editBtn").text("Edit\n");
-                        updateById(editId);
+                        alert('Choose item')
                     }
                 }
             );
 
-            function updateById(id) {
-                var body = {
-                    id: id,
-                    title: $('#inputTitleRu').val(),
-                    title_en: $('#inputTitleEn').val(),
-                    short: $('#inputShortRu').val(),
-                    short_en: $('#inputShortEn').val(),
-                    full: $('#inputFullRu').val(),
-                    full_en: $('#inputFullEn').val()
-                };
-                $.ajax({
-                    url: "/admin/article/update",
-                    type: "POST",
-                    data: JSON.stringify(body),
-                    dataType: "json",
-                    success: function (result) {
-                        alert(result);
-                        cleanAllFields();
-                        refreshTable();
-                    }
-                });
-            }
-
-            var editId = 0;
-
             $("#addBtn").click(function () {
                 if (isValid()) {
-                    var body = {
-                        short: $('#inputShortRu').val(),
-                        full: $('#inputFullRu').val(),
-                        imageId: $('#file').val(),
-                        type: $('input[name="gridRadios"]:checked').val(),
-                        short_en: $('#inputShortEn').val(),
-                        full_en: $('#inputFullEn').val(),
-                        title: $('#inputTitleRu').val(),
-                        title_en: $('#inputTitleEn').val()
-                    };
-
-                    var jsonBody = JSON.stringify(body);
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        url: "/admin/article/add",
-                        type: "POST",
-                        data: jsonBody,
-                        dataType: "json",
-                        success: function (result) {
-                            cleanAllFields();
-                            refreshTable();
-                        }
-                    });
 
                     var formData = new FormData($("#form")[0]);
                     $.ajax({
@@ -239,12 +206,81 @@
                         processData: false,
                         success: function (response) {
                             alert(response);
+                            addItem(response);
                         }
                     });
-
+                } else {
+                    alert("Fill all fields!")
                 }
-            })
-            ;
+            });
+        }
+
+        var editId = 0;
+
+        function setBtnEnable(id, isEnable) {
+            if (isEnable) {
+                $(id).prop('disabled', false);
+                $(id).attr('class', 'btn btn-default');
+            } else {
+                $(id).prop('disabled', true);
+                $(id).attr('class', 'btn btn-default');
+            }
+        }
+
+        function updateById(id) {
+            var body = {
+                id: id,
+                title: $('#inputTitleRu').val(),
+                title_en: $('#inputTitleEn').val(),
+                short: $('#inputShortRu').val(),
+                short_en: $('#inputShortEn').val(),
+                full: $('#inputFullRu').val(),
+                full_en: $('#inputFullEn').val(),
+                type: $('input[name="gridRadios"]:checked').val()
+            };
+            $.ajax({
+                url: "/admin/article/update",
+                type: "POST",
+                data: JSON.stringify(body),
+                dataType: "json",
+                success: function (result) {
+                    alert(result);
+                    cleanAllFields();
+                    refreshTable();
+                }
+            });
+        }
+
+        function scrollUp() {
+            $(window).scrollTop(0);
+        }
+
+        function addItem($imageId) {
+            var body = {
+                short: $('#inputShortRu').val(),
+                full: $('#inputFullRu').val(),
+                imageId: $imageId,
+                type: $('input[name="gridRadios"]:checked').val(),
+                short_en: $('#inputShortEn').val(),
+                full_en: $('#inputFullEn').val(),
+                title: $('#inputTitleRu').val(),
+                title_en: $('#inputTitleEn').val()
+            };
+
+            var jsonBody = JSON.stringify(body);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "/admin/article/add",
+                type: "POST",
+                data: jsonBody,
+                dataType: "json",
+                success: function (result) {
+                    cleanAllFields();
+                    refreshTable();
+                }
+            });
         }
 
         function refreshTable() {
@@ -272,18 +308,6 @@
                 $('#file').val().length == 0);
         }
 
-        function getAllFieldsValue() {
-            var titleRu = $('#inputTitleRu').val();
-            var titleEn = $('#inputTitleEn').val();
-            var shortRu = $('#inputShortRu').val();
-            var shortEn = $('#inputShortEn').val();
-            var fullRu = $('#inputFullRu').val();
-            var fullEnu = $('#inputFullEn').val();
-
-            var type = $('input[name="gridRadios"]:checked').val();
-
-            var file = $('#file').val();
-        }
     </script>
 
 @endsection
