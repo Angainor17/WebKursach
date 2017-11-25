@@ -26,7 +26,7 @@ class ArticleType
         }
     }
 
-    public function toInt($string)
+    public static function toInt($string)
     {
         switch ($string) {
             case ArticleType::$NEWS:

@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\BusinessModel\ArticleType;
 use App\Http\Controllers\Controller;
 use App\Http\DBModel\Article;
+use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 
@@ -23,33 +24,44 @@ class ArticleController extends Controller
         Article::destroy(["id" => $id]);
     }
 
-    public function addItem()
+    public function getArticleById($id)
     {
-        $article = new Article;
+        return json_encode(Article::all()->where("id", $id)->first()->take(1)->get());
+    }
 
-//        $article2 = collect(["id" => 1000,
-//            "short" => "z",
-//            "full" => "z",
-//            "imageId" => "z",
-//            "date" => "z",
-//            "type" => 2,
-//            "short_en" => "z",
-//            "full_en" => "z",
-//            "title" => "z",
-//            "title_en" => "z"
-//        ]);
+    public function updateItem(Request $request)
+    {
+        $content = $request->getContent(false);
+        $array = json_decode($content, true);
 
+//        Article::where("id", $array['id'])
+//            ->update(
+//                [
+//                    'short' => 'Dm'
+//                ]
+//            );
+        return $array['id'];
+    }
 
-        $article->short = "z";
-        $article->full = "z";
-        $article->imageId = "z";
-        $article->date = "z";
-        $article->type = 2;
-        $article->short_en = "z";
-        $article->full_en = "z";
-        $article->title = "z";
-        $article->title_en = "z";
-        $article->save();
+    public function addItem(Request $request)
+    {
+        if ($request->isMethod('post')) {
+
+            $content = $request->getContent(false);
+            $array = json_decode($content, true);
+
+            $article = new Article;
+            $article->short = $array['short'];
+            $article->full = $array['full'];
+            $article->imageId = $array['imageId'];
+            $article->date = date("d/m/Y H:i:s");
+            $article->type = $array['type'];
+            $article->short_en = $array['short_en'];
+            $article->full_en = $array['full_en'];
+            $article->title = $array['title'];
+            $article->title_en = $array['title_en'];
+            $article->save();
+        }
     }
 
     public function getArticleDataTable()
@@ -71,7 +83,6 @@ class ArticleController extends Controller
 
     public function getView()
     {
-        $this->addItem();
         return view(
             "admin.article",
             [
@@ -80,8 +91,4 @@ class ArticleController extends Controller
         );
     }
 
-    protected function getDateFormat()
-    {
-        return 'U';
-    }
 }
