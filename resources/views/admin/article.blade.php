@@ -126,12 +126,26 @@
     </script>
 
     <script>
-        function doOnStart() {
 
+        function setBtnEnable(id, isEnable) {
+            if (isEnable) {
+                $(id).prop('disabled', false);
+                $(id).attr('class', 'btn btn-default');
+            } else {
+                $(id).prop('disabled', true);
+                $(id).attr('class', 'btn btn-default');
+            }
+        }
+
+
+        function scrollUp() {
+            $(window).scrollTop(0);
+        }
+
+        function doOnStart() {
 
             $("#form").submit(function (event) {
                 event.preventDefault();
-                alert("lol111");
                 addBtnClickEvent();
                 return false;
             });
@@ -165,7 +179,7 @@
 
             $("#editBtn").click(function () {
                     if ($('#articles-table').DataTable().row('.selected').count() > 0) {
-                        var eee = $("#editBtn").text();
+
                         if ($("#editBtn").text() == "Edit\n" || $("#editBtn").text() == 'Edit') {
                             scrollUp();
                             setBtnEnable('#addBtn', false);
@@ -176,8 +190,7 @@
                                 url: '/admin/article/get/' + $('#articles-table').DataTable().row('.selected').data().id,
                                 type: 'GET',
                                 success: function (result) {
-                                    var jsonObject = JSON.parse(result);
-                                    var item = jsonObject[0];
+                                    var item = JSON.parse(result)
 
                                     $('#inputTitleRu').val(item.title);
                                     $('#inputTitleEn').val(item.title_en);
@@ -232,16 +245,6 @@
 
         var editId = 0;
 
-        function setBtnEnable(id, isEnable) {
-            if (isEnable) {
-                $(id).prop('disabled', false);
-                $(id).attr('class', 'btn btn-default');
-            } else {
-                $(id).prop('disabled', true);
-                $(id).attr('class', 'btn btn-default');
-            }
-        }
-
         function updateById(id) {
             var body = {
                 id: id,
@@ -264,10 +267,6 @@
                     refreshTable();
                 }
             });
-        }
-
-        function scrollUp() {
-            $(window).scrollTop(0);
         }
 
         function addItem($imageId) {

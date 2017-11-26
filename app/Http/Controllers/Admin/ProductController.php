@@ -30,7 +30,7 @@ class ProductController extends Controller
 
     public function getProductById($id)
     {
-        return json_encode(Product::all()->where("id", $id)->first()->take(1)->get());
+        return json_encode(Product::where('id','=', $id)->firstOrFail());
     }
 
     public function addItem(Request $request)
@@ -60,12 +60,16 @@ class ProductController extends Controller
             $product->instock = $array['instock'];
 
             $product->save();
+            return 'success';
+        } else {
+            return 'fail';
         }
     }
 
     public function deleteRow($id)
     {
         Product::destroy(["id" => $id]);
+        return 'success';
     }
 
     public function updateItem(Request $request)
@@ -76,23 +80,22 @@ class ProductController extends Controller
         Product::where("id", $array['id'])
             ->update(
                 [
-                    'name' => 'name',
-                    'name_en' => 'name_en',
-                    'producer' => 'producer',
-                    'description_en' => 'description_en',
-                    'description' => 'description',
-                    'ageFrom' => 'ageFrom',
-                    'ageTo' => 'ageTo',
-                    'imageId' => 'imageId',
-                    'discount' => 'discount',
-                    'cost' => 'cost',
-                    'category' => 'category',
-                    'portionType' => 'portionType',
-                    'portionSize' => 'portionSize',
-                    'portionTotal' => 'portionTotal',
-                    'maxTime' => 'maxTime',
-                    'breakTime' => 'breakTime',
-                    'instock' => 'instock',
+                    'name' => $array['name'],
+                    'name_en' => $array['name_en'],
+                    'producer' => $array['producer'],
+                    'description_en' => $array['description_en'],
+                    'description' => $array['description'],
+                    'ageFrom' => $array['ageFrom'],
+                    'ageTo' => $array['ageTo'],
+                    'discount' => $array['discount'],
+                    'cost' => $array['cost'],
+                    'category' => $array['category'],
+                    'portionType' => $array['portionType'],
+                    'portionSize' => $array['portionSize'],
+                    'portionTotal' => $array['portionTotal'],
+                    'maxTime' => $array['maxTime'],
+                    'breakTime' => $array['breakTime'],
+                    'instock' => $array['instock']
                 ]
             );
         return $array['id'];

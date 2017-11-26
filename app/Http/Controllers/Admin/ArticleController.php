@@ -26,7 +26,7 @@ class ArticleController extends Controller
 
     public function getArticleById($id)
     {
-        return json_encode(Article::all()->where("id", $id)->first()->take(1)->get());
+        return json_encode(Article::where('id', '=', $id)->firstOrFail());
     }
 
     public function updateItem(Request $request)

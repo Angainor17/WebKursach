@@ -5,18 +5,123 @@
 @section("content")
 
     <script>
-        $(document).ready(function () {
-            doOnStart();
+        $(function () {
+            table = $('#products-table').DataTable({
+                processing: false,
+                serverSide: true,
+                ajax: {
+                    url: '/admin/product/list'
+                },
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'name', name: 'name'},
+                    {data: 'producer', name: 'producer'},
+                    {data: 'category', name: 'category'},
+                    {data: 'cost', name: 'cost'},
+                    {data: 'discount', name: 'discount'},
+                    {data: 'portionsSize', name: 'portionsSize'}
+                ]
+            });
         });
 
         function doOnStart() {
+            initProductTable();
+
             $("#form").submit(function (event) {
                 event.preventDefault();
                 addProductEvent();
                 return false;
             });
 
+            $("#editBtn").text("Edit");
+
+
+            $("#editBtn").click(function () {
+                editBtnClickEvent();
+            });
+
+
+            $("#deleteBtn").click(function () {
+                deleteProductBtnEvent();
+            });
+
+            cleanAllProductsFields();
         }
+
+
+        $(document).ready(function () {
+            doOnStart();
+        });
+
+        function initProductTable() {
+
+            $('#products-table tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+        }
+
+        function deleteProductBtnEvent() {
+            if ($('#products-table').DataTable().row('.selected').count() > 0) {
+                $.ajax({
+                    url: '/admin/product/delete/' + $('#articles-table').DataTable().row('.selected').data().id,
+                    type: 'GET',
+                    success: function (result) {
+                        refreshTable();
+                    }
+                });
+                $('#articles-table').DataTable().row('.selected').remove().draw();
+            }
+        }
+
+        function editBtnClickEvent() {
+            if (!($("#editBtn").text() == "Edit\n" || $("#editBtn").text() == 'Edit')) {
+
+                setBtnEnable('#addBtn', true);
+                setBtnEnable('#deleteBtn', true);
+                $("#editBtn").text("Edit");
+                updateProductById(editId);
+            } else {
+                if ($('#products-table').DataTable().row('.selected').count() > 0) {
+
+                    editId = $('#products-table').DataTable().row('.selected').data().id;
+                    $.ajax({
+                        url: '/admin/product/get/' + editId,
+                        type: 'GET',
+                        success: function (result) {
+                            fillAllProductsFields(JSON.parse(result));
+                            $("#editBtn").text("Update");
+                            scrollUp();
+                            setBtnEnable('#addBtn', false);
+                            setBtnEnable('#deleteBtn', false);
+                        }
+                    });
+                } else {
+                    alert("Choose item");
+                }
+            }
+        }
+
+        function setBtnEnable(id, isEnable) {
+            if (isEnable) {
+                $(id).prop('disabled', false);
+                $(id).attr('class', 'btn btn-default');
+            } else {
+                $(id).prop('disabled', true);
+                $(id).attr('class', 'btn btn-default');
+            }
+        }
+
+        function scrollUp() {
+            $(window).scrollTop(0);
+        }
+
+        var editId = 0;
 
         function addProductEvent() {
             var formData = new FormData($("#form")[0]);
@@ -32,10 +137,41 @@
                 success: function (imageId) {
                     alert(imageId);
                     addProductItem(imageId);
-                    //cleanAllProductsFields();
                 }
             });
+        }
 
+        function updateProductById(id) {
+            var body = {
+                id: id,
+                name: $('#inputNameRu').val(),
+                name_en: $('#inputNameEn').val(),
+                producer: $('#inputProducer').val(),
+                description: $('#inputDescriptionRu').val(),
+                description_en: $('#inputDescriptionEn').val(),
+                ageFrom: $('#inputAgeFrom').val(),
+                ageTo: $('#inputAgeTo').val(),
+                cost: $('#inputCost').val(),
+                discount: $('#inputDiscount').val(),
+                category: $('#inputCategory').val(),
+                portionType: $('#inputPortionType').val(),
+                portionSize: $('#inputPortionSize').val(),
+                portionTotal: $('#inputPortionTotal').val(),
+                maxTime: $('#inputMaxTime').val(),
+                breakTime: $('#inputBreakTime').val(),
+                instock: $('#inputInstock').val()
+            };
+
+            $.ajax({
+                url: "/admin/product/update",
+                type: "POST",
+                data: JSON.stringify(body),
+                dataType: "json",
+                success: function (result) {
+                    cleanAllProductsFields();
+                    refreshProductTable()
+                }
+            });
         }
 
         function addProductItem(imageId) {
@@ -61,27 +197,59 @@
 
             var jsonBody = JSON.stringify(body);
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
                 url: "/admin/product/add",
                 type: "POST",
                 data: jsonBody,
                 dataType: "json",
                 success: function (result) {
+                    alert(result);
                     cleanAllProductsFields();
-                    refreshTable();
+                    refreshProductTable();
                 }
             });
+        }
 
-            function refreshTable() {
-                $('#products-table').DataTable().ajax.reload();
-            }
+        function refreshProductTable() {
+            $('#products-table').DataTable().ajax.reload();
+        }
 
-            function cleanAllProductsFields() {
-                $('#inputTitleRu').val("");
-            }
+        function cleanAllProductsFields() {
+            $('#inputNameRu').val("");
+            $('#inputNameEn').val("");
+            $('#inputProducer').val("");
+            $('#inputDescriptionRu').val("");
+            $('#inputDescriptionEn').val("");
+            $('#inputAgeFrom').val(0);
+            $('#inputAgeTo').val(0);
+            $('#inputImageFile').val("");
+            $('#inputCost').val("");
+            $('#inputDiscount').val("");
+            $('#inputCategory').val(1);
+            $('#inputPortionType').val(1);
+            $('#inputPortionSize').val("");
+            $('#inputPortionTotal').val("");
+            $('#inputMaxTime').val("");
+            $('#inputBreakTime').val("");
+            $('#inputInstock').val("");
+        }
 
+        function fillAllProductsFields(item) {
+            $('#inputNameRu').val(item.name);
+            $('#inputNameEn').val(item.name_en);
+            $('#inputProducer').val(item.producer);
+            $('#inputDescriptionRu').val(item.description);
+            $('#inputDescriptionEn').val(item.description_en);
+            $('#inputAgeFrom').val(item.ageFrom);
+            $('#inputAgeTo').val(item.ageTo);
+            $('#inputCost').val(item.cost);
+            $('#inputDiscount').val(item.discount);
+            $('#inputCategory').val(item.category);
+            $('#inputPortionType').val(item.portionType);
+            $('#inputPortionSize').val(item.portionSize);
+            $('#inputPortionTotal').val(item.portionTotal);
+            $('#inputMaxTime').val(item.maxTime);
+            $('#inputBreakTime').val(item.breakTime);
+            $('#inputInstock').val(item.instock);
         }
 
     </script>
@@ -220,7 +388,7 @@
                             Add
                         </button>
 
-                        <button style="margin-left: 10px" id="addEditBtn" type="button" class="btn btn-outline-primary">
+                        <button style="margin-left: 10px" id="editBtn" type="button" class="btn btn-outline-primary">
                             Edit
                         </button>
                     </p>
@@ -245,27 +413,6 @@
         </thead>
 
     </table>
-    <script>
-        $(function () {
-            table = $('#products-table').DataTable({
-                processing: false,
-                serverSide: true,
-                ajax: {
-                    url: '/admin/product/list'
-                },
-                columns: [
-                    {data: 'id', name: 'id'},
-                    {data: 'name', name: 'name'},
-                    {data: 'producer', name: 'producer'},
-                    {data: 'category', name: 'category'},
-                    {data: 'cost', name: 'cost'},
-                    {data: 'discount', name: 'discount'},
-                    {data: 'portionsSize', name: 'portionsSize'}
-                ]
-            });
-        });
 
-
-    </script>
 
 @endsection
