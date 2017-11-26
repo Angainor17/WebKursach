@@ -75,11 +75,11 @@
                 <div class="col-sm-10">
                     <div style="float: left; margin-bottom: 50px">
                         <p>
-                            <button id="deleteBtn" type="button" class="btn btn-default">Delete</button>
+                            <button id="deleteBtn" type="button" class="btn btn-outline-primary">Delete</button>
 
-                            <button style="margin-left: 30px" type="submit" id="addBtn" class="btn btn-default">Add
+                            <button style="margin-left: 30px" type="submit" id="addBtn" class="btn btn-outline-primary">Add
                             </button>
-                            <button style="margin-left: 30px" type="button" id="editBtn" class="btn btn-default">Edit
+                            <button style="margin-left: 30px" type="button" id="editBtn" class="btn btn-outline-primary">Edit
                             </button>
                         </p>
                     </div>
@@ -130,7 +130,7 @@
         function setBtnEnable(id, isEnable) {
             if (isEnable) {
                 $(id).prop('disabled', false);
-                $(id).attr('class', 'btn btn-default');
+                $(id).attr('class', 'btn btn-outline-primary');
             } else {
                 $(id).prop('disabled', true);
                 $(id).attr('class', 'btn btn-default');

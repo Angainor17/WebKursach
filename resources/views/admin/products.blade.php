@@ -69,13 +69,14 @@
         function deleteProductBtnEvent() {
             if ($('#products-table').DataTable().row('.selected').count() > 0) {
                 $.ajax({
-                    url: '/admin/product/delete/' + $('#articles-table').DataTable().row('.selected').data().id,
+                    url: '/admin/product/delete/' + $('#products-table').DataTable().row('.selected').data().id,
                     type: 'GET',
                     success: function (result) {
-                        refreshTable();
+                        refreshProductTable();
+                        $('#products-table').DataTable().row('.selected').remove().draw();
                     }
                 });
-                $('#articles-table').DataTable().row('.selected').remove().draw();
+
             }
         }
 
@@ -110,7 +111,7 @@
         function setBtnEnable(id, isEnable) {
             if (isEnable) {
                 $(id).prop('disabled', false);
-                $(id).attr('class', 'btn btn-default');
+                $(id).attr('class', 'btn btn-outline-primary');
             } else {
                 $(id).prop('disabled', true);
                 $(id).attr('class', 'btn btn-default');

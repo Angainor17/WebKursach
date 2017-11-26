@@ -69,7 +69,7 @@ class ProductController extends Controller
     public function deleteRow($id)
     {
         Product::destroy(["id" => $id]);
-        return 'success';
+        return $id;
     }
 
     public function updateItem(Request $request)
