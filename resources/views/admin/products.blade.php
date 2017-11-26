@@ -32,7 +32,7 @@
                 success: function (imageId) {
                     alert(imageId);
                     addProductItem(imageId);
-                    cleanAllFields();
+                    //cleanAllProductsFields();
                 }
             });
 
@@ -69,7 +69,7 @@
                 data: jsonBody,
                 dataType: "json",
                 success: function (result) {
-                    cleanAllFields();
+                    cleanAllProductsFields();
                     refreshTable();
                 }
             });
@@ -127,7 +127,7 @@
                  style="margin-top: 20px;margin-bottom: 20px;">
                 <span class="input-group-addon">Product image file: </span>
 
-                <input type="file" class="btn btn-default" id="inputImageFile" required>
+                <input type="file" class="btn btn-default" id="inputImageFile" name="file" required>
             </div>
 
 

@@ -48,6 +48,8 @@ class ProductController extends Controller
             $product->description_en = $array['description_en'];
             $product->imageId = $array['imageId'];
             $product->cost = $array['cost'];
+            $product->ageFrom = $array['ageFrom'];
+            $product->ageTo = $array['ageTo'];
             $product->discount = $array['discount'];
             $product->category = $array['category'];
             $product->portionType = $array['portionType'];

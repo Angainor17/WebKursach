@@ -27,7 +27,7 @@ class Controller extends BaseController
                 return $fileName;
             }
         }
-        return "moimage.png";
+        return "noimage.png";
     }
 
     protected function getDateFormat()
