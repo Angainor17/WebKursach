@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\BusinessModel\CategoryType;
+use App\Http\BusinessModel\PortionType;
 use App\Http\Controllers\Controller;
 use App\Http\DBModel\Product;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class ProductController extends Controller
             $product = new Product;
             $product->name = $array['name'];
             $product->name_en = $array['name_en'];
+            $product->producer = $array['producer'];
             $product->description = $array['description'];
             $product->description_en = $array['description_en'];
             $product->imageId = $array['imageId'];
@@ -74,6 +76,7 @@ class ProductController extends Controller
                 [
                     'name' => 'name',
                     'name_en' => 'name_en',
+                    'producer' => 'producer',
                     'description_en' => 'description_en',
                     'description' => 'description',
                     'ageFrom' => 'ageFrom',
@@ -99,16 +102,27 @@ class ProductController extends Controller
             [
                 "id",
                 "name",
-                "description",
+                "producer",
                 "category",
-                "cost"
+                "cost",
+                "discount",
+                "portionSize",
+                "portionType",
+                "portionTotal"
             ]
         ))
-            ->editColumn("category", function ($category) {
-                return CategoryType::toString($category->category);
+            ->editColumn("category", function ($info) {
+                return CategoryType::toString($info->category);
             })
-            ->editColumn("cost", function ($cost) {
-                return $cost->cost . 'руб';
+            ->editColumn("cost", function ($info) {
+                return $info->cost . ' RUB';
+            })
+            ->editColumn("discount", function ($info) {
+                return $info->discount . ' %';
+            })
+            ->editColumn("portionsSize", function ($info) {
+                $portType = PortionType::toString($info->portionType);
+                return $info->portionTotal . ' portions by ' . $info->portionSize . ' ' . $portType;
             })
             ->make(true);
     }

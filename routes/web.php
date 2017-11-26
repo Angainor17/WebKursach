@@ -33,7 +33,7 @@ Route::post('/admin/uploadFile', 'Admin\ArticleController@uploadFile');
 
 
 Route::get("/admin/product", "Admin\ProductController@getView");
-Route::get("/admin/product/list", "Admin\ProductController@getView@getArticleDataTable");
+Route::get("/admin/product/list", "Admin\ProductController@getProductsDataTable");
 Route::get('/admin/product/delete/{id}', 'Admin\ProductController@deleteRow');
 Route::post('/admin/product/add', 'Admin\ProductController@addItem');
 Route::post('/admin/product/update', 'Admin\ProductController@');

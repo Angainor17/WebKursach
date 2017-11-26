@@ -4,38 +4,42 @@
 
 @section("content")
     <div style="margin-bottom: 20px; margin-right: 200px; margin-left: 100px">
-        <form id="form" method="POST" enctype="multipart/form-data">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Title Ru</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputTitleRu" placeholder="Title Ru">
-                </div>
+        <form id="form" enctype="multipart/form-data">
+
+
+            <div class="input-group" style="margin-top: 20px">
+                <span class="input-group-addon">Title Ru</span>
+
+                <input type="text" class="form-control is-valid" id="inputTitleRu" placeholder="Title Ru"
+                       pattern=".{1,100}" required>
             </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Title En</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputTitleEn" placeholder="Title En">
-                </div>
+
+
+            <div class="input-group" style="margin-top: 20px">
+                <span class="input-group-addon">Title En</span>
+
+                <input type="text" class="form-control is-valid" id="inputTitleEn" placeholder="Title En"
+                       pattern=".{1,100}" required>
             </div>
+
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Short Ru</label>
-                <textarea class="form-control" id="inputShortRu" rows="3"></textarea>
+                <textarea class="form-control is-valid" id="inputShortRu" rows="3" maxlength="400" required></textarea>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Short En</label>
-                <textarea class="form-control" id="inputShortEn" rows="3"></textarea>
+                <textarea class="form-control is-valid" id="inputShortEn" rows="3" maxlength="400" required></textarea>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Full Ru</label>
-                <textarea class="form-control" id="inputFullRu" rows="6"></textarea>
+                <textarea class="form-control is-valid" id="inputFullRu" rows="6" maxlength="1000" required></textarea>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Full En</label>
-                <textarea class="form-control" id="inputFullEn" rows="6"></textarea>
+                <textarea class="form-control is-valid" id="inputFullEn" rows="6" maxlength="1000" required></textarea>
             </div>
-
-
 
 
             <div class="row">
@@ -58,10 +62,13 @@
             </div>
 
 
-            <div class="form-group" style="float: left">
-                <label>Image file input</label>
-                <input type="file" class="form-control-file" name="file" id="file">
+            <div class="form-group row"
+                 style="margin-top: 20px;margin-bottom: 20px">
+                <span class="input-group-addon">Article\News image file: </span>
+
+                <input type="file" class="btn btn-default" name="file" id="file" required>
             </div>
+
             {{ csrf_field() }}
 
             <div class="form-group row">
@@ -70,7 +77,7 @@
                         <p>
                             <button id="deleteBtn" type="button" class="btn btn-default">Delete</button>
 
-                            <button style="margin-left: 30px" type="button" id="addBtn" class="btn btn-default">Add
+                            <button style="margin-left: 30px" type="submit" id="addBtn" class="btn btn-default">Add
                             </button>
                             <button style="margin-left: 30px" type="button" id="editBtn" class="btn btn-default">Edit
                             </button>
@@ -108,7 +115,7 @@
                     {data: 'short', name: 'short'},
                     {data: 'full', name: 'full'},
                     {data: 'date', name: 'date'},
-                    {data: 'type', name: 'type'},
+                    {data: 'type', name: 'type'}
                 ]
             });
         });
@@ -120,6 +127,16 @@
 
     <script>
         function doOnStart() {
+
+
+            $("#form").submit(function (event) {
+                event.preventDefault();
+                alert("lol111");
+                addBtnClickEvent();
+                return false;
+            });
+
+
             $("#editBtn").text("Edit");
             cleanAllFields();
             $('#articles-table tbody').on('click', 'tr', function () {
@@ -193,28 +210,24 @@
                 }
             );
 
-            $("#addBtn").click(function () {
-                if (isValid()) {
-
-                    var formData = new FormData($("#form")[0]);
-                    $.ajax({
-                        url: '/admin/uploadFile',
-                        type: 'POST',
-                        data: formData,
-                        async: false,
-                        cache: false,
-                        contentType: false,
-                        enctype: 'multipart/form-data',
-                        processData: false,
-                        success: function (response) {
-                            alert(response);
-                            addItem(response);
-                        }
-                    });
-                } else {
-                    alert("Fill all fields!")
-                }
-            });
+            function addBtnClickEvent() {
+                var formData = new FormData($("#form")[0]);
+                $.ajax({
+                    url: '/admin/uploadFile',
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    success: function (response) {
+                        alert(response);
+                        addItem(response);
+                        cleanAllFields();
+                    }
+                });
+            }
         }
 
         var editId = 0;
@@ -298,16 +311,6 @@
             $('#inputFullEn').val("");
 
             $('#file').val("");
-        }
-
-        function isValid() {
-            return !($('#inputTitleRu').val().length == 0 ||
-                $('#inputTitleEn').val().length == 0 ||
-                $('#inputShortRu').val().length == 0 ||
-                $('#inputShortEn').val().length == 0 ||
-                $('#inputFullRu').val().length == 0 ||
-                $('#inputFullEn').val().length == 0 ||
-                $('#file').val().length == 0);
         }
 
     </script>

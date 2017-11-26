@@ -11,9 +11,9 @@ namespace App\Http\BusinessModel;
 
 class PortionType
 {
-    public static $ML = 'мл';
-    public static $GR = 'грамм';
-    public static $PIECE = 'штук';
+    public static $ML = 'ML';
+    public static $GR = 'GR';
+    public static $PIECE = 'PCs';
 
     public static function toString($number)
     {
@@ -25,12 +25,11 @@ class PortionType
             case 3:
                 return PortionType::$PIECE;
             default:
-                return "";
+                return "1";
         }
     }
 
-
-    public function toInt($string)
+    public static function toInt($string)
     {
         switch ($string) {
             case PortionType::$ML:
