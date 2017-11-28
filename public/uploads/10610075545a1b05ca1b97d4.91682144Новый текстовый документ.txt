@@ -1,0 +1,314 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.3
+-- https://www.phpmyadmin.net/
+--
+-- Хост: 127.0.0.1:3307
+-- Время создания: Ноя 26 2017 г., 11:08
+-- Версия сервера: 5.6.37-log
+-- Версия PHP: 7.1.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- База данных: `web`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `Article`
+--
+
+CREATE TABLE `Article` (
+  `id` int(11) NOT NULL,
+  `short` varchar(400) NOT NULL,
+  `full` varchar(2000) NOT NULL,
+  `imageId` varchar(200) NOT NULL,
+  `date` varchar(20) NOT NULL,
+  `type` int(11) NOT NULL,
+  `short_en` varchar(400) NOT NULL,
+  `full_en` varchar(2000) NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `title_en` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `Article`
+--
+
+INSERT INTO `Article` (`id`, `short`, `full`, `imageId`, `date`, `type`, `short_en`, `full_en`, `title`, `title_en`) VALUES
+(29, '111ort', 'flll', 'f1l', 'fjl', 2, 'fjl', 'fjl', 'fjl', 'fjl'),
+(30, '111ort', 'flll', 'f1l', 'fjl', 1, 'fjl', 'fjl', 'fjl', 'fjl'),
+(31, 'Dm', 'flll', 'f1l', 'fjl', 2, 'fjl', 'fjl', 'fjl', 'fjl'),
+(32, '111ort', 'flll', 'f1l', 'fjl', 2, 'fjl', 'fjl', 'fjl', 'fjl'),
+(33, '111ort', 'flll', 'f1l', 'fjl', 2, 'fjl', 'fjl', 'fjl', 'fjl'),
+(51, 'za', 'z', '111', 'z', 2, 'z', 'z', 'z', 'z'),
+(52, '', 'z', '111', 'z', 2, 'z', 'z', 'z', 'z'),
+(53, '', 'z', '111', 'z', 2, 'z', 'z', 'z', 'z'),
+(54, '{\"short\":\"\",\"full\":\"\",\"imageId\":\"\",\"type\":\"1\",\"short_en\":\"\",\"full_en\":\"\",\"title\":\"\",\"title_en\":\"\"}', 'z', '111', 'z', 2, 'z', 'z', 'z', 'z'),
+(55, 'full ru', 'full ru', 'C:\\fakepath\\Снимок экрана (6).png', '0', 2, 'short en', '2', 'title ru', 'title en'),
+(56, 'short ru', 'full ru', 'C:\\fakepath\\Снимок экрана (7).png', '0', 2, 'short en', 'full en', 'title ru', 'title en'),
+(57, '6', '6', 'C:\\fakepath\\Снимок экрана (3).png', '24/11/2017 18:26:33', 2, '6', '6', '6', '6'),
+(58, '1wd', '12r32tfxs', 'C:\\fakepath\\Снимок экрана (3).png', '24/11/2017 18:34:01', 2, '', '1rtghbkski4ikfs', '001sq32rsa', '142fsa[[['),
+(59, '1wd', '12r32tfxs', 'C:\\fakepath\\Снимок экрана (6).png', '24/11/2017 18:34:16', 2, '', '1rtghbkski4ikfs', '001sq32rsa', '142fsa[[['),
+(60, '1wd', '12r32tfxs', 'C:\\fakepath\\Снимок экрана (6).png', '24/11/2017 18:34:17', 2, '', '1rtghbkski4ikfs', '001sq32rsa', '142fsa[[['),
+(61, '1wd', '12r32tfxs', 'C:\\fakepath\\Снимок экрана (6).png', '24/11/2017 18:34:19', 2, '', '1rtghbkski4ikfs', '001sq32rsa', '142fsa[[['),
+(62, '6', '6', 'C:\\fakepath\\Снимок экрана (7).png', '24/11/2017 19:20:26', 2, '6', '6', '6', '6'),
+(63, '7', '7', 'C:\\fakepath\\Снимок экрана (2).png', '24/11/2017 19:24:52', 2, '7', '7', '7', '7'),
+(64, '4', '4', 'C:\\fakepath\\Снимок экрана (7).png', '24/11/2017 19:28:49', 2, '4', '4', '4', '4'),
+(65, '4', '4', 'C:\\fakepath\\Снимок экрана (7).png', '24/11/2017 19:28:58', 2, '4', '4', '4', '4'),
+(66, '4', '4', 'C:\\fakepath\\Снимок экрана (7).png', '24/11/2017 19:29:13', 2, '4', '4', '4', '4'),
+(67, '6', '6', 'C:\\fakepath\\Снимок экрана (7).png', '24/11/2017 19:29:54', 2, '6', '6', '6', '6'),
+(68, '6', '6', 'C:\\fakepath\\Снимок экрана (6).png', '24/11/2017 19:30:55', 2, '6', '6', '6', '6'),
+(69, '7', '7', 'C:\\fakepath\\Снимок экрана (1).png', '24/11/2017 19:32:26', 2, '7', '7', '1', '7'),
+(70, '6', '6', 'C:\\fakepath\\Снимок экрана (6).png', '24/11/2017 19:34:52', 2, '6', '6', '6', '6'),
+(71, '8', '8', 'C:\\fakepath\\ran5m4lszlvz.jpg', '24/11/2017 19:35:41', 2, '8', '8', '8', '8'),
+(72, '7', '7', 'C:\\fakepath\\011.jpg', '24/11/2017 19:36:51', 2, '7', '7', '7', '7'),
+(73, '777', '777', 'C:\\fakepath\\011.jpg', '24/11/2017 19:38:54', 2, '777', '7777', '7', '777'),
+(74, 'y', 'y', '', '25/11/2017 18:06:29', 2, 'y', 'y', 'y', 'y'),
+(75, 'y', 'y', '', '25/11/2017 18:10:05', 2, 'y', 'y', 'y', 'y'),
+(76, '7', '7', '', '25/11/2017 18:22:51', 2, '7', '7', '7', '7');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ArticleProduct`
+--
+
+CREATE TABLE `ArticleProduct` (
+  `idArticle` int(11) NOT NULL,
+  `idProduct` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `BodyTypeStrategy`
+--
+
+CREATE TABLE `BodyTypeStrategy` (
+  `id` int(11) NOT NULL,
+  `bodyType` int(11) DEFAULT NULL,
+  `portionSize` int(11) DEFAULT NULL,
+  `portionType` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `Client`
+--
+
+CREATE TABLE `Client` (
+  `id` int(11) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `age` int(11) NOT NULL,
+  `weight` double NOT NULL,
+  `gender` int(11) NOT NULL,
+  `trainingSchedule` int(11) NOT NULL,
+  `trainingType` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `Order`
+--
+
+CREATE TABLE `Order` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `productListId` int(11) NOT NULL,
+  `cost` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `Product`
+--
+
+CREATE TABLE `Product` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) NOT NULL,
+  `description` varchar(2000) NOT NULL,
+  `ageFrom` int(11) NOT NULL,
+  `ageTo` int(11) NOT NULL,
+  `imageId` varchar(200) NOT NULL,
+  `cost` double NOT NULL,
+  `discount` double NOT NULL,
+  `category` int(11) NOT NULL,
+  `portionType` int(11) NOT NULL,
+  `portionSize` double NOT NULL,
+  `portionTotal` int(11) NOT NULL,
+  `maxTime` int(11) NOT NULL,
+  `breakTime` int(11) NOT NULL,
+  `instock` int(11) NOT NULL,
+  `name_en` varchar(200) NOT NULL,
+  `description_en` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `Product`
+--
+
+INSERT INTO `Product` (`id`, `name`, `description`, `ageFrom`, `ageTo`, `imageId`, `cost`, `discount`, `category`, `portionType`, `portionSize`, `portionTotal`, `maxTime`, `breakTime`, `instock`, `name_en`, `description_en`) VALUES
+(1, 'name', 'description', 0, 100, 'imageId', 100, 0, 0, 2, 20, 20, 20, 20, 20, 'name_en', 'discription_en');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ProductList`
+--
+
+CREATE TABLE `ProductList` (
+  `idProduct` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `idOrder` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `ProductTypeStrategy`
+--
+
+CREATE TABLE `ProductTypeStrategy` (
+  `id` int(11) NOT NULL,
+  `productType` int(11) NOT NULL,
+  `ageFrom` int(11) NOT NULL,
+  `ageTo` int(11) NOT NULL,
+  `trainingType` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `Product_BodyTypeStrategy`
+--
+
+CREATE TABLE `Product_BodyTypeStrategy` (
+  `idProductTypeStrategy` int(11) NOT NULL,
+  `idBodyTypeStrategy` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `Article`
+--
+ALTER TABLE `Article`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ArticleProduct`
+--
+ALTER TABLE `ArticleProduct`
+  ADD KEY `id_idx` (`idArticle`),
+  ADD KEY `id_idx1` (`idProduct`);
+
+--
+-- Индексы таблицы `BodyTypeStrategy`
+--
+ALTER TABLE `BodyTypeStrategy`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `Client`
+--
+ALTER TABLE `Client`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `Order`
+--
+ALTER TABLE `Order`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `Product`
+--
+ALTER TABLE `Product`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ProductList`
+--
+ALTER TABLE `ProductList`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_idx` (`idProduct`);
+
+--
+-- Индексы таблицы `ProductTypeStrategy`
+--
+ALTER TABLE `ProductTypeStrategy`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `Product_BodyTypeStrategy`
+--
+ALTER TABLE `Product_BodyTypeStrategy`
+  ADD KEY `idProductTypeStrategy` (`idProductTypeStrategy`),
+  ADD KEY `idBodyTypeStrategy` (`idBodyTypeStrategy`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `Article`
+--
+ALTER TABLE `Article`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+--
+-- AUTO_INCREMENT для таблицы `Client`
+--
+ALTER TABLE `Client`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблицы `Order`
+--
+ALTER TABLE `Order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT для таблицы `Product`
+--
+ALTER TABLE `Product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT для таблицы `ProductTypeStrategy`
+--
+ALTER TABLE `ProductTypeStrategy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `ArticleProduct`
+--
+ALTER TABLE `ArticleProduct`
+  ADD CONSTRAINT `articleproduct_ibfk_1` FOREIGN KEY (`idArticle`) REFERENCES `Article` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `articleproduct_ibfk_2` FOREIGN KEY (`idProduct`) REFERENCES `Product` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `ProductList`
+--
+ALTER TABLE `ProductList`
+  ADD CONSTRAINT `id` FOREIGN KEY (`idProduct`) REFERENCES `Product` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `idOrder` FOREIGN KEY (`id`) REFERENCES `Order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Ограничения внешнего ключа таблицы `Product_BodyTypeStrategy`
+--
+ALTER TABLE `Product_BodyTypeStrategy`
+  ADD CONSTRAINT `product_bodytypestrategy_ibfk_1` FOREIGN KEY (`idProductTypeStrategy`) REFERENCES `ProductTypeStrategy` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `product_bodytypestrategy_ibfk_2` FOREIGN KEY (`idBodyTypeStrategy`) REFERENCES `BodyTypeStrategy` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
