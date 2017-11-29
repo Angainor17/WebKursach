@@ -16,6 +16,8 @@ Route::get("/", "Client\NewsPageController@getView");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/admin", "Admin\ArticleController@getView");
 
+Route::get("/articles", "Client\NewsPageController@getArticlesList");
+
 Route::get("/admin/article/list", "Admin\ArticleController@getArticleDataTable");
 Route::get('/admin/article/delete/{id}', 'Admin\ArticleController@deleteRow');
 Route::post('/admin/article/add', 'Admin\ArticleController@addItem');
@@ -39,4 +41,6 @@ Route::get("/admin/nutritionstrategy", "Admin\NutritionStrategy@getView");
 Route::get("/admin/nuttitionstategydelete", "Admin\NutritionStrategy@getView");
 
 
+Auth::routes();
 
+Route::get('/home', 'Client\NewsPageController@getView')->name('home');
