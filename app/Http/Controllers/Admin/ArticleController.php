@@ -60,7 +60,7 @@ class ArticleController extends Controller
             $article->short = $array['short'];
             $article->full = $array['full'];
             $article->imageId = $array['imageId'];
-            $article->date = date("d/m/Y H:i:s");
+            $article->date = date("d.m.Y");
             $article->type = $array['type'];
             $article->short_en = $array['short_en'];
             $article->full_en = $array['full_en'];

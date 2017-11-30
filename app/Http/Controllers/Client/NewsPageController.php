@@ -7,7 +7,8 @@ use App\Http\DBModel\Article;
 
 class NewsPageController extends Controller
 {
-    public function getView(){
+    public function getView()
+    {
         return view(
             "client.newsPage",
             [
@@ -16,7 +17,8 @@ class NewsPageController extends Controller
         );
     }
 
-    public function getArticlesList(){
+    public function getArticlesList()
+    {
         return json_encode(Article::all());
     }
 }

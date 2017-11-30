@@ -19,7 +19,7 @@ class Controller extends BaseController
 
             if ($request->hasFile('file')) {
                 $file = $request->file('file');
-                $fileName = (uniqid(rand(), true)) .
+                $fileName = (uniqid(rand(), false)) .
                     $file->getClientOriginalName();
                 $file->move(
                     public_path() . '/uploads', $fileName

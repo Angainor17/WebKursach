@@ -13,13 +13,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-
+    {{--<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/kendo.common.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/kendo.default.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/kendo.default.mobile.min.css') }}" rel="stylesheet">
 
+
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/kendo.all.min.js') }}"></script>
+    {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
 
 
 </head>
@@ -47,7 +49,6 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -94,6 +95,24 @@
 
     @yield('content')
 </div>
+
+
+<!--Footer-->
+<footer class="page-footer indigo center-on-small-only pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="test"><a href="#">
+                    <p>Facebook</p></a><a href="#">
+                    <p>Twitter</p></a><a href="#">
+                    <p>Google+</p></a><a href="#">
+                    <p>Github</p></a><a href="#">
+                    <p>Dribble</p></a><a href="#">
+                    <p>CodePen</p></a></div>
+        </div>
+    </div>
+</footer>
+<!--/Footer-->
+
 
 </body>
 </html>
