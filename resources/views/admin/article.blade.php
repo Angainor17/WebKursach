@@ -3,104 +3,112 @@
 @section("title","Article")
 
 @section("content")
-    <div style="margin-bottom: 20px; margin-right: 200px; margin-left: 100px">
-        <form id="form" enctype="multipart/form-data">
+    <div style="text-align: center">
+        <div style="margin-bottom: 20px; margin-right: 200px; margin-left: 100px">
+            <form id="form" enctype="multipart/form-data">
 
 
-            <div class="input-group" style="margin-top: 20px">
-                <span class="input-group-addon">Title Ru</span>
+                <div class="input-group" style="margin-top: 20px">
+                    <span class="input-group-addon">Title Ru</span>
 
-                <input type="text" class="form-control is-valid" id="inputTitleRu" placeholder="Title Ru"
-                       pattern=".{1,100}" required>
-            </div>
-
-
-            <div class="input-group" style="margin-top: 20px">
-                <span class="input-group-addon">Title En</span>
-
-                <input type="text" class="form-control is-valid" id="inputTitleEn" placeholder="Title En"
-                       pattern=".{1,100}" required>
-            </div>
-
-
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Short Ru</label>
-                <textarea class="form-control is-valid" id="inputShortRu" rows="3" maxlength="400" required></textarea>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Short En</label>
-                <textarea class="form-control is-valid" id="inputShortEn" rows="3" maxlength="400" required></textarea>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Full Ru</label>
-                <textarea class="form-control is-valid" id="inputFullRu" rows="6" maxlength="1000" required></textarea>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Full En</label>
-                <textarea class="form-control is-valid" id="inputFullEn" rows="6" maxlength="1000" required></textarea>
-            </div>
-
-
-            <div class="row">
-
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="inputRbNews"
-                               value="1" checked>
-                        News
-                    </label>
-                </div>
-                <div class="form-check" style="margin-left: 50px">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="inputRbAction"
-                               value="2">
-                        Action
-                    </label>
+                    <input type="text" class="form-control is-valid" id="inputTitleRu" placeholder="Title Ru"
+                           pattern=".{1,100}" required>
                 </div>
 
-            </div>
+
+                <div class="input-group" style="margin-top: 20px">
+                    <span class="input-group-addon">Title En</span>
+
+                    <input type="text" class="form-control is-valid" id="inputTitleEn" placeholder="Title En"
+                           pattern=".{1,100}" required>
+                </div>
 
 
-            <div class="form-group row"
-                 style="margin-top: 20px;margin-bottom: 20px">
-                <span class="input-group-addon">Article\News image file: </span>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Short Ru</label>
+                    <textarea class="form-control is-valid" id="inputShortRu" rows="3" maxlength="400"
+                              required></textarea>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Short En</label>
+                    <textarea class="form-control is-valid" id="inputShortEn" rows="3" maxlength="400"
+                              required></textarea>
+                </div>
 
-                <input type="file" class="btn btn-default" name="file" id="file" required>
-            </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Full Ru</label>
+                    <textarea class="form-control is-valid" id="inputFullRu" rows="6" maxlength="1000"
+                              required></textarea>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Full En</label>
+                    <textarea class="form-control is-valid" id="inputFullEn" rows="6" maxlength="1000"
+                              required></textarea>
+                </div>
 
-            {{ csrf_field() }}
 
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <div style="float: left; margin-bottom: 50px">
-                        <p>
-                            <button id="deleteBtn" type="button" class="btn btn-outline-primary">Delete</button>
+                <div class="row">
 
-                            <button style="margin-left: 30px" type="submit" id="addBtn" class="btn btn-outline-primary">Add
-                            </button>
-                            <button style="margin-left: 30px" type="button" id="editBtn" class="btn btn-outline-primary">Edit
-                            </button>
-                        </p>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="inputRbNews"
+                                   value="1" checked>
+                            News
+                        </label>
+                    </div>
+                    <div class="form-check" style="margin-left: 50px">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="inputRbAction"
+                                   value="2">
+                            Action
+                        </label>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group row"
+                     style="margin-top: 20px;margin-bottom: 20px">
+                    <span class="input-group-addon">Article\News image file: </span>
+
+                    <input type="file" class="btn btn-default" name="file" id="file" required>
+                </div>
+
+                {{ csrf_field() }}
+
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <div style="float: left; margin-bottom: 50px">
+                            <p>
+                                <button id="deleteBtn" type="button" class="btn btn-outline-primary">Delete</button>
+
+                                <button style="margin-left: 30px" type="submit" id="addBtn"
+                                        class="btn btn-outline-primary">Add
+                                </button>
+                                <button style="margin-left: 30px" type="button" id="editBtn"
+                                        class="btn btn-outline-primary">Edit
+                                </button>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </form>
+            </form>
+        </div>
+        <div style="text-align: center">
+            <table class="table table-bordered" id="articles-table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Short</th>
+                    <th>Full</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
     </div>
-
-    <table class="table table-bordered" id="articles-table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Short</th>
-            <th>Full</th>
-            <th>Date</th>
-            <th>Type</th>
-        </tr>
-        </thead>
-    </table>
-
     <script>
         var table;
         $(function () {

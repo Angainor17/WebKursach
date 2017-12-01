@@ -7,8 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ $title }}</title>
+    <title>Name</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,96 +23,92 @@
     {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
 
     {{--<script src="{{ asset('js/popper.min.js') }}"></script>--}}
+    <style>
+        html, body {
+            height: 100%;
+        }
 
+        .content {
+            min-height: 100%;
+        }
+
+        .footer {
+            position: relative;
+            clear: both;
+        }
+
+    </style>
 </head>
 <body>
-<div id="app">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
+<div id="app" class="content">
+    <nav class="navbar navbar-inverse" style="border:2px solid #c3c3c3; height: 120px">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+        <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="{{asset("/default/logo.gif")}}" style="height: 100px">
+        </a>
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <!-- Left Side Of Navbar -->
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ route('basket') }}"><img src="{{asset("/default/cart.png")}}" style="height: 50px;"></a>
+                </li>
+                <!-- Authentication Links -->
+                @if (Auth::guest())
+                    <li><a href="{{ route('login') }}">
+                            <button class="btn btn-primary">Login</button>
+                        </a></li>
+                    <li><a href="{{ route('register') }}">
+                            <button class="btn btn-primary">Register</button>
+                        </a></li>
+                @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    My nutrition Way
-                </a>
-            </div>
+                        <ul class="dropdown-menu" role="menu">
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                </ul>
+                            <li>
+                                <a>
+                                    Account
+                                </a>
+                            </li>
 
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
-                    @else
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-
-                                <li>
-                                    <a>
-                                        Account
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
+                                    <button>Log Out</button>
+                                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
 
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
-            </div>
+                        </ul>
+                    </li>
+                @endif
+            </ul>
         </div>
     </nav>
 
     @yield('content')
 </div>
 
-
-<!--Footer-->
-<footer class="page-footer indigo center-on-small-only pt-0">
-    <div class="container">
-        <div class="row">
-            <div class="test"><a href="#">
-                    <p>Facebook</p></a><a href="#">
-                    <p>Twitter</p></a><a href="#">
-                    <p>Google+</p></a><a href="#">
-                    <p>Github</p></a><a href="#">
-                    <p>Dribble</p></a><a href="#">
-                    <p>CodePen</p></a></div>
+<footer id="footer" class="footer">
+    <nav class="navbar navbar-inverse">
+        <div class="container" id="footer-content">
+            <div class="row">
+                <a href="http:\\vk.com">VK</a>
+                <a href="http:\\vk.com">VK</a>
+                <a href="http:\\vk.com">VK</a>
+            </div>
         </div>
-    </div>
+    </nav>
 </footer>
-<!--/Footer-->
-
 
 </body>
 </html>

@@ -21,6 +21,9 @@ Route::get('/home', 'Client\NewsPageController@getView')->name('home');
 Route::get("/articles", "Client\NewsPageController@getArticlesList");
 Route::get("/article/{id}", "Client\SelectedNewsController@getView")->name("article");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get("/basket", "Client\BasketController@getView")->name("basket");
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/admin", "Admin\ArticleController@getView");
 Route::get("/admin/article/list", "Admin\ArticleController@getArticleDataTable");
 Route::get('/admin/article/delete/{id}', 'Admin\ArticleController@deleteRow');
