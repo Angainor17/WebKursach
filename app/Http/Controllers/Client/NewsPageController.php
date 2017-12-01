@@ -19,6 +19,6 @@ class NewsPageController extends Controller
 
     public function getArticlesList()
     {
-        return json_encode(Article::all());
+        return json_encode(Article::orderBy('id', 'desc')->get());
     }
 }

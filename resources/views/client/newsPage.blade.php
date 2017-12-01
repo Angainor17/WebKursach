@@ -1,21 +1,89 @@
-@extends("layouts.app")
+@extends("layouts.app", ["title"=>"Home"])
 
 @section("content")
 
-    <div class="demo-section k-content wide">
+    <style>
+
+        .article {
+            width: 554px;
+            height: 400px;
+            font-size: 16px;
+            padding: 20px;
+            display: inline-block;
+            margin-bottom: 75px;
+            margin-right: 50px;
+            position: relative;
+            background-color: #e6e6e6;
+        }
+
+        .article img {
+            max-width: 480px;
+            border: solid 3px #d4d9d4;
+            margin: 2px;
+        }
+
+        .articleTitle {
+            padding-right: 10%;
+        }
+
+        .articleText {
+            word-wrap: break-word;
+        }
+
+        .articleDate {
+            font-size: 14px;
+            color: #717171;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        #listView {
+            padding-left: 7%;
+            padding-right: 7%;
+            margin-left: 7%;
+            padding-top: 50px;
+            margin-right: 7%;
+            display: block;
+        }
+
+        #pager {
+            margin-left: 7%;
+            margin-right: 7%;
+        }
+
+        #readMoreBtn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin-bottom: 30px;
+            margin-left: 10px;
+        }
+
+        .imageDiv {
+            text-align: center;
+        }
+
+
+    </style>
+
+    <div class="listViewClass">
         <div id="listView"></div>
         <div id="pager" class="k-pager-wrap"></div>
     </div>
 
     <script type="text/x-kendo-template" id="template">
         <div class="article">
-            <div style="border: solid 1px black">
-                <img src="{{asset('/uploads/')}}/#:imageId#" style="width: 100px;height: 100px; float: left">
-                <div><h2>Title: #:title#</h2></div>
-                <div><h3>Date #:date#</h3></div>
-                <a href="/article/#:id#">Read</a>
-                <div>Short: #:short#</div>
+            <div class="imageDiv">
+                <a href="/article/#:id#"><img class="card-img-top" src="{{asset('/uploads/')}}/#:imageId#"
+                                              style="height: 150px; "></a>
             </div>
+
+            <a href="/article/#:id#"><p class="articleTitle">#:title#</p></a>
+            <p class="articleDate">#:date#</p>
+            <div class="articleText">#:short#</div>
+            <a id="readMoreBtn" href="/article/#:id#">
+                <button type="button" class="btn btn-info">Read more...</button>
+            </a><br>
         </div>
     </script>
 

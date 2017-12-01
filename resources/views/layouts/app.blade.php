@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -23,6 +23,7 @@
     <script src="{{ asset('js/kendo.all.min.js') }}"></script>
     {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
 
+    {{--<script src="{{ asset('js/popper.min.js') }}"></script>--}}
 
 </head>
 <body>
@@ -42,7 +43,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    My nutrition Way
                 </a>
             </div>
 
