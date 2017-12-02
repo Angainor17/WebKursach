@@ -38,17 +38,18 @@
         }
 
         #listView {
-            padding-left: 7%;
-            padding-right: 7%;
-            margin-left: 7%;
+            padding-left: 3%;
+            padding-right: 3%;
+            margin-left: 6%;
             padding-top: 50px;
-            margin-right: 7%;
+            margin-right: 6%;
             display: block;
+            text-align: center;
         }
 
         #pager {
-            margin-left: 7%;
-            margin-right: 7%;
+            margin-left: 6%;
+            margin-right: 6%;
         }
 
         #readMoreBtn {
@@ -66,7 +67,7 @@
 
     </style>
 
-    <div class="listViewClass">
+    <div>
         <div id="listView"></div>
         <div id="pager" class="k-pager-wrap"></div>
     </div>
