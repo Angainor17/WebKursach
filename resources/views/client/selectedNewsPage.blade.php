@@ -34,9 +34,9 @@
 
     <div class="articleInfo">
         <div style="font-size: 30px; text-align: left; margin-bottom: 30px; color: red">
-            @if($item->type == 1) News @endif
+            @if($item->type == 1) {{trans('app.newsLabel')}} @endif
 
-            @if($item->type == 2) Auction @endif
+            @if($item->type == 2) {{trans('app.actionLabel')}} @endif
         </div>
 
         <img class="card-img-top" src="{{asset('/uploads/')}}/{{$item->imageId}}">

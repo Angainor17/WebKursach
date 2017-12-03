@@ -118,10 +118,10 @@
                 </ul>
                 <div class="container-fluid" style="font-size: 18px;position: absolute; bottom: 0; margin-left: 35%">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/home">{{trans('app.homeLabel')}}</a></li>
+                        <li><a href="/home">{{trans('app.homeLabel')}}</a></li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="/productsList">{{trans('app.products')}}
-                                <span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/productsList">{{trans('app.products')}}</a>
+                                {{--<span class="caret"></span></a>--}}
                             <ul class="dropdown-menu">
                                 <li><a href="#">{{trans('app.protein')}}</a></li>
                                 <li><a href="#">{{trans('app.vitamin')}}</a></li>
@@ -130,7 +130,7 @@
                                 <li><a href="#">{{trans('app.gainer')}}</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">{{trans('app.newsLabel')}}</a></li>
+                        <li><a href="/home">{{trans('app.newsLabel')}}</a></li>
                         <li><a href="#">{{trans('app.aboutLabel')}}</a></li>
                     </ul>
                 </div>

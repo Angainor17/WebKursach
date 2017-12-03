@@ -18,7 +18,21 @@ class NewsPageController extends Controller
     }
 
     public function getArticlesList()
+
     {
-        return json_encode(Article::orderBy('id', 'desc')->get());
+        $lang = app()->getLocale();
+        return json_encode(Article::orderBy('id', 'desc')->get()->map(
+            function ($data) use ($lang) {
+                if ($lang == "en") {
+                    $data->title = $data->title_en;
+                    $data->short = $data->short_en;
+                    return $data;
+                }
+                if ($lang == "ru") {
+                    return $data;
+                }
+                return $data;
+            }
+        ));
     }
 }

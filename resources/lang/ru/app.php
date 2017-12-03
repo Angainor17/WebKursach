@@ -70,4 +70,8 @@ return [
     'passwordLabel' => 'Русский текст',
     'rememberMeLabel' => 'Русский текст',
     'forgotPassLabel' => 'Русский текст',
+    'resetPassLabel' => 'Русский текст',
+    'confirmPassLabel' => 'Русский текст',
+    'sendPassLabel' => 'Русский текст',
+
 ];
