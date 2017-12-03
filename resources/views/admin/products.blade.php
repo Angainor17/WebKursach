@@ -1,6 +1,6 @@
 @extends("admin.frame")
 
-@section("title", "Products")
+@section("title", trans('app.adminProductPage'))
 
 @section("content")
 

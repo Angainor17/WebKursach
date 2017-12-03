@@ -1,6 +1,22 @@
-@extends("layouts.app", ["title"=>"Products"])
+@extends("layouts.app", ["title"=>trans('app.productsPage')])
 
 @section("content")
+
+    <script>
+
+        function addInCart(id) {
+            if ($("#btn" + id).text() == "{{trans('app.inCartLabel')}}") {
+                $("#btn" + id).text("{{trans('app.alreadyInCartLabel')}}");
+                $.ajax({
+                    url: "/addToCart",
+                    type: "POST",
+                    data: {
+                        idProduct: id
+                    }
+                });
+            }
+        }
+    </script>
 
     <style>
 
@@ -36,7 +52,7 @@
         .product {
             border: 2px solid #b9b9b9;
             width: 300px;
-            height: 330px;
+            height: 350px;
             margin: 20px;
             font-size: 16px;
             padding: 20px;
@@ -59,11 +75,18 @@
                                               style="height: 200px; "></a>
             </div>
 
-            <p>Name #:name#</p>
-            <p class="producer">Producer #:producer#</p>
+            <p>#:name#</p>
+            <p class="producer">{{trans('app.producerLabel')}}: #:producer#</p>
 
-            <p class="cost">#:cost# руб.</p>
-            <p>Instock = #:instock#</p>
+            <div style="display: ruby-base">
+                <div style="text-decoration: line-through; margin-right: 10px;color: lightslategray">#:cost#</div>
+                <div class="cost">#:discount#{{trans('app.rub')}}</div>
+            </div>
+            <p>#:instock#</p>
+            @if(!Auth::guest())
+                <button id="btn#:id#" onclick="addInCart('#:id#')"
+                        class="btn btn-success">{{trans('app.inCartLabel')}}</button>
+            @endif
         </div>
     </script>
 

@@ -74,4 +74,23 @@ return [
     'confirmPassLabel' => 'Русский текст',
     'sendPassLabel' => 'Русский текст',
 
+    'instockHas' => 'В наличии',
+    'instockNo' => 'Нет в продаже',
+    'inCartLabel' => 'Купить',
+    'alreadyInCartLabel' => 'В корзине',
+    'accountLabel' => 'Личный кабинет',
+
+    'productsPage' => 'Русский текст',
+    'newsPage' => 'Русский текст',
+    'adminProductPage' => ' Русский текст',
+    'adminArticlePage' => 'Русский текст',
+    'cartPage' => ' Русский текст',
+    'loginPage' => 'Русский текст',
+    'registerPage' => 'Русский текст',
+    'rememberPassPage' => ' Русский текст',
+    'accountPage' => 'Your Русский текст',
+    'resetPassPage' => ' Русский текст',
+    'adminNutritionStrategyPage' => ' Русский текст',
+
+    'hiLabel' => 'Здравствуйте, ',
 ];

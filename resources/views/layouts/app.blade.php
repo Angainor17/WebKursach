@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Name</title>
+    <title>{{$title}}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -83,57 +83,58 @@
         <a href="{{ route('basket') }}" style="position: absolute;top: 25%;right: 0; margin-right: 23%"><img
                     src="{{asset("/default/cart.png")}}" style="height: 50px;"></a>
 
+
         @if (Auth::guest())
-            <div style="position: absolute; right: 0; margin-right: 10%;top: 40%">
+            <div  style="position: absolute; left: 80%;top: 40%">
                 <a href="{{ route('login') }}">
-                    <button class="btn btn-primary" style="width: 100px">{{trans('app.loginLabel')}}</button>
+                    <button class="btn btn-primary" style="width: auto">{{trans('app.loginLabel')}}</button>
                 </a>
                 <a href="{{ route('register') }}">
-                    <button class="btn btn-primary" style="width: 100px;">{{trans('app.registerLabel')}}</button>
+                    <button class="btn btn-primary" style="width: auto">{{trans('app.registerLabel')}}</button>
                 </a>
             </div>
         @else
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                   aria-expanded="false">
-                    {{ Auth::user()->name }} <span class="caret"></span>
+            <div style="position: absolute; left: 80%;top: 40%">
+                <a href="{{ route('account') }}">
+                    <button class="btn btn-primary" style="width: auto">{{trans('app.accountPage')}}</button>
                 </a>
-
-                <ul class="dropdown-menu" role="menu">
-                    <li><a>Account</a></li>
-                    <li>
-                        <a href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
+                <a href="{{ route('logout') }}">
+                    <button class="btn btn-primary" style="width: 100px;" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            <button>{{trans('app.logoutLabel')}}</button>
-                        </a>
+                        {{trans('app.logoutLabel')}}
+                    </button>
+                </a>
+            </div>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                              style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-                    </li>
-                    @endif
-                </ul>
-                <div class="container-fluid" style="font-size: 18px;position: absolute; bottom: 0; margin-left: 35%">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/home">{{trans('app.homeLabel')}}</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="/productsList">{{trans('app.products')}}</a>
-                                {{--<span class="caret"></span></a>--}}
-                            <ul class="dropdown-menu">
-                                <li><a href="#">{{trans('app.protein')}}</a></li>
-                                <li><a href="#">{{trans('app.vitamin')}}</a></li>
-                                <li><a href="#">{{trans('app.tonik')}}</a></li>
-                                <li><a href="#">{{trans('app.aminoacid')}}</a></li>
-                                <li><a href="#">{{trans('app.gainer')}}</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/home">{{trans('app.newsLabel')}}</a></li>
-                        <li><a href="#">{{trans('app.aboutLabel')}}</a></li>
+            <div style="position: absolute; left: 80%; top: 10%; color: white">{{trans('app.hiLabel')}} {{ Auth::user()->name }} </div>
+
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                  style="display: none;">
+                {{ csrf_field() }}
+            </form>
+
+        @endif
+
+        <div class="container-fluid" style="font-size: 18px;position: absolute; bottom: 0; margin-left: 35%">
+            <ul class="nav navbar-nav">
+                <li><a href="/home">{{trans('app.homeLabel')}}</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"
+                       href="/productsList">{{trans('app.products')}}</a>
+                    {{--<span class="caret"></span></a>--}}
+                    <ul class="dropdown-menu">
+                        <li><a href="#">{{trans('app.protein')}}</a></li>
+                        <li><a href="#">{{trans('app.vitamin')}}</a></li>
+                        <li><a href="#">{{trans('app.tonik')}}</a></li>
+                        <li><a href="#">{{trans('app.aminoacid')}}</a></li>
+                        <li><a href="#">{{trans('app.gainer')}}</a></li>
                     </ul>
-                </div>
+                </li>
+                <li><a href="/home">{{trans('app.newsLabel')}}</a></li>
+                <li><a href="#">{{trans('app.aboutLabel')}}</a></li>
+            </ul>
+        </div>
 
 
     </nav>

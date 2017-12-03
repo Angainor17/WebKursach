@@ -1,6 +1,6 @@
 @extends("admin.frame")
 
-@section("title","Article")
+@section("title",trans('app.adminArticlePage'))
 
 @section("content")
 
@@ -84,7 +84,8 @@
                     <div class="col-sm-10">
                         <div style="float: left; margin-bottom: 50px">
                             <p>
-                                <button id="deleteBtn" type="button" class="btn btn-outline-primary">{{trans('app.deleteBtn')}}</button>
+                                <button id="deleteBtn" type="button"
+                                        class="btn btn-outline-primary">{{trans('app.deleteBtn')}}</button>
 
                                 <button style="margin-left: 30px" type="submit" id="addBtn"
                                         class="btn btn-outline-primary">{{trans('app.addBtn')}}

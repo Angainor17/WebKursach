@@ -1,4 +1,4 @@
-@extends("layouts.app", ["title"=>"Basket"])
+@extends("layouts.app", ["title"=>trans('app.cartPage')])
 
 @section("content")
 
