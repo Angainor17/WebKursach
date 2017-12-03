@@ -17,7 +17,11 @@ Route::get("/", "Client\NewsPageController@getView");
 
 
 Route::get('/home', 'Client\NewsPageController@getView')->name('home');
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get("/productsList", "Client\ProductListController@getView");
+Route::get("/products", "Client\ProductListController@getProductsList");
+Route::get("/product/{id}", "Client\SelectedNewsController@getView")->name("article");
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/articles", "Client\NewsPageController@getArticlesList");
 Route::get("/article/{id}", "Client\SelectedNewsController@getView")->name("article");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////

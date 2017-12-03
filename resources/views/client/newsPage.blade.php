@@ -28,6 +28,8 @@
 
         .articleText {
             word-wrap: break-word;
+            float: left;
+            text-align: left;
         }
 
         .articleDate {
@@ -80,11 +82,11 @@
             </div>
 
             <a href="/article/#:id#"><p class="articleTitle">#:title#</p></a>
-            <p class="articleDate">#:date#</p>
+            <p class="articleDate" style="float: left">#:date#</p>
             <div class="articleText">#:short#</div>
             <a id="readMoreBtn" href="/article/#:id#">
                 <button type="button" class="btn btn-info">Read more...</button>
-            </a><br>
+            </a>
         </div>
     </script>
 

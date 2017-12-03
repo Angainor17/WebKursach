@@ -88,22 +88,24 @@
                     </li>
                     @endif
                 </ul>
-                <div class="container-fluid" style="font-size: 18px;position: absolute; bottom: 0; margin-left: 30%">
+                <div class="container-fluid" style="font-size: 18px;position: absolute; bottom: 0; margin-left: 35%">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="/home">Home</a></li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/productsList">Products
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Products</a></li>
-                                <li><a href="#">Orders</a></li>
+                                <li><a href="#">Protein</a></li>
+                                <li><a href="#">Gainer</a></li>
+                                <li><a href="#">Tonik</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">About</a></li>
                     </ul>
                 </div>
+
+
     </nav>
     @yield('content')
 </div>
