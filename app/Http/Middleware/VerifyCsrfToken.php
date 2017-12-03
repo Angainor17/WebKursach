@@ -18,6 +18,8 @@ class VerifyCsrfToken extends BaseVerifier
         '/admin/uploadFile',
         '/admin/article/update',
         '/admin/product/add',
-        '/admin/product/update'
+        '/admin/product/update',
+        '/language',
+        '/language-chooser'
     ];
 }

@@ -17,8 +17,22 @@ class ProductListController extends Controller
         );
     }
 
+//    public function getProductsList()
+//    {
+//        return json_encode(Product::orderBy('id', 'desc')->get());
+//    }
+
     public function getProductsList()
     {
-        return json_encode(Product::orderBy('id', 'desc')->get());
+        $rr = json_encode(Product::orderBy('id', 'desc')->get()->map(function ($data) {
+            if ($data->instock > 0) {
+                $data->instock = "В наличии";
+            } else {
+                $data->instock = "Нет в продаже";
+            }
+
+            return $data;
+        }));
+        return $rr;
     }
 }

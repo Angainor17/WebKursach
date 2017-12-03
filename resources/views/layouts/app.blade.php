@@ -20,9 +20,37 @@
 
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/kendo.all.min.js') }}"></script>
+    <script>
+        $(document).ready(
+            function () {
+                $('#languageSwitcher').val('{{app()->getLocale()}}');
+
+                $('#languageSwitcher').change(function () {
+                    var locale = $(this).val();
+                    var _token = $("input[name=_token]").val();
+
+                    $.ajax({
+                        url: "/language",
+                        type: "POST",
+                        data: {
+                            locale: locale,
+                            _token: _token
+                        },
+                        dataType: 'json',
+                        complete: function () {
+                            window.location.reload(true);
+                        }
+
+                    });
+                })
+            }
+        );
+    </script>
     {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
 
     {{--<script src="{{ asset('js/popper.min.js') }}"></script>--}}
+
+
     <style>
         html, body {
             height: 100%;
@@ -58,10 +86,10 @@
         @if (Auth::guest())
             <div style="position: absolute; right: 0; margin-right: 10%;top: 40%">
                 <a href="{{ route('login') }}">
-                    <button class="btn btn-primary" style="width: 100px">Login</button>
+                    <button class="btn btn-primary" style="width: 100px">{{trans('app.loginLabel')}}</button>
                 </a>
                 <a href="{{ route('register') }}">
-                    <button class="btn btn-primary" style="width: 100px;">Register</button>
+                    <button class="btn btn-primary" style="width: 100px;">{{trans('app.registerLabel')}}</button>
                 </a>
             </div>
         @else
@@ -77,7 +105,7 @@
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            <button>Log Out</button>
+                            <button>{{trans('app.logoutLabel')}}</button>
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -90,18 +118,20 @@
                 </ul>
                 <div class="container-fluid" style="font-size: 18px;position: absolute; bottom: 0; margin-left: 35%">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/home">Home</a></li>
+                        <li class="active"><a href="/home">{{trans('app.homeLabel')}}</a></li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="/productsList">Products
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="/productsList">{{trans('app.products')}}
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Protein</a></li>
-                                <li><a href="#">Gainer</a></li>
-                                <li><a href="#">Tonik</a></li>
+                                <li><a href="#">{{trans('app.protein')}}</a></li>
+                                <li><a href="#">{{trans('app.vitamin')}}</a></li>
+                                <li><a href="#">{{trans('app.tonik')}}</a></li>
+                                <li><a href="#">{{trans('app.aminoacid')}}</a></li>
+                                <li><a href="#">{{trans('app.gainer')}}</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="#">{{trans('app.newsLabel')}}</a></li>
+                        <li><a href="#">{{trans('app.aboutLabel')}}</a></li>
                     </ul>
                 </div>
 
@@ -111,8 +141,6 @@
 </div>
 
 <footer id="footer" class="footer">
-
-
     <nav class="navbar navbar-inverse">
         <div style="position: absolute; left: 0;margin-left: 170px;bottom: 20%;color: white">
             © Design by FeoTeam, 2017
@@ -125,8 +153,15 @@
             </div>
         </div>
 
+        <div style="position: absolute; left: 70%;bottom: 30%">
+            <select id="languageSwitcher" data-width="fit">
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+            </select>
+        </div>
+
         <div style="position: absolute; right: 0;margin-right: 170px;bottom: 10%;color: white">
-            <p>Телефон: +7 (978) 837 03 04</p>
+            <p>{{trans('app.telephoneNumber')}}: +7 (978) 837 03 04</p>
             <p>E-mail: angainor17@gmail.com</p>
         </div>
     </nav>

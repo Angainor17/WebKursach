@@ -19,17 +19,17 @@
             margin-right: 6%;
         }
 
-        .title{
+        .title {
             color: black;
             font-style: italic;
         }
 
-        .producer{
+        .producer {
             color: black;
             font-style: oblique;
         }
 
-        .cost{
+        .cost {
             color: red;
         }
 
@@ -63,13 +63,7 @@
             <p class="producer">Producer #:producer#</p>
 
             <p class="cost">#:cost# руб.</p>
-            <p style="visibility: hidden">#:instock#</p>
-            <p>
-                {{--@if(# > 5)--}}
-                    В наличии
-                  {{-->  @endif--}}
-
-            </p>
+            <p>Instock = #:instock#</p>
         </div>
     </script>
 

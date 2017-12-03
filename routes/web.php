@@ -51,6 +51,14 @@ Route::get('/admin/product/get/{id}', 'Admin\ProductController@getProductById');
 Route::get("/admin/nutritionstrategy", "Admin\NutritionStrategy@getView");
 Route::get("/admin/nuttitionstategydelete", "Admin\NutritionStrategy@getView");
 
+Route::post("/language-chooser", "LanguageController@changeLanguage");
+
+Route::post("/language/", array(
+    'before' => 'csrf',
+    'as' => 'language-chooser',
+    'uses' => 'LanguageController@changeLanguage',
+));
+
 
 Auth::routes();
 

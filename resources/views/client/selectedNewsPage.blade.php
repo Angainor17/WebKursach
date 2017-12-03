@@ -8,10 +8,7 @@
             margin-right: 15%;
             background-color: #cfcfbf;
             text-align: center;
-            padding-left: 60px;
-            padding-right: 60px;
-            padding-top: 80px;
-            padding-bottom: 80px;
+            padding: 80px 60px;
         }
 
         .articleInfo img {

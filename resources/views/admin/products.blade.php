@@ -33,7 +33,7 @@
                 return false;
             });
 
-            $("#editBtn").text("Edit");
+            $("#editBtn").text({{trans('app.editBtn')}});
 
 
             $("#editBtn").click(function () {
@@ -85,7 +85,7 @@
 
                 setBtnEnable('#addBtn', true);
                 setBtnEnable('#deleteBtn', true);
-                $("#editBtn").text("Edit");
+                $("#editBtn").text({{trans('app.editBtn')}});
                 updateProductById(editId);
             } else {
                 if ($('#products-table').DataTable().row('.selected').count() > 0) {
@@ -96,14 +96,14 @@
                         type: 'GET',
                         success: function (result) {
                             fillAllProductsFields(JSON.parse(result));
-                            $("#editBtn").text("Update");
+                            $("#editBtn").text({{trans('app.updateBtn')}});
                             scrollUp();
                             setBtnEnable('#addBtn', false);
                             setBtnEnable('#deleteBtn', false);
                         }
                     });
                 } else {
-                    alert("Choose item");
+                    alert({{trans('app.chooseItemAlert')}});
                 }
             }
         }
@@ -259,42 +259,42 @@
         <form id="form">
             <div class="form-group row">
                 <div class="input-group">
-                    <span class="input-group-addon">Name Ru</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.nameRu')}}</span>
 
-                    <input type="text" class="form-control is-valid" id="inputNameRu" placeholder="Name Ru"
+                    <input type="text" class="form-control is-valid" id="inputNameRu" placeholder="{{trans('app.nameRu')}}"
                            pattern=".{1,100}" required>
                 </div>
 
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon">Name En</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.nameEn')}}</span>
 
-                    <input type="text" class="form-control is-valid" id="inputNameEn" placeholder="Name En"
+                    <input type="text" class="form-control is-valid" id="inputNameEn" placeholder="{{trans('app.nameEn')}}"
                            pattern=".{1,100}" required>
                 </div>
 
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon">Producer</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.producerLabel')}}</span>
 
-                    <input type="text" class="form-control is-valid" id="inputProducer" placeholder="Producer"
+                    <input type="text" class="form-control is-valid" id="inputProducer" placeholder="{{trans('app.producerLabel')}}"
                            pattern=".{1,100}" required>
                 </div>
             </div>
 
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Description Ru</label>
-                <textarea class="form-control is-valid" id="inputDescriptionRu" rows="3" maxlength="1000"
+                <label class="col-sm-2 col-form-label">{{trans('app.descriptionRu')}}</label>
+                <textarea class="form-control is-valid" id="inputDescriptionRu" rows="3" maxlength="2000"
                           required></textarea>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label" style="margin-right: 20px">Description En</label>
-                <textarea class="form-control is-valid" id="inputDescriptionEn" rows="3" maxlength="1000"
+                <label class="col-sm-2 col-form-label" style="margin-right: 20px">{{trans('app.descriptionEn')}}</label>
+                <textarea class="form-control is-valid" id="inputDescriptionEn" rows="3" maxlength="2000"
                           required></textarea>
             </div>
 
             <div class="form-group row"
                  style="margin-top: 20px;margin-bottom: 20px;">
-                <span class="input-group-addon">Product image file: </span>
+                <span class="input-group-addon" style="width: auto">{{trans('app.productImageLabel')}}</span>
 
                 <input type="file" class="btn btn-default" id="inputImageFile" name="file" required>
             </div>
@@ -302,12 +302,12 @@
 
             <div class="form-group row">
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon">Age Range From</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.ageFromLabel')}}</span>
                     <select class="form-control" style="width: 10px" id="inputAgeFrom" required>
                         @include("spinner")
                     </select>
 
-                    <span class="input-group-addon">to</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.ageToLabel')}}</span>
                     <select class="form-control" style="width: 10px" id="inputAgeTo" required>
                         @include("spinner")
                     </select>
@@ -317,63 +317,65 @@
 
             <div class="form-group row" style="margin-top: 20px">
                 <div class="input-group">
-                    <span class="input-group-addon">Cost</span>
-                    <input id="inputCost" type="text" class="form-control is-valid" name="msg" placeholder="0.00 RUB"
+                    <span class="input-group-addon" style="width: auto">{{trans('app.costLabel')}}</span>
+                    <input id="inputCost" type="text" class="form-control is-valid" name="msg" placeholder="0.00 {{trans('app.rub')}}"
                            pattern="\d+(\.\d{2})?" required>
                 </div>
 
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon">Discount</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.discountLabel')}}</span>
                     <input id="inputDiscount" type="text" class="form-control is-valid" name="msg" placeholder="0.00 %"
                            pattern="\d+(\.\d{2})?" required>
                 </div>
 
 
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon">Category</span>
+                    <span class="input-group-addon" style="width: auto">Category</span>
                     <select id="inputCategory" class="form-control is-valid" required>
-                        <option value="1" selected>Protein</option>
-                        <option value="2">Vitamin</option>
-                        <option value="3">Tonik</option>
+                        <option value="1" selected>{{trans('app.protein')}}</option>
+                        <option value="2">{{trans('app.vitamin')}}</option>
+                        <option value="3">{{trans('app.tonik')}}</option>
+                        <option value="4">{{trans('app.aminoacid')}}</option>
+                        <option value="5">{{trans('app.gainer')}}</option>
                     </select>
                 </div>
 
 
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon">Portion Size</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.portionSizeLabel')}}</span>
                     <input id="inputPortionSize" type="text" class="form-control is-valid" style="width: 100px"
                            placeholder="0"
                            pattern="\d+(\.\d{2})?" required>
 
-                    <span class="input-group-addon">Portion Type</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.portionTypeLabel')}}</span>
                     <select id="inputPortionType" class="form-control " required>
-                        <option value="1" selected>ML</option>
-                        <option value="2">GR</option>
-                        <option value="3">PCs</option>
+                        <option value="1" selected>{{trans('app.ml')}}</option>
+                        <option value="2">{{trans('app.gr')}}</option>
+                        <option value="3">{{trans('app.pcs')}}</option>
                     </select>
 
 
-                    <span class="input-group-addon">Portions Total</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.portionTotalLabel')}}</span>
                     <input id="inputPortionTotal" class="form-control is-valid" placeholder="0"
                            pattern="^[0-9]+$" required>
                 </div>
 
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon">Max time to consume</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.maxTimeToConsumeLabel')}}</span>
                     <input id="inputMaxTime" type="text" class="form-control is-valid" style="width: 100px"
                            placeholder="0"
                            pattern="^[0-9]+$" required>
-                    <span class="input-group-addon">days</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.daysLabel')}}</span>
 
-                    <span class="input-group-addon">Brake after consuming</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.brakeAfterConsumingLabel')}}</span>
                     <input id="inputBreakTime" type="text" class="form-control is-valid" style="width: 100px"
                            placeholder="0"
                            pattern="^[0-9]+$" required>
-                    <span class="input-group-addon">days</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.daysLabel')}}</span>
                 </div>
 
                 <div class="input-group" style="margin-top: 20px;width: 200px ">
-                    <span class="input-group-addon">Instock</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.instockLabel')}}</span>
                     <input id="inputInstock" type="text" class="form-control is-valid" name="msg" placeholder="0"
                            pattern="^[0-9]+$" required>
                 </div>
@@ -384,13 +386,13 @@
             <div class="form-group row" style="margin-bottom: 20px">
                 <div style="float: left; margin-bottom: 50px">
                     <p>
-                        <button id="deleteBtn" type="button" class="btn btn-outline-primary">Delete</button>
+                        <button id="deleteBtn" type="button" class="btn btn-outline-primary">{{trans('app.deleteBtn')}}</button>
                         <button id="addBtn" type="submit" class="btn btn-outline-primary" style="margin-left: 10px">
-                            Add
+                            {{trans('app.addBtn')}}
                         </button>
 
                         <button style="margin-left: 10px" id="editBtn" type="button" class="btn btn-outline-primary">
-                            Edit
+                            {{trans('app.editBtn')}}
                         </button>
                     </p>
                 </div>
@@ -403,17 +405,16 @@
     <table class="table table-bordered" id="products-table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Producer</th>
-            <th>Category</th>
-            <th>Cost</th>
-            <th>Discount</th>
-            <th>Portions</th>
+            <th>{{trans('app.idColumn')}}</th>
+            <th>{{trans('app.nameLabel')}}</th>
+            <th>{{trans('app.producerLabel')}}</th>
+            <th>{{trans('app.categoryLabel')}}</th>
+            <th>{{trans('app.costLabel')}}</th>
+            <th>{{trans('app.discountLabel')}}</th>
+            <th>{{trans('app.portions')}}</th>
         </tr>
         </thead>
 
     </table>
-
 
 @endsection
