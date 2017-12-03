@@ -1,97 +1,119 @@
 @extends("admin.frame")
 
-@section("title","Article")
+@section("title",trans('app.adminArticlePage'))
 
 @section("content")
-    <div style="margin-bottom: 20px; margin-right: 200px; margin-left: 100px">
-        <form id="form" method="POST" enctype="multipart/form-data">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Title Ru</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputTitleRu" placeholder="Title Ru">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Title En</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputTitleEn" placeholder="Title En">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Short Ru</label>
-                <textarea class="form-control" id="inputShortRu" rows="3"></textarea>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Short En</label>
-                <textarea class="form-control" id="inputShortEn" rows="3"></textarea>
-            </div>
-
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Full Ru</label>
-                <textarea class="form-control" id="inputFullRu" rows="6"></textarea>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Full En</label>
-                <textarea class="form-control" id="inputFullEn" rows="6"></textarea>
-            </div>
 
 
-            <div class="row">
+    <div style="text-align: center">
+        <div style="margin-bottom: 20px; margin-right: 200px; margin-left: 100px">
+            <form id="form" enctype="multipart/form-data">
 
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="inputRbNews"
-                               value="1" checked>
-                        News
-                    </label>
-                </div>
-                <div class="form-check" style="margin-left: 50px">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="inputRbAction"
-                               value="2">
-                        Action
-                    </label>
+
+                <div class="input-group" style="margin-top: 20px">
+                    <span class="input-group-addon" style="width: auto">{{trans('app.titleRu')}}</span>
+
+                    <input type="text" class="form-control is-valid" id="inputTitleRu"
+                           placeholder="{{trans('app.titleRu')}}"
+                           pattern=".{1,100}" required>
                 </div>
 
-            </div>
+
+                <div class="input-group" style="margin-top: 20px">
+                    <span class="input-group-addon" style="width: auto">{{trans('app.titleEn')}}</span>
+
+                    <input type="text" class="form-control is-valid" id="inputTitleEn"
+                           placeholder="{{trans('app.titleEn')}}"
+                           pattern=".{1,100}" required>
+                </div>
 
 
-            <div class="form-group" style="float: left">
-                <label>Image file input</label>
-                <input type="file" class="form-control-file" name="file" id="file">
-            </div>
-            {{ csrf_field() }}
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{trans('app.shortRu')}}</label>
+                    <textarea class="form-control is-valid" id="inputShortRu" rows="3" maxlength="400"
+                              required></textarea>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{trans('app.shortEn')}}</label>
+                    <textarea class="form-control is-valid" id="inputShortEn" rows="3" maxlength="400"
+                              required></textarea>
+                </div>
 
-            <div class="form-group row">
-                <div class="col-sm-10">
-                    <div style="float: left; margin-bottom: 50px">
-                        <p>
-                            <button id="deleteBtn" type="button" class="btn btn-default">Delete</button>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{trans('app.fullRu')}}</label>
+                    <textarea class="form-control is-valid" id="inputFullRu" rows="6" maxlength="1000"
+                              required></textarea>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">{{trans('app.fullEn')}}</label>
+                    <textarea class="form-control is-valid" id="inputFullEn" rows="6" maxlength="1000"
+                              required></textarea>
+                </div>
 
-                            <button style="margin-left: 30px" type="button" id="addBtn" class="btn btn-default">Add
-                            </button>
-                            <button style="margin-left: 30px" type="button" id="editBtn" class="btn btn-default">Edit
-                            </button>
-                        </p>
+
+                <div class="row">
+
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="inputRbNews"
+                                   value="1" checked>
+                            {{trans('app.newsLabel')}}
+                        </label>
+                    </div>
+                    <div class="form-check" style="margin-left: 50px">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="radio" name="gridRadios" id="inputRbAction"
+                                   value="2">
+                            {{trans('app.actionLabel')}}
+                        </label>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group row"
+                     style="margin-top: 20px;margin-bottom: 20px">
+                    <span class="input-group-addon" style="width: auto">{{trans('app.imageArticleLabel')}} </span>
+
+                    <input type="file" class="btn btn-default" name="file" id="file" required>
+                </div>
+
+                {{ csrf_field() }}
+
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <div style="float: left; margin-bottom: 50px">
+                            <p>
+                                <button id="deleteBtn" type="button"
+                                        class="btn btn-outline-primary">{{trans('app.deleteBtn')}}</button>
+
+                                <button style="margin-left: 30px" type="submit" id="addBtn"
+                                        class="btn btn-outline-primary">{{trans('app.addBtn')}}
+                                </button>
+                                <button style="margin-left: 30px" type="button" id="editBtn"
+                                        class="btn btn-outline-primary">{{trans('app.editBtn')}}
+                                </button>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </form>
+            </form>
+        </div>
+        <div style="text-align: center">
+            <table class="table table-bordered" id="articles-table">
+                <thead>
+                <tr>
+                    <th>{{trans('app.idColumn')}}</th>
+                    <th>{{trans('app.shortColumn')}}</th>
+                    <th>{{trans('app.fullColumn')}}</th>
+                    <th>{{trans('app.dateColumn')}}</th>
+                    <th>{{trans('app.typeColumn')}}</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
     </div>
-
-    <table class="table table-bordered" id="articles-table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Short</th>
-            <th>Full</th>
-            <th>Date</th>
-            <th>Type</th>
-        </tr>
-        </thead>
-    </table>
-
     <script>
         var table;
         $(function () {
@@ -106,7 +128,7 @@
                     {data: 'short', name: 'short'},
                     {data: 'full', name: 'full'},
                     {data: 'date', name: 'date'},
-                    {data: 'type', name: 'type'},
+                    {data: 'type', name: 'type'}
                 ]
             });
         });
@@ -117,7 +139,31 @@
     </script>
 
     <script>
+
+        function setBtnEnable(id, isEnable) {
+            if (isEnable) {
+                $(id).prop('disabled', false);
+                $(id).attr('class', 'btn btn-outline-primary');
+            } else {
+                $(id).prop('disabled', true);
+                $(id).attr('class', 'btn btn-default');
+            }
+        }
+
+
+        function scrollUp() {
+            $(window).scrollTop(0);
+        }
+
         function doOnStart() {
+
+            $("#form").submit(function (event) {
+                event.preventDefault();
+                addBtnClickEvent();
+                return false;
+            });
+
+
             $("#editBtn").text("Edit");
             cleanAllFields();
             $('#articles-table tbody').on('click', 'tr', function () {
@@ -146,7 +192,7 @@
 
             $("#editBtn").click(function () {
                     if ($('#articles-table').DataTable().row('.selected').count() > 0) {
-                        var eee = $("#editBtn").text();
+
                         if ($("#editBtn").text() == "Edit\n" || $("#editBtn").text() == 'Edit') {
                             scrollUp();
                             setBtnEnable('#addBtn', false);
@@ -157,8 +203,7 @@
                                 url: '/admin/article/get/' + $('#articles-table').DataTable().row('.selected').data().id,
                                 type: 'GET',
                                 success: function (result) {
-                                    var jsonObject = JSON.parse(result);
-                                    var item = jsonObject[0];
+                                    var item = JSON.parse(result)
 
                                     $('#inputTitleRu').val(item.title);
                                     $('#inputTitleEn').val(item.title_en);
@@ -175,57 +220,43 @@
                                         $('#inputRbNews').prop('checked', false);
                                     }
 
-                                    $("#editBtn").text("Update");
+                                    $("#editBtn").text({{trans('app.updateBtn')}});
                                 }
                             });
                         } else {
-                            $("#editBtn").text("Edit");
+                            $("#editBtn").text({{trans('app.editBtn')}});
                             alert(editId);
                             updateById(editId);
                             setBtnEnable('#addBtn', true);
                             setBtnEnable('#deleteBtn', true);
                         }
                     } else {
-                        alert('Choose item')
+                        alert({{trans('app.chooseItemAlert')}})
                     }
                 }
             );
 
-            $("#addBtn").click(function () {
-                if (isValid()) {
-
-                    var formData = new FormData($("#form")[0]);
-                    $.ajax({
-                        url: '/admin/uploadFile',
-                        type: 'POST',
-                        data: formData,
-                        async: false,
-                        cache: false,
-                        contentType: false,
-                        enctype: 'multipart/form-data',
-                        processData: false,
-                        success: function (response) {
-                            alert(response);
-                            addItem(response);
-                        }
-                    });
-                } else {
-                    alert("Fill all fields!")
-                }
-            });
+            function addBtnClickEvent() {
+                var formData = new FormData($("#form")[0]);
+                $.ajax({
+                    url: '/admin/uploadFile',
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    success: function (response) {
+                        alert(response);
+                        addItem(response);
+                        cleanAllFields();
+                    }
+                });
+            }
         }
 
         var editId = 0;
-
-        function setBtnEnable(id, isEnable) {
-            if (isEnable) {
-                $(id).prop('disabled', false);
-                $(id).attr('class', 'btn btn-default');
-            } else {
-                $(id).prop('disabled', true);
-                $(id).attr('class', 'btn btn-default');
-            }
-        }
 
         function updateById(id) {
             var body = {
@@ -249,10 +280,6 @@
                     refreshTable();
                 }
             });
-        }
-
-        function scrollUp() {
-            $(window).scrollTop(0);
         }
 
         function addItem($imageId) {
@@ -296,16 +323,6 @@
             $('#inputFullEn').val("");
 
             $('#file').val("");
-        }
-
-        function isValid() {
-            return !($('#inputTitleRu').val().length == 0 ||
-                $('#inputTitleEn').val().length == 0 ||
-                $('#inputShortRu').val().length == 0 ||
-                $('#inputShortEn').val().length == 0 ||
-                $('#inputFullRu').val().length == 0 ||
-                $('#inputFullEn').val().length == 0 ||
-                $('#file').val().length == 0);
         }
 
     </script>

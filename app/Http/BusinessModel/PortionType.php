@@ -11,36 +11,32 @@ namespace App\Http\BusinessModel;
 
 class PortionType
 {
-    public static $ML = 'мл';
-    public static $GR = 'грамм';
-    public static $PIECE = 'штук';
 
     public static function toString($number)
     {
         switch ($number) {
             case 1:
-                return PortionType::$ML;
+                return trans('app.ml');
             case 2:
-                return PortionType::$GR;
+                return trans('app.gr');
             case 3:
-                return PortionType::$PIECE;
+                return trans('app.pcs');
             default:
-                return "";
+                return "1";
         }
     }
 
-
-    public function toInt($string)
-    {
-        switch ($string) {
-            case PortionType::$ML:
-                return 1;
-            case PortionType::$GR:
-                return 2;
-            case PortionType::$PIECE:
-                return 3;
-            default:
-                return 0;
-        }
-    }
+//    public static function toInt($string)
+//    {
+//        switch ($string) {
+//            case PortionType::$ML:
+//                return 1;
+//            case PortionType::$GR:
+//                return 2;
+//            case PortionType::$PIECE:
+//                return 3;
+//            default:
+//                return 0;
+//        }
+//    }
 }

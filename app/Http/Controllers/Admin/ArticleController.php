@@ -26,7 +26,7 @@ class ArticleController extends Controller
 
     public function getArticleById($id)
     {
-        return json_encode(Article::all()->where("id", $id)->first()->take(1)->get());
+        return json_encode(Article::where('id', '=', $id)->firstOrFail());
     }
 
     public function updateItem(Request $request)
@@ -60,7 +60,7 @@ class ArticleController extends Controller
             $article->short = $array['short'];
             $article->full = $array['full'];
             $article->imageId = $array['imageId'];
-            $article->date = date("d/m/Y H:i:s");
+            $article->date = date("d.m.Y");
             $article->type = $array['type'];
             $article->short_en = $array['short_en'];
             $article->full_en = $array['full_en'];
