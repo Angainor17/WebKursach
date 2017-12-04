@@ -23,4 +23,12 @@ class Product extends Model
     public function users(){
         return $this->belongsToMany('App\User');
     }
+
+    public function articles(){
+        return $this->belongsToMany('App\Http\DBModel\Article');
+    }
+
+    public function orders(){
+        return $this->belongsToMany('App\Http\DBModel\Order');
+    }
 }

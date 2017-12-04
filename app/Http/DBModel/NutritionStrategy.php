@@ -15,4 +15,8 @@ class NutritionStrategy extends Model
 {
     protected $table = "productTypeStrategys";
     public $timestamps = false;
+
+    public function bodyTypeStrategies(){
+        return $this->belongsToMany('App\Http\DBModel\BodyTypeStrategy');
+    }
 }

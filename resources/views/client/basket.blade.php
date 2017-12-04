@@ -2,6 +2,32 @@
 
 @section("innerContent")
 
+    <style>
+        #listView {
+            margin-left: 6%;
+            padding-top: 50px;
+            margin-right: 6%;
+            padding-bottom: 6%;
+            display: block;
+            text-align: center;
+        }
+
+        .cost {
+            color: red;
+        }
+
+        .product {
+            border: 2px solid #b9b9b9;
+            width: 300px;
+            height: 270px;
+            margin: 5px;
+            font-size: 16px;
+            padding: 5px;
+            display: inline-block;
+            text-align: center;
+        }
+    </style>
+
     <div>
         <div id="listView"></div>
     </div>
@@ -17,6 +43,7 @@
             </div>
 
             <p>#:name#</p>
+            <p class="cost">#:cost# {{trans('app.rub')}}</p>
         </div>
     </script>
 

@@ -18,10 +18,11 @@ class ProductListController extends Controller
 
     public function addToCart(Request $request)
     {
-        $item = new Basket;
-        $item->userId = Auth::user()->id;
-        $item->productId = $request->idProduct;
-        $item->save();
+        Auth::user()->products()->attach($request->idProduct);
+        //$item = new Basket;
+//        $item->userId =
+//        $item->productId = $request->idProduct;
+//        $item->save();
     }
 
     public function getProductsList()
@@ -36,10 +37,10 @@ class ProductListController extends Controller
                 $data->instock = trans('app.instockNo');
             }
 
-            $isInBasket = !Basket::where('userId', '=', $userId)->where('productId', '=', $data->id)->get()->isEmpty();
-            if($isInBasket){
+            $isInBasket = !Basket::where('user_id', '=', $userId)->where('product_id', '=', $data->id)->get()->isEmpty();
+            if ($isInBasket) {
                 $data->name_en = trans('app.alreadyInCartLabel');
-            }else{
+            } else {
                 $data->name_en = trans('app.inCartLabel');
             }
 

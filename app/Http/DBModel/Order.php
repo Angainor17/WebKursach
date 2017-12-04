@@ -15,4 +15,8 @@ class Order extends Model
 {
     protected $table = "orders";
     public $timestamps = false;
+
+    public function products(){
+        return $this->belongsToMany('App\Http\DBModel\Product');
+    }
 }

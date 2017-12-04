@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Basket extends Model
 {
-    protected $table = "Basket";
+    protected $table = "product_user";
     public $timestamps = false;
 
 //    function products($userId){
