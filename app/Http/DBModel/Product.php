@@ -11,8 +11,16 @@ namespace App\Http\DBModel;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property mixed $users
+ */
 class Product extends Model
 {
     protected $table = "Product";
     public $timestamps = false;
+
+    public function users(){
+        return $this->belongsToMany('App\User');
+    }
 }

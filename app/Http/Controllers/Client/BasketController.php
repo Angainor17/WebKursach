@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\DBModel\Product;
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -12,7 +13,18 @@ class BasketController extends Controller
         return view("client.basket");
     }
 
-    public function getProductList(){
-        return json_encode(Product::orderBy('id', 'desc')->get());
+    public function getProductList()
+    {
+//        $userId = Auth::user()->id;
+
+        //return json_encode(Basket::where('userId','=', $userId)->get());
+//        Basket::where('userId','=', $userId)->get('');
+        $product =  new Product;
+        $product->belongsTo('users',);
+        $product->save();
+        return json_encode(
+            Auth::user()->products()
+        );
+//        return json_encode(Product::where('id','=', )->get());
     }
 }

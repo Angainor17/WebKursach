@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class Mymigration extends Migration
+class MyMigration extends Migration
 {
     /**
      * Run the migrations.

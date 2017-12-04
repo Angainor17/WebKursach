@@ -13,8 +13,8 @@ class SelectedNewsController extends Controller
         return Article::where('id', '=', $id)->get()->map(
             function ($data) use ($locale) {
                 if ($locale == "en") {
-                    $data->title = $data->title_en;
-                    $data->full = $data->full_en;
+                    $data->name = $data->name_en;
+                    $data->description = $data->description_en;
                     return $data;
                 }
 
@@ -30,12 +30,12 @@ class SelectedNewsController extends Controller
     public function getView($id)
     {
         $locale = app()->getLocale();
-        $article = $this->getItemById($locale, $id)[0];
+        $product = $this->getItemById($locale, $id)[0];
 
-        return view("client.selectedNewsPage",
+        return view("client.selectedProductPage",
             [
-                "title" => $article->title,
-                "item" => $article,
+                "title" => $product->name,
+                "item" => $product,
             ]
         );
     }

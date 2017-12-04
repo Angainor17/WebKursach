@@ -80,8 +80,7 @@
             <img src="{{asset("/default/logo.gif")}}" style="height: 100px; ">
         </a>
 
-        <a href="{{ route('basket') }}" style="position: absolute;top: 25%;right: 0; margin-right: 23%"><img
-                    src="{{asset("/default/cart.png")}}" style="height: 50px;"></a>
+
 
 
         @if (Auth::guest())
@@ -94,6 +93,9 @@
                 </a>
             </div>
         @else
+            <a href="{{ route('basket') }}" style="position: absolute;top: 25%;right: 0; margin-right: 23%"><img
+                        src="{{asset("/default/cart.png")}}" style="height: 50px;"></a>
+
             <div style="position: absolute; left: 80%;top: 40%">
                 <a href="{{ route('account') }}">
                     <button class="btn btn-primary" style="width: auto">{{trans('app.accountPage')}}</button>
