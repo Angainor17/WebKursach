@@ -13,6 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class BodyTypeStrategy extends Model
 {
-    protected $table = "BodyTypeStrategy";
+    protected $table = "dodyTypeStrategys";
     public $timestamps = false;
 }
