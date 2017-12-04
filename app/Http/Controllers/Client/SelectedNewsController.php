@@ -8,19 +8,34 @@ use App\Http\DBModel\Article;
 class SelectedNewsController extends Controller
 {
 
-    public function getItemById($id)
+    public function getItemById($locale, $id)
     {
-        return Article::where('id', '=', $id)->firstOrFail();
+        return Article::where('id', '=', $id)->get()->map(
+            function ($data) use ($locale) {
+                if ($locale == "en") {
+                    $data->name = $data->name_en;
+                    $data->description = $data->description_en;
+                    return $data;
+                }
+
+                if ($locale == "ru") {
+                    return $data;
+                }
+
+                return $data;
+            }
+        );
     }
 
     public function getView($id)
     {
-        $article = $this->getItemById($id);
+        $locale = app()->getLocale();
+        $product = $this->getItemById($locale, $id)[0];
 
-        return view("client.selectedNewsPage",
+        return view("client.selectedProductPage",
             [
-                "title" => $article->title,
-                "item" => $article,
+                "title" => $product->name,
+                "item" => $product,
             ]
         );
     }

@@ -1,4 +1,4 @@
-@extends("layouts.app", ["title"=>"Home"])
+@extends("layouts.app", ["title"=>trans('app.newsPage')])
 
 @section("content")
 
@@ -29,6 +29,7 @@
         .articleText {
             word-wrap: break-word;
             float: left;
+
             text-align: left;
         }
 
@@ -77,12 +78,13 @@
     <script type="text/x-kendo-template" id="template">
         <div class="article">
             <div class="imageDiv">
-                <a href="/article/#:id#"><img class="card-img-top" src="{{asset('/uploads/')}}/#:imageId#"
+                <a href="/article/#:id#"><img class="card-img-top"
+                                              src="{{asset('/uploads/')}}/#:imageId#"
                                               style="height: 150px; "></a>
             </div>
 
             <a href="/article/#:id#"><p class="articleTitle">#:title#</p></a>
-            <p class="articleDate" style="float: left">#:date#</p>
+            <p class="articleDate" style="float: left">#:date#</p><br>
             <div class="articleText">#:short#</div>
             <a id="readMoreBtn" href="/article/#:id#">
                 <button type="button" class="btn btn-info">Read more...</button>

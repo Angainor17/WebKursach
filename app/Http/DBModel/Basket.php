@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: angai
  * Date: 18.11.2017
- * Time: 10:26
+ * Time: 10:24
  */
 
 namespace App\Http\DBModel;
@@ -13,14 +13,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property mixed $users
  */
-class Product extends Model
+class Basket extends Model
 {
-    protected $table = "products";
+    protected $table = "Basket";
     public $timestamps = false;
 
-    public function users(){
-        return $this->belongsToMany('App\User');
-    }
+//    function products($userId){
+//        $this->belongsTo('')
+//    }
 }

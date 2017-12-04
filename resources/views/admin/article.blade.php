@@ -1,47 +1,51 @@
 @extends("admin.frame")
 
-@section("title","Article")
+@section("title",trans('app.adminArticlePage'))
 
 @section("content")
+
+
     <div style="text-align: center">
         <div style="margin-bottom: 20px; margin-right: 200px; margin-left: 100px">
             <form id="form" enctype="multipart/form-data">
 
 
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon">Title Ru</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.titleRu')}}</span>
 
-                    <input type="text" class="form-control is-valid" id="inputTitleRu" placeholder="Title Ru"
+                    <input type="text" class="form-control is-valid" id="inputTitleRu"
+                           placeholder="{{trans('app.titleRu')}}"
                            pattern=".{1,100}" required>
                 </div>
 
 
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon">Title En</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.titleEn')}}</span>
 
-                    <input type="text" class="form-control is-valid" id="inputTitleEn" placeholder="Title En"
+                    <input type="text" class="form-control is-valid" id="inputTitleEn"
+                           placeholder="{{trans('app.titleEn')}}"
                            pattern=".{1,100}" required>
                 </div>
 
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Short Ru</label>
+                    <label class="col-sm-2 col-form-label">{{trans('app.shortRu')}}</label>
                     <textarea class="form-control is-valid" id="inputShortRu" rows="3" maxlength="400"
                               required></textarea>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Short En</label>
+                    <label class="col-sm-2 col-form-label">{{trans('app.shortEn')}}</label>
                     <textarea class="form-control is-valid" id="inputShortEn" rows="3" maxlength="400"
                               required></textarea>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Full Ru</label>
+                    <label class="col-sm-2 col-form-label">{{trans('app.fullRu')}}</label>
                     <textarea class="form-control is-valid" id="inputFullRu" rows="6" maxlength="1000"
                               required></textarea>
                 </div>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Full En</label>
+                    <label class="col-sm-2 col-form-label">{{trans('app.fullEn')}}</label>
                     <textarea class="form-control is-valid" id="inputFullEn" rows="6" maxlength="1000"
                               required></textarea>
                 </div>
@@ -53,14 +57,14 @@
                         <label class="form-check-label">
                             <input class="form-check-input" type="radio" name="gridRadios" id="inputRbNews"
                                    value="1" checked>
-                            News
+                            {{trans('app.newsLabel')}}
                         </label>
                     </div>
                     <div class="form-check" style="margin-left: 50px">
                         <label class="form-check-label">
                             <input class="form-check-input" type="radio" name="gridRadios" id="inputRbAction"
                                    value="2">
-                            Action
+                            {{trans('app.actionLabel')}}
                         </label>
                     </div>
 
@@ -69,7 +73,7 @@
 
                 <div class="form-group row"
                      style="margin-top: 20px;margin-bottom: 20px">
-                    <span class="input-group-addon">Article\News image file: </span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.imageArticleLabel')}} </span>
 
                     <input type="file" class="btn btn-default" name="file" id="file" required>
                 </div>
@@ -80,13 +84,14 @@
                     <div class="col-sm-10">
                         <div style="float: left; margin-bottom: 50px">
                             <p>
-                                <button id="deleteBtn" type="button" class="btn btn-outline-primary">Delete</button>
+                                <button id="deleteBtn" type="button"
+                                        class="btn btn-outline-primary">{{trans('app.deleteBtn')}}</button>
 
                                 <button style="margin-left: 30px" type="submit" id="addBtn"
-                                        class="btn btn-outline-primary">Add
+                                        class="btn btn-outline-primary">{{trans('app.addBtn')}}
                                 </button>
                                 <button style="margin-left: 30px" type="button" id="editBtn"
-                                        class="btn btn-outline-primary">Edit
+                                        class="btn btn-outline-primary">{{trans('app.editBtn')}}
                                 </button>
                             </p>
                         </div>
@@ -99,11 +104,11 @@
             <table class="table table-bordered" id="articles-table">
                 <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Short</th>
-                    <th>Full</th>
-                    <th>Date</th>
-                    <th>Type</th>
+                    <th>{{trans('app.idColumn')}}</th>
+                    <th>{{trans('app.shortColumn')}}</th>
+                    <th>{{trans('app.fullColumn')}}</th>
+                    <th>{{trans('app.dateColumn')}}</th>
+                    <th>{{trans('app.typeColumn')}}</th>
                 </tr>
                 </thead>
             </table>
@@ -215,18 +220,18 @@
                                         $('#inputRbNews').prop('checked', false);
                                     }
 
-                                    $("#editBtn").text("Update");
+                                    $("#editBtn").text({{trans('app.updateBtn')}});
                                 }
                             });
                         } else {
-                            $("#editBtn").text("Edit");
+                            $("#editBtn").text({{trans('app.editBtn')}});
                             alert(editId);
                             updateById(editId);
                             setBtnEnable('#addBtn', true);
                             setBtnEnable('#deleteBtn', true);
                         }
                     } else {
-                        alert('Choose item')
+                        alert({{trans('app.chooseItemAlert')}})
                     }
                 }
             );

@@ -33,7 +33,6 @@ class ArticleController extends Controller
     {
         $content = $request->getContent(false);
         $array = json_decode($content, true);
-
         Article::where("id", $array['id'])
             ->update(
                 [
