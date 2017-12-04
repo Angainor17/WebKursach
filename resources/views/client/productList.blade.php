@@ -85,8 +85,9 @@
             <p>#:instock#</p>
             @if(!Auth::guest())
                 <button id="btn#:id#" onclick="addInCart('#:id#')"
-                        class="btn btn-success">{{trans('app.inCartLabel')}}</button>
+                        class="btn btn-success">#:name_en#</button>
             @endif
+
         </div>
     </script>
 

@@ -27,18 +27,25 @@ class ProductListController extends Controller
     public function getProductsList()
     {
         $lang = app()->getLocale();
+        $userId = Auth::user()->id;
 
-        return json_encode(Product::orderBy('id', 'desc')->get()->map(function ($data) use ($lang) {
+        return json_encode(Product::orderBy('id', 'desc')->get()->map(function ($data) use ($lang, $userId) {
             if ($data->instock > 0) {
                 $data->instock = trans('app.instockHas');
             } else {
                 $data->instock = trans('app.instockNo');
             }
 
+            $isInBasket = !Basket::where('userId', '=', $userId)->where('productId', '=', $data->id)->get()->isEmpty();
+            if($isInBasket){
+                $data->name_en = trans('app.alreadyInCartLabel');
+            }else{
+                $data->name_en = trans('app.inCartLabel');
+            }
+
             if ($lang == "en") {
                 $data->name = $data->name_en;
             }
-
 
             if ($data->discount > 0) {
                 $newCost = intval(floatval($data->cost) * (floatval(100 - $data->discount) / 100.0));

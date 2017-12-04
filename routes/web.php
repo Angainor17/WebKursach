@@ -21,12 +21,13 @@ Route::get('/home', 'Client\NewsPageController@getView')->name('home');
 Route::get("/productsList", "Client\ProductListController@getView");
 Route::get("/products", "Client\ProductListController@getProductsList");
 Route::post("/addToCart", "Client\ProductListController@addToCart");
-Route::get("/product/{id}", "Client\SelectedNewsController@getView")->name("product");//fixme
+Route::get("/product/{id}", "Client\SelectedNewsController@getView")->name("product");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/articles", "Client\NewsPageController@getArticlesList");
 Route::get("/article/{id}", "Client\SelectedNewsController@getView")->name("article");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/basket", "Client\BasketController@getView")->name("basket");
+Route::get("/basketProductList", "Client\BasketController@getProductList");
 Route::get("/account", "Client\AccountController@getView")->name("account");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
