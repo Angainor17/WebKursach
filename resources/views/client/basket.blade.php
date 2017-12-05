@@ -33,9 +33,54 @@
             initTable();
         });
 
-        function orderChange() {
+        var isFirst = true;
 
+        function orderChange(id) {
+            if (isFirst) {
+                isFirst = false;
+                var lView1 = $("#listView").data("kendoListView");
+
+                var arr1 = lView1.dataSource.data();
+
+                for (var i1 = 0; i1 < arr1.length; i1++) {
+                    arr1[i1].ageFrom = 1;
+                }
+            }
+
+
+            var lView = $("#listView").data("kendoListView");
+            var arr = lView.dataSource.data();
+            var newValue = $("#nP" + id).val();
+            console.log("newValue = " + newValue);
+            var sum = 0;
+
+            for (var i = 0; i < arr.length; i++) {
+                if (id == arr[i].id) {
+                    arr[i].ageFrom = newValue;
+                }
+                sum += arr[i].discount * arr[i].ageFrom;
+            }
+            $("#totalCost").val(sum);
         }
+
+        function initTable() {
+            console.log("Init Table");
+            var dataSource = new kendo.data.DataSource({
+                transport: {
+                    read: {
+                        url: "basketProductList",
+                        dataType: "json"
+                    }
+                }
+            });
+
+            $("#listView").kendoListView({
+                dataSource: dataSource,
+                template: kendo.template($("#template").html()),
+                autoBind: true
+            }).data("kendoListView");
+        }
+
 
     </script>
 
@@ -115,7 +160,7 @@
                 </div>
 
             </div>
-            <div class="input-group" style="position: absolute; bottom: 0;right: 7%;">
+            <div class="input-group">
                 <span class="input-group-addon"
                       style="height:auto;width: auto; font-size: 20px">{{trans('app.totalCostLabel')}}</span>
                 <input id="totalCost" type="text" class="form-control"
@@ -123,8 +168,6 @@
             </div>
         </form>
     </div>
-
-
 
     <script type="text/x-kendo-template" id="template">
         <div class="product">
@@ -144,40 +187,9 @@
                         onclick="deleteProduct('#:id#')">{{trans('app.deleteBtn')}}</button>
             </p>
             <input id="nP#:id#" type="number" name="numberPicker" value="1" min="1" max="#:instock#" step="1"
-                   onchange="orderChange()">
+                   onchange="orderChange('#:id#')">
             #:instock#
         </div>
-    </script>
-
-    <script>
-        function initTable() {
-            var dataSource = new kendo.data.DataSource({
-                transport: {
-                    read: {
-                        url: "basketProductList",
-                        dataType: "json"
-                    }
-                }
-            });
-
-            $("#listView").kendoListView({
-                dataSource: dataSource,
-                template: kendo.template($("#template").html())
-            });
-            alert(dataSource);
-            alert(dataSource.data);
-            alert(dataSource.data());
-
-//            console.log(listView.dataItems());
-//            console.log(dataSource.data());
-//
-//            var listView2 = $("#listView").data("kendoListView");
-//            console.log(listView2.dataItems())
-//        }
-            $(function () {
-                initTable();
-            })
-        }
     </script>
 
 @endsection
