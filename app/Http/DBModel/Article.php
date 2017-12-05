@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    protected $table = "Article";
+    protected $table = "articles";
     public $timestamps = false;
-    //
+
+    public function articles()
+    {
+        return $this->belongsToMany('App\Http\DBModel\Product');
+    }
 }

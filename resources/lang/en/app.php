@@ -115,11 +115,10 @@ return [
 
     'hiLabel' => 'Hi, ',
 
-    'Label' => '',
-    'Label' => '',
-    'Label' => '',
-    'Label' => '',
-    'Label' => '',
+    'totalCostLabel' => 'TotalCost',
+    'addressLabel' => 'Address',
+    'cityLabel' => 'City',
+    'commentLabel' => '',
     'Label' => '',
 
 

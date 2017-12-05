@@ -13,6 +13,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class NutritionStrategy extends Model
 {
-    protected $table = "ProductTypeStrategy";
+    protected $table = "productTypeStrategys";
     public $timestamps = false;
+
+    public function bodyTypeStrategies(){
+        return $this->belongsToMany('App\Http\DBModel\BodyTypeStrategy');
+    }
 }

@@ -13,6 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArticleProduct extends Model
 {
-    protected $table = "ArticleProduct";
+    protected $table = "article_product";
     public $timestamps = false;
 }

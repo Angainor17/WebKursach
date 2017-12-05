@@ -17,10 +17,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
-    protected $table = "Product";
+    protected $table = "products";
     public $timestamps = false;
 
     public function users(){
         return $this->belongsToMany('App\User');
+    }
+
+    public function articles(){
+        return $this->belongsToMany('App\Http\DBModel\Article');
+    }
+
+    public function orders(){
+        return $this->belongsToMany('App\Http\DBModel\Order');
     }
 }

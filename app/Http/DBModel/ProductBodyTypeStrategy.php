@@ -13,6 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductBodyTypeStrategy extends Model
 {
-    protected $table = "Product_BodyTypeStrategy";
+    protected $table = "bodyTypeStrategy_product";
     public $timestamps = false;
 }
