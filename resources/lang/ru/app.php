@@ -93,4 +93,9 @@ return [
     'adminNutritionStrategyPage' => ' Русский текст',
 
     'hiLabel' => 'Здравствуйте, ',
+
+    'totalCostLabel' => ' Русский текст',
+    'addressLabel' => ' Русский текст',
+    'cityLabel' => ' Русский текст',
+    'commentLabel' => ' Русский текст',
 ];

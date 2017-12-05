@@ -18,8 +18,4 @@ class Basket extends Model
 {
     protected $table = "product_user";
     public $timestamps = false;
-
-//    function products($userId){
-//        $this->belongsTo('')
-//    }
 }

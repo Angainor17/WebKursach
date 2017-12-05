@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Yajra\Datatables\Exception;
 
 /**
  * @property mixed $products
@@ -33,7 +34,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function products(){
+    public function products()
+    {
         return $this->belongsToMany('App\Http\DBModel\Product');
+    }
+
+    public function getTotalCost()
+    {
+        try {
+            $sum = 0;
+            foreach ($this->products()->get() as $product) {
+                $sum = $sum + intval(floatval($product->cost) * (floatval(100 - $product->discount) / 100.0));
+            }
+        } catch (Exception $exception) {
+            return 0;
+        }
+        return $sum;
     }
 }
