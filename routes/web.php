@@ -21,7 +21,7 @@ Route::get('/home', 'Client\NewsPageController@getView')->name('home');
 Route::get("/productsList", "Client\ProductListController@getView");
 Route::get("/products", "Client\ProductListController@getProductsList");
 Route::post("/addToCart", "Client\ProductListController@addToCart");
-Route::get("/product/{id}", "Client\SelectedNewsController@getView")->name("product");
+Route::get("/product/{id}", "Client\SelectedProductController@getView");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/articles", "Client\NewsPageController@getArticlesList");
 Route::get("/article/{id}", "Client\SelectedNewsController@getView")->name("article");
@@ -33,6 +33,10 @@ Route::get("/basketProductList", "Client\BasketController@getProductList");
 Route::get("/getTotalCost", "Client\BasketController@getTotalCost");
 Route::get("/account", "Client\AccountController@getView")->name("account");
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get("/orders", "Client\OrdersController@getView")->name("orders");
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get("/nutritionStrategy", "Client\NutritionController@getView")->name("nutrition");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/admin", "Admin\ArticleController@getView");
 Route::get("/admin/article/list", "Admin\ArticleController@getArticleDataTable");

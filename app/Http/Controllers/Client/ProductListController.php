@@ -19,25 +19,26 @@ class ProductListController extends Controller
     public function addToCart(Request $request)
     {
         Auth::user()->products()->attach($request->idProduct);
-        //$item = new Basket;
-//        $item->userId =
-//        $item->productId = $request->idProduct;
-//        $item->save();
     }
 
     public function getProductsList()
     {
         $lang = app()->getLocale();
-        $userId = Auth::user()->id;
 
-        return json_encode(Product::orderBy('id', 'desc')->get()->map(function ($data) use ($lang, $userId) {
+
+        return json_encode(Product::orderBy('id', 'desc')->get()->map(function ($data) use ($lang) {
             if ($data->instock > 0) {
                 $data->instock = trans('app.instockHas');
             } else {
                 $data->instock = trans('app.instockNo');
             }
 
-            $isInBasket = !Basket::where('user_id', '=', $userId)->where('product_id', '=', $data->id)->get()->isEmpty();
+            $isInBasket = false;
+            if(!Auth::guest()){
+                $userId = Auth::user()->id;
+                $isInBasket = !Basket::where('user_id', '=', $userId)->where('product_id', '=', $data->id)->get()->isEmpty();
+            }
+
             if ($isInBasket) {
                 $data->name_en = trans('app.alreadyInCartLabel');
             } else {

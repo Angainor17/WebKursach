@@ -33,7 +33,12 @@
             getTotalCost();
             initTable();
             initForm();
+            menuActive();
         });
+
+        function menuActive() {
+         $('#cart').addClass("active");
+        }
 
         function initForm() {
             $("#form").submit(function (event) {

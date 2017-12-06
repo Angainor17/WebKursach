@@ -119,7 +119,23 @@ return [
     'addressLabel' => 'Address',
     'cityLabel' => 'City',
     'commentLabel' => 'Comment',
+    'ordersLabel' => 'Orders',
     'orderLabel' => 'Order',
+
+    'menuLabel' => 'Menu',
+
+    'description' => 'Description',
+
+
+    'portionHeader' => 'All about portions',
+    'portion1' => 'In this packet we have ',
+    'portion2' => ' total by ',
+    'break' => 'You need to make brake every ',
+    'break2' => ' for  ',
+    'age' => 'Age',
+    'age1' => 'For all people from ',
+    'ageTo' => ' to ',
+
 
 
 

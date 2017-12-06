@@ -98,4 +98,13 @@ return [
     'addressLabel' => ' Русский текст',
     'cityLabel' => ' Русский текст',
     'commentLabel' => ' Русский текст',
+
+    'ordersLabel' => ' Русский текст',
+    'orderLabel' => ' Русский текст',
+
+
+    'menuLabel' => ' Русский текст',
+    'description' => 'Description',
+
+
 ];

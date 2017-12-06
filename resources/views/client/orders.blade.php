@@ -1,15 +1,18 @@
-@extends('client.accountFrame',['title'=> trans('app.accountPage')])
+@extends("client.accountFrame", ["title"=>trans('app.ordersLabel')])
 
-@section('innerContent')
+@section("innerContent")
+
     <script>
         $(document).ready(function () {
             menuActive();
         });
 
         function menuActive() {
-            $('#account').addClass("active");
+            $('#orders').addClass("active");
         }
 
     </script>
-    account
+
+    Orders
+
 @endsection

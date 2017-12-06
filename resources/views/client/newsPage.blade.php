@@ -29,7 +29,6 @@
         .articleText {
             word-wrap: break-word;
             float: left;
-
             text-align: left;
         }
 
