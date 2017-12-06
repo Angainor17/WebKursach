@@ -3,9 +3,7 @@
 @section("content")
 
     <style>
-        body,html{
-            height: 100%;
-        }
+
 
         /* remove outer padding */
         .main .row{
@@ -189,10 +187,6 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                    {{--<span class="sr-only">Toggle navigation</span>--}}
-                    {{--<span class="icon-bar"></span>--}}
-                    {{--<span class="icon-bar"></span>--}}
-                    {{--<span class="icon-bar"></span>--}}
                 </button>
                 <a class="navbar-brand">{{trans('app.menuLabel')}}</a>
             </div>
