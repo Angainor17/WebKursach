@@ -22,5 +22,6 @@ class VerifyCsrfToken extends BaseVerifier
         '/language',
         '/language-chooser',
         '/addToCart',
+        '/makeOrder'
     ];
 }

@@ -80,7 +80,7 @@
         @show
     </div>
 
-    <div style="width: 200px; vertical-align: top; margin-top: 150px; margin-left: 20px;  border-style: solid;border-width: 1px;border-color: #1f648b">
+    <div style="width: 200px; vertical-align: top; margin-top: 150px; margin-left: 20px;  border: 1px solid #1f648b;">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link" id="v-pills-home-tab" data-toggle="pill"
                href="{{url("/admin/article")}}"

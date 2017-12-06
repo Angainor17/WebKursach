@@ -118,8 +118,8 @@ return [
     'totalCostLabel' => 'TotalCost',
     'addressLabel' => 'Address',
     'cityLabel' => 'City',
-    'commentLabel' => '',
-    'Label' => '',
+    'commentLabel' => 'Comment',
+    'orderLabel' => 'Order',
 
 
 

@@ -11,6 +11,9 @@ namespace App\Http\DBModel;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ */
 class Order extends Model
 {
     protected $table = "orders";
@@ -18,5 +21,9 @@ class Order extends Model
 
     public function products(){
         return $this->belongsToMany('App\Http\DBModel\Product');
+    }
+
+    public function orders(){
+        return $this->belongsToMany('App\Http\DBModel\Order');
     }
 }

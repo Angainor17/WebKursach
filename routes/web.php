@@ -27,6 +27,7 @@ Route::get("/articles", "Client\NewsPageController@getArticlesList");
 Route::get("/article/{id}", "Client\SelectedNewsController@getView")->name("article");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/basket", "Client\BasketController@getView")->name("basket");
+Route::post("/makeOrder", "Client\BasketController@makeOrder");
 Route::get("/removeFromBasket/{id}", "Client\BasketController@remove");
 Route::get("/basketProductList", "Client\BasketController@getProductList");
 Route::get("/getTotalCost", "Client\BasketController@getTotalCost");
