@@ -1,110 +1,139 @@
-<?php
+﻿<?php
 
 return [
 
-    'articles' => 'Русский текст',
-    'products' => 'Русский текст',
-    'nutritionStrategy' => 'Русский текст',
-    'titleRu' => 'Русский текст',
-    'titleEn' => 'Русский текст',
-    'shortRu' => 'Русский текст',
-    'shortEn' => 'Русский текст',
-    'fullEn' => 'Русский текст',
-    'fullRu' => 'Русский текст',
-    'newsLabel' => 'Русский текст',
-    'actionLabel' => 'Русский текст',
-    'imageArticleLabel' => 'Русский текст',
-    'deleteBtn' => 'Русский текст',
-    'addBtn' => 'Русский текст',
-    'editBtn' => 'Русский текст',
-    'updateBtn' => 'Русский текст',
-    'telephoneNumber' => 'Русский текст',
-    'chooseItemAlert' => 'Русский текст',
-    'idColumn' => 'Русский текст',
-    'shortColumn' => 'Русский текст',
-    'fullColumn' => 'Русский текст',
-    'dateColumn' => 'Русский текст',
-    'typeColumn' => 'Русский текст',
+    'articles' => 'Статьи',
+    'products' => 'Продукты',
+    'nutritionStrategy' => 'Стратегия питания',
 
-    'nameEn' => 'Русский текст',
-    'nameRu' => 'Русский текст',
+    'titleRu' => 'Заголовок (RU)',
+    'titleEn' => 'Заголовок (EN)',
+
+    'shortRu' => 'Краткий (RU)',
+    'shortEn' => 'Краткий (EN)',
+
+    'fullEn' => 'Полный (EN)',
+    'fullRu' => 'Полный (RU)',
+
+    'nameEn' => 'Имя (EN)',
+    'nameRu' => 'Имя (RU)',
+
+    'descriptionEn' => 'Описание (EN)',
+    'descriptionRu' => 'Описание (RU)',
+
+    'newsLabel' => 'Новости',
+    'actionLabel' => 'Акции',
 
 
-    'descriptionEn' => 'Русский текст',
-    'descriptionRu' => 'Русский текст',
+    'imageArticleLabel' => 'Статья\\Файл изображения новостей:',
+    'productImageLabel' => 'Файл изображения продукта: ',
 
-    'producerLabel' => 'Русский текст',
-    'ageFromLabel' => 'Русский текст',
-    'ageToLabel' => 'Русский текст',
-    'costLabel' => 'Русский текст',
-    'discountLabel' => 'Русский текст',
-    'categoryLabel' => 'Русский текст',
-    'protein' => 'Русский текст',
-    'productImageLabel' => 'Русский текст',
-    'vitamin' => 'Русский текст',
-    'tonik' => 'Русский текст',
-    'aminoacid' => 'Русский текст',
-    'gainer' => 'Русский текст',
-    'ml' => 'Русский текст',
-    'pcs' => 'Русский текст',
-    'gr' => 'Русский текст',
-    'portionSizeLabel' => 'Русский текст',
-    'portionTypeLabel' => 'Русский текст',
-    'portionTotalLabel' => 'Русский текст',
-    'portions' => 'Русский текст',
-    'maxTimeToConsumeLabel' => 'Русский текст',
-    'brakeAfterConsumingLabel' => 'Русский текст',
-    'daysLabel' => 'Русский текст',
-    'instockLabel' => 'Русский текст',
-    'nameLabel' => 'Русский текст',
-    'rub' => 'Русский текст',
+    'deleteBtn' => 'Удалить',
+    'addBtn' => 'Добавить',
+    'editBtn' => 'Редактировать',
+    'updateBtn' => 'Обновить',
 
-    'loginLabel' => 'Русский текст',
-    'registerLabel' => 'Русский текст',
-    'homeLabel' => 'Русский текст',
-    'productsLabel' => 'Русский текст',
-    'aboutLabel' => 'Русский текст',
-    'logoutLabel' => 'Русский текст',
+    'telephoneNumber' => 'Номер телефона',
 
-    'emailAddressLabel' => 'Русский текст',
-    'passwordLabel' => 'Русский текст',
-    'rememberMeLabel' => 'Русский текст',
-    'forgotPassLabel' => 'Русский текст',
-    'resetPassLabel' => 'Русский текст',
-    'confirmPassLabel' => 'Русский текст',
-    'sendPassLabel' => 'Русский текст',
+    'chooseItemAlert' => 'Выберите пункт',
 
-    'instockHas' => 'В наличии',
-    'instockNo' => 'Нет в продаже',
+
+    'idColumn' => '№',
+    'shortColumn' => 'Краткая информация',
+    'fullColumn' => 'Полная информация',
+    'dateColumn' => 'Дата',
+    'typeColumn' => 'Выберите тип',
+
+
+    'producerLabel' => 'Производитель',
+
+    'ageFromLabel' => 'Возраст от',
+    'ageToLabel' => 'До',
+    'costLabel' => 'Цена',
+    'discountLabel' => 'Скидки',
+    'categoryLabel' => 'Категория',
+
+
+    'protein' => 'Протеин',
+    'vitamin' => 'Витамины',
+    'tonik' => 'Тоник',
+    'aminoacid' => 'Аминокислоты',
+    'gainer' => 'Гейнер',
+
+    'ml' => 'Миллилитр',
+    'pcs' => 'Штук',
+    'gr' => 'Грамм',
+
+    'portionSizeLabel' => 'Размер порции',
+    'portionTypeLabel' => 'Вид порции',
+    'portionTotalLabel' => 'Всего порций',
+    'portions' => 'Порции',
+
+
+    'maxTimeToConsumeLabel' => 'Максимальное время употребления',
+    'brakeAfterConsumingLabel' => 'Перерыв после употребления ',
+    'daysLabel' => 'Дней',
+    'instockLabel' => 'В наличии',
+    'nameLabel' => 'Имя',
+
+    'rub' => ' руб.',
+
+    'loginLabel' => 'Логин',
+    'registerLabel' => 'Регистрация',
+    'homeLabel' => 'Домой',
+    'productsLabel' => 'Товары',
+    'aboutLabel' => 'О нас',
+    'logoutLabel' => 'Выход',
+
+
+    'emailAddressLabel' => 'Электронная почта',
+    'passwordLabel' => 'Пароль',
+    'rememberMeLabel' => 'Запомнить меня',
+    'forgotPassLabel' => 'Забыли пароль?',
+    'resetPassLabel' => 'Сбросить пароль',
+    'confirmPassLabel' => 'Подтвердить пароль',
+    'sendPassLabel' => 'Отправить ссылку на сброс пароля',
+
+    'instockHas' => 'Доступно',
+    'instockNo' => 'Продано',
     'inCartLabel' => 'Купить',
     'alreadyInCartLabel' => 'В корзине',
-    'accountLabel' => 'Личный кабинет',
-
-    'productsPage' => 'Русский текст',
-    'newsPage' => 'Русский текст',
-    'adminProductPage' => ' Русский текст',
-    'adminArticlePage' => 'Русский текст',
-    'cartPage' => ' Русский текст',
-    'loginPage' => 'Русский текст',
-    'registerPage' => 'Русский текст',
-    'rememberPassPage' => ' Русский текст',
-    'accountPage' => 'Your Русский текст',
-    'resetPassPage' => ' Русский текст',
-    'adminNutritionStrategyPage' => ' Русский текст',
-
-    'hiLabel' => 'Здравствуйте, ',
-
-    'totalCostLabel' => ' Русский текст',
-    'addressLabel' => ' Русский текст',
-    'cityLabel' => ' Русский текст',
-    'commentLabel' => ' Русский текст',
-
-    'ordersLabel' => ' Русский текст',
-    'orderLabel' => ' Русский текст',
+    'accountLabel' => 'Аккаунт',
 
 
-    'menuLabel' => ' Русский текст',
-    'description' => 'Description',
+    'productsPage' => 'Товары',
+    'newsPage' => 'Новости',
+    'adminProductPage' => 'Администратор товаров ',
+    'adminArticlePage' => 'Администратор статей ',
+    'cartPage' => 'Ваша корзина',
+    'loginPage' => 'Вход',
+    'registerPage' => 'Регистрация',
+    'rememberPassPage' => 'Запомнить пароль',
+    'accountPage' => 'Аккаунт',
+    'resetPassPage' => 'Сбросить пароль',
+    'adminNutritionStrategyPage' => 'Администратор питания',
 
+    'hiLabel' => 'Привет, ',
+
+    'totalCostLabel' => 'Общая стоимость',
+    'addressLabel' => 'Адрес',
+    'cityLabel' => 'Город',
+    'commentLabel' => 'Отвыз',
+    'ordersLabel' => 'Заказы',
+    'orderLabel' => 'Заказ',
+
+    'menuLabel' => 'Меню',
+
+    'description' => 'Описание',
+
+
+    'portionHeader' => 'Все о порциях',
+    'portion1' => 'В этом пакете мы имеем ',
+    'portion2' => ' Полностью ',
+    'break' => 'Вам нужно делать перерыв каждые ',
+    'break2' => ' Для  ',
+    'age' => 'Возраст',
+    'age1' => 'Для всех людей от ',
+    'ageTo' => ' До ',
 
 ];

@@ -5,7 +5,7 @@
     <script>
 
         function addInCart(id) {
-            if ($("#btn" + id).text() == "{{trans('app.inCartLabel')}}") {
+            if ($("#btn" + id).text() === "{{trans('app.inCartLabel')}}") {
                 $("#btn" + id).text("{{trans('app.alreadyInCartLabel')}}");
                 $.ajax({
                     url: "/addToCart",

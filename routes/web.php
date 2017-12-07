@@ -33,6 +33,7 @@ Route::get("/basketProductList", "Client\BasketController@getProductList");
 Route::get("/getTotalCost", "Client\BasketController@getTotalCost");
 Route::get("/account", "Client\AccountController@getView")->name("account");
 
+Route::get('/about', 'Client\AboutController@getView');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/orders", "Client\OrdersController@getView")->name("orders");
 Route::get("/orderslist", "Client\OrdersController@getOrderList");
@@ -49,7 +50,6 @@ Route::get("/admin/article", "Admin\ArticleController@getView");
 
 
 Route::post('/admin/uploadFile', 'Admin\ArticleController@uploadFile');
-
 
 Route::get("/admin/product", "Admin\ProductController@getView");
 Route::get("/admin/product/list", "Admin\ProductController@getProductsDataTable");

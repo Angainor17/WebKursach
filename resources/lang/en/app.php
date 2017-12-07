@@ -136,7 +136,4 @@ return [
     'age1' => 'For all people from ',
     'ageTo' => ' to ',
 
-
-
-
 ];

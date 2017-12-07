@@ -134,7 +134,7 @@
                     </ul>
                 </li>
                 <li><a href="/home">{{trans('app.newsLabel')}}</a></li>
-                <li><a href="#">{{trans('app.aboutLabel')}}</a></li>
+                <li><a href="/about">{{trans('app.aboutLabel')}}</a></li>
             </ul>
         </div>
 
