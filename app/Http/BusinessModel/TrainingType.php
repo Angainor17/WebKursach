@@ -11,35 +11,30 @@ namespace App\Http\BusinessModel;
 
 class TrainingType
 {
-    public static $MASS = 'масса';
-    public static $DRY = 'сушка';
-    public static $STAMINA = 'выносливость';
+//    public static $MASS = 'масса';
+//    public static $DRY = 'сушка';
+//    public static $STAMINA = 'выносливость';
 
     public static function toString($number)
     {
         switch ($number) {
             case 1:
-                return TrainingType::$MASS;
+                return trans('app.mass');
             case 2:
-                return TrainingType::$DRY;
+                return trans('app.dry');
             case 3:
-                return TrainingType::$STAMINA;
+                return trans('app.stamina');
             default:
                 return "";
         }
     }
 
-    public function toInt($string)
+    public static function isSelected($string, $number)
     {
-        switch ($string) {
-            case TrainingType::$MASS:
-                return 1;
-            case TrainingType::$DRY:
-                return 2;
-            case TrainingType::$STAMINA:
-                return 3;
-            default:
-                return 0;
+        if (strpos($string, $number) !== false) {
+            return "checked";
+        } else {
+            return "";
         }
     }
 }

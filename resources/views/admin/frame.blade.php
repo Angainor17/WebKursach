@@ -11,7 +11,6 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.datatables.min.css') }}" rel="stylesheet">
 
-    {{--<script src="{{ asset('js/languageSwitcher.js') }}"></script>--}}
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 

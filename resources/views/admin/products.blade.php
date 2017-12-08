@@ -304,12 +304,12 @@
                 <div class="input-group" style="margin-top: 20px">
                     <span class="input-group-addon" style="width: auto">{{trans('app.ageFromLabel')}}</span>
                     <select class="form-control" style="width: 10px" id="inputAgeFrom" required>
-                        @include("spinner")
+                        @include("spinner",['selection'=>'-1'])
                     </select>
 
                     <span class="input-group-addon" style="width: auto">{{trans('app.ageToLabel')}}</span>
                     <select class="form-control" style="width: 10px" id="inputAgeTo" required>
-                        @include("spinner")
+                        @include("spinner",['selection'=>'-1'])
                     </select>
                 </div>
             </div>
@@ -330,7 +330,7 @@
 
 
                 <div class="input-group" style="margin-top: 20px">
-                    <span class="input-group-addon" style="width: auto">Category</span>
+                    <span class="input-group-addon" style="width: auto">{{trans('app.categoryLabel')}}</span>
                     <select id="inputCategory" class="form-control is-valid" required>
                         <option value="1" selected>{{trans('app.protein')}}</option>
                         <option value="2">{{trans('app.vitamin')}}</option>

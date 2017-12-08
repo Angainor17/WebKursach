@@ -8,7 +8,28 @@ class NutritionController extends Controller
 {
     public function getView()
     {
-        return view("client.nutrition");
+        $item = $this->getR();
+        return view(
+            "client.nutrition",
+            [
+                "dump" => $item
+            ]
+        );
+    }
+
+    public function getR()
+    {
+        $result = $this->getData();
+
+        return dump($result);
+    }
+
+    public function getData(){
+        $allProducts = ;
+
+
+
+
     }
 
 }

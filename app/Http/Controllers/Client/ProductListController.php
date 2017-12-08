@@ -25,7 +25,6 @@ class ProductListController extends Controller
     {
         $lang = app()->getLocale();
 
-
         return json_encode(Product::orderBy('id', 'desc')->get()->map(function ($data) use ($lang) {
             if ($data->instock > 0) {
                 $data->instock = trans('app.instockHas');

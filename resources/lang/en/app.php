@@ -136,4 +136,18 @@ return [
     'age1' => 'For all people from ',
     'ageTo' => ' to ',
 
+    'ectomorph' => 'Ectomorph',
+    'endomorph' => 'Endomorph',
+    'mezomorph' => 'Mezomorph',
+
+    'mass' => 'Mass',
+    'dry' => 'Dry',
+    'stamina' => 'Stamina',
+
+    'male' => 'Male',
+    'female' => 'Female',
+    'trainingType' => 'Training type',
+    'bodyType' => 'Body Type: ',
+    'saveBtn' => 'Save',
+
 ];

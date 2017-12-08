@@ -13,8 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property mixed $users
- */
+  */
 class Product extends Model
 {
     protected $table = "products";

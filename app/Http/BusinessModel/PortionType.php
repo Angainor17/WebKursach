@@ -26,6 +26,15 @@ class PortionType
         }
     }
 
+    public static function isChecked($id, $currentId)
+    {
+        if ($id == $currentId) {
+            return "selected = selected";
+        } else {
+            return "";
+        }
+    }
+
 //    public static function toInt($string)
 //    {
 //        switch ($string) {

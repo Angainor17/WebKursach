@@ -1,4 +1,4 @@
-@extends("client.accountFrame", ["title"=>trans('app.app.nutritionStrategy')])
+@extends("client.accountFrame", ["title"=>trans('app.nutritionStrategy')])
 
 @section("innerContent")
 
@@ -13,6 +13,6 @@
 
     </script>
 
-    Nutrition Strategy
+    {{$dump}}
 
 @endsection

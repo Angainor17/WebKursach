@@ -11,12 +11,19 @@ namespace App\Http\DBModel;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ */
 class BodyTypeStrategy extends Model
 {
-    protected $table = "dodyTypeStrategys";
+    protected $table = "body_type_strategys";
     public $timestamps = false;
 
-    public function nutritionStrategies(){
-        return $this->belongsToMany('App\Http\DBModel\NutritionStrategy');
+    public function productStrategies(){
+        return $this->belongsTo('App\Http\DBModel\ProductTypeStrategy');
+    }
+
+    public function portions(){
+        return $this->belongsToMany('App\Http\DBModel\Portion');
     }
 }

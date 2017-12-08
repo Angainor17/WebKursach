@@ -12,7 +12,6 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    {{--<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/kendo.common.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/kendo.default.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/kendo.default.mobile.min.css') }}" rel="stylesheet">
@@ -46,9 +45,6 @@
             }
         );
     </script>
-    {{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
-
-    {{--<script src="{{ asset('js/popper.min.js') }}"></script>--}}
 
 
     <style>

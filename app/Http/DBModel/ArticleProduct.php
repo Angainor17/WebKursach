@@ -11,6 +11,9 @@ namespace App\Http\DBModel;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ */
 class ArticleProduct extends Model
 {
     protected $table = "article_product";

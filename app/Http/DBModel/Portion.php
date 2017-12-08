@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: angai
- * Date: 18.11.2017
- * Time: 9:53
+ * User: admin
+ * Date: 07.12.2017
+ * Time: 20:21
  */
 
 namespace App\Http\DBModel;
@@ -11,12 +11,15 @@ namespace App\Http\DBModel;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NutritionStrategy extends Model
+/**
+ * @property int $id
+ */
+class Portion extends Model
 {
-    protected $table = "productTypeStrategys";
+    protected $table = "portions";
     public $timestamps = false;
 
-    public function bodyTypeStrategies(){
+    public function productStrategies(){
         return $this->belongsToMany('App\Http\DBModel\BodyTypeStrategy');
     }
 }

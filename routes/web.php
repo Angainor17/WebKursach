@@ -59,8 +59,10 @@ Route::post('/admin/product/update', 'Admin\ProductController@updateItem');
 Route::get('/admin/product/get/{id}', 'Admin\ProductController@getProductById');
 
 
-Route::get("/admin/nutritionstrategy", "Admin\NutritionStrategy@getView");
-Route::get("/admin/nuttitionstategydelete", "Admin\NutritionStrategy@getView");
+Route::get("/admin/nutritionstrategy", "Admin\NutritionStrategyController@getView");
+Route::post("/admin/updateNs", "Admin\NutritionStrategyController@update");
+Route::get("/admin/getListNs", "Admin\NutritionStrategyController@getList");
+
 
 Route::post("/language-chooser", "LanguageController@changeLanguage");
 
