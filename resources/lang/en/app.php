@@ -150,4 +150,17 @@ return [
     'bodyType' => 'Body Type: ',
     'saveBtn' => 'Save',
 
+
+    'weight' => 'Weight',
+    'trainingSchedule' => 'Training Schedule',
+    'gender' => 'Gender',
+
+    'monday' => 'Mod.',
+    'tuesday' => 'Tue.',
+    'wednesday' => 'Wed.',
+    'thursday' => 'Thu.',
+    'friday' => 'Fri.',
+    'saturday' => 'Sat.',
+    'sunday' => 'Sun.',
+
 ];

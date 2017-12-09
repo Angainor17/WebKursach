@@ -32,6 +32,7 @@ Route::get("/removeFromBasket/{id}", "Client\BasketController@remove");
 Route::get("/basketProductList", "Client\BasketController@getProductList");
 Route::get("/getTotalCost", "Client\BasketController@getTotalCost");
 Route::get("/account", "Client\AccountController@getView")->name("account");
+Route::post("/accountRefresh", "Client\AccountController@refreshData");
 
 Route::get('/about', 'Client\AboutController@getView');
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,6 +66,7 @@ Route::get("/admin/getListNs", "Admin\NutritionStrategyController@getList");
 
 
 Route::post("/language-chooser", "LanguageController@changeLanguage");
+
 
 Route::post("/language/", array(
     'before' => 'csrf',

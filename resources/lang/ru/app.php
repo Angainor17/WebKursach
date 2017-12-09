@@ -149,4 +149,16 @@ return [
     'trainingType' => 'Вид тренировок',
     'bodyType' => 'Конституция телосложения: ',
     'saveBtn' => 'Сохранить',
+
+    'weight' => 'Вес',
+    'trainingSchedule' => 'Распиание тренировок',
+    'gender' => 'Пол',
+
+    'monday' => 'Пн.',
+    'tuesday' => 'Вт.',
+    'wednesday' => 'Ср.',
+    'thursday' => 'Чт.',
+    'friday' => 'Пт.',
+    'saturday' => 'Суб.',
+    'sunday' => 'Вс.',
 ];

@@ -23,6 +23,7 @@ class VerifyCsrfToken extends BaseVerifier
         '/language-chooser',
         '/addToCart',
         '/makeOrder',
-        '/admin/updateNs'
+        '/admin/updateNs',
+        '/accountRefresh',
     ];
 }

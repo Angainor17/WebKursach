@@ -31,10 +31,10 @@ class TrainingType
 
     public static function isSelected($string, $number)
     {
-        if (strpos($string, $number) !== false) {
-            return "checked";
-        } else {
-            return "";
-        }
+       if($string == $number){
+           return "selected";
+       }else{
+           return "";
+       }
     }
 }
