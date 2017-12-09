@@ -9,7 +9,7 @@
 namespace App\Http\BusinessModel;
 
 
-class Meal
+class MealType
 {
     public $portion;
     public $imageId;

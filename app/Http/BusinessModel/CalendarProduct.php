@@ -14,5 +14,7 @@ class CalendarProduct
     public $product;
     public $productId;
     public $portionsLast;
-    public $portionsAmount;
+    public $portionSize;
+    public $portionType;
+    public $productsTotal;
 }

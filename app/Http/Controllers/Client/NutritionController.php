@@ -28,6 +28,7 @@ class NutritionController extends Controller
 
         return dump($result);
     }
+
 //4744
     public function getProductsData()
     {
@@ -50,18 +51,33 @@ class NutritionController extends Controller
                 }
 
                 if ($isChecked) {
-                    $allProducts[$key]->portionsAmount = $allProducts[$key]->portionsAmount + $allProductsIdItem->amount;
+                    $allProducts[$key]->productsTotal = $allProducts[$key]->productsTotal + $allProductsIdItem->amount;
                 } else {
                     $newItem = new CalendarProduct;
                     $newItem->productId = $allProductsIdItem->product_id;
-                    $newItem->portionsAmount = $allProductsIdItem->amount;
+                    $newItem->productsTotal = $allProductsIdItem->amount;
                     array_push($allProducts, $newItem);
                 }
             }
         }
 
-        foreach ($allProducts as $product){
-            $product->product = Product::where('id','=',$product->productId)->get()->first();
+        foreach ($allProducts as $product) {
+            $product->product = Product::where('id', '=', $product->productId)->get()->first();
+            $product->portionsLast = $product->productsTotal * $product->product->portionTotal;
+            $product->portionSize = $product->product->portionSize;
+            $product->portionType = $product->product->portionType;
+        }
+
+        $meals = Auth::user()->meals()->get();
+        foreach ($meals as $meal) {
+            foreach ($allProducts as $product) {
+                if ($meal->product_id == $product->productId) {
+                    $product->portionsLast = $product->portionsLast - $meal->portions_used;
+                    if ($product->portionsLast < 0) {
+                        $product->portionsLast = 0;
+                    }
+                }
+            }
         }
         return $allProducts;
     }

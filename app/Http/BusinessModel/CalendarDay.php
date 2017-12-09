@@ -13,6 +13,6 @@ class CalendarDay
 {
     public $date;
 
-    public $meals = [];//Meal
+    public $meals = [];//MealType
     public $reminders = [];//Reminder
 }

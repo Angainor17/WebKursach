@@ -39,6 +39,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Http\DBModel\Product');
     }
 
+    public function meals()
+    {
+        return $this->belongsToMany('App\Http\DBModel\Meal');
+    }
+
     public function getTotalCost()
     {
         try {

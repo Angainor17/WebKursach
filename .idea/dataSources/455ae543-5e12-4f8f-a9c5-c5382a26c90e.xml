@@ -234,7 +234,7 @@
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="63" parent="12" name="portions_size_used">
+    <column id="63" parent="12" name="portions_used">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
@@ -444,7 +444,7 @@
     </column>
     <column id="106" parent="18" name="portionSize">
       <Position>11</Position>
-      <DataType>double|0</DataType>
+      <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="107" parent="18" name="portionTotal">
