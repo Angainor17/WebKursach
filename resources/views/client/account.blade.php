@@ -33,14 +33,58 @@
         }
 
         function refreshAccData() {
-            alert("Refresh Acc Data");
             var age = $("#inputAge").val();
             var name = $("#inputName").val();
             var email = $("#inputEmail").val();
             var weight = $("#inputWeight").val();
             var gender = $("#inputGender").val();
-            var gender = $("#inputGender").val();
-            var gender = $("#inputGender").val();
+            var trainingType = 0;
+            if ($('#type1').prop('checked')) {
+                trainingType = 1;
+            }
+
+            if ($('#type2').prop('checked')) {
+                trainingType = 2;
+            }
+
+            if ($('#type3').prop('checked')) {
+                trainingType = 3;
+            }
+
+            var bodyType = 0;
+            if ($('#typeBody1').prop('checked')) {
+                bodyType = 1;
+            }
+
+            if ($('#typeBody2').prop('checked')) {
+                bodyType = 2;
+            }
+
+            if ($('#typeBody3').prop('checked')) {
+                bodyType = 3;
+            }
+            var trainingSchedule = "";
+
+            for (var i = 1; i < 8; i++) {
+                if ($('#day' + i).prop('checked')) {
+                    trainingSchedule += "" + i;
+                }
+            }
+            $.ajax({
+                url: "/accountRefresh",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    trainingSchedule: trainingSchedule,
+                    age: age,
+                    gender: gender,
+                    weight: weight,
+                    trainingType: trainingType,
+                    bodyType: bodyType,
+                    name: name,
+                    email: email
+                }
+            });
         }
 
     </script>
@@ -126,25 +170,27 @@
             <div style="margin-top: 30px">
                 <div class="form-check form-check-inline">
                     <label class="form-check-input">
-                        <input id="typeBody1" type="radio" name="inlineRadioOptions1"  value="1" >
+                        <input id="typeBody1" type="radio" name="inlineRadioOptions1" value="1">
                         {{trans('app.ectomorph')}}
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
                     <label class="form-check-input">
-                        <input id="typeBody2" type="radio" name="inlineRadioOptions1" value="2" > {{trans('app.endomorph')}}
+                        <input id="typeBody2" type="radio" name="inlineRadioOptions1"
+                               value="2"> {{trans('app.endomorph')}}
                     </label>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <label class="form-check-input">
-                        <input id="typeBody3" type="radio" name="inlineRadioOptions1" value="3" >
+                        <input id="typeBody3" type="radio" name="inlineRadioOptions1" value="3">
                         {{trans('app.mezomorph')}}
                     </label>
                 </div>
             </div>
 
-            <button type="submit" id="submit"  class="btn btn-outline-primary" style="width:200px;border:1px solid darkgray; margin-left: 10px">{{trans('app.saveBtn')}}</button>
+            <button type="submit" id="submit" class="btn btn-outline-primary"
+                    style="width:200px;border:1px solid darkgray; margin-left: 10px">{{trans('app.saveBtn')}}</button>
         </form>
     </div>
 

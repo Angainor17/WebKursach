@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
 
 class AccountController extends Controller
 {
@@ -27,7 +27,8 @@ class AccountController extends Controller
         );
     }
 
-    public function refreshData(Request $request){
+    public function refreshData(Request $request)
+    {
         $user = Auth::user();
 
         $user->name = $request->name;
@@ -36,6 +37,7 @@ class AccountController extends Controller
         $user->email = $request->email;
         $user->trainingType = $request->trainingType;
         $user->trainingSchedule = $request->trainingSchedule;
+        $user->body_type = $request->bodyType;
         $user->age = $request->age;
 
         $user->save();
