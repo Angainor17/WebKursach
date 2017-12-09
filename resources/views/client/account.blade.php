@@ -5,6 +5,12 @@
         $(document).ready(function () {
             menuActive();
             initFields();
+
+            $("#form").submit(function (event) {
+                event.preventDefault();
+                refreshAccData();
+                return false;
+            });
         });
 
         function initFields() {
@@ -15,10 +21,7 @@
             $('#type3').prop('checked', "{{$trainingType}}" === "3");
 
             $("[name='true']").prop("checked", true);
-
-//            for (var i = 1; i < 8; i++) {
-//                $('#day' + i).prop('checked',);
-//            }
+            $("[name='false']").prop("checked", false);
         }
 
         function menuActive() {
@@ -26,6 +29,7 @@
         }
 
         function refreshAccData() {
+            alert("Refresh Acc Data");
             var age = $("#inputAge").val();
             var name = $("#inputName").val();
             var email = $("#inputEmail").val();
@@ -85,7 +89,8 @@
                     @for($i=1; $i<8; $i++)
                         <label class="form-check-label">
                             <input id="day{{$i}}" type="checkbox"
-                                   name="{{\App\Http\BusinessModel\WeekDay::isSelected($trainingSchedule,$i)}}" class="trainTypeCb" value="{{$i}}">{{\App\Http\BusinessModel\WeekDay::getString($i)}}
+                                   name="{{\App\Http\BusinessModel\WeekDay::isSelected($trainingSchedule,$i)}}"
+                                   class="trainTypeCb" value="{{$i}}">{{\App\Http\BusinessModel\WeekDay::getString($i)}}
                         </label>
                     @endfor
                 </div>
@@ -114,6 +119,7 @@
                     </label>
                 </div>
             </div>
+            <button type="submit" id="submit"  class="btn btn-outline-primary" style="margin-left: 10px">{{trans('app.saveBtn')}}</button>
         </form>
     </div>
 
