@@ -20,6 +20,10 @@
             $('#type2').prop('checked', "{{$trainingType}}" === "2");
             $('#type3').prop('checked', "{{$trainingType}}" === "3");
 
+            $('#typeBody1').prop('checked', "{{$bodyType}}" === "1");
+            $('#typeBody2').prop('checked', "{{$bodyType}}" === "2");
+            $('#typeBody3').prop('checked', "{{$bodyType}}" === "3");
+
             $("[name='true']").prop("checked", true);
             $("[name='false']").prop("checked", false);
         }
@@ -119,7 +123,28 @@
                     </label>
                 </div>
             </div>
-            <button type="submit" id="submit"  class="btn btn-outline-primary" style="margin-left: 10px">{{trans('app.saveBtn')}}</button>
+            <div style="margin-top: 30px">
+                <div class="form-check form-check-inline">
+                    <label class="form-check-input">
+                        <input id="typeBody1" type="radio" name="inlineRadioOptions1"  value="1" >
+                        {{trans('app.ectomorph')}}
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <label class="form-check-input">
+                        <input id="typeBody2" type="radio" name="inlineRadioOptions1" value="2" > {{trans('app.endomorph')}}
+                    </label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <label class="form-check-input">
+                        <input id="typeBody3" type="radio" name="inlineRadioOptions1" value="3" >
+                        {{trans('app.mezomorph')}}
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" id="submit"  class="btn btn-outline-primary" style="width:200px;border:1px solid darkgray; margin-left: 10px">{{trans('app.saveBtn')}}</button>
         </form>
     </div>
 

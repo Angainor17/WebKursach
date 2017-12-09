@@ -29,7 +29,6 @@ class NutritionController extends Controller
         return dump($result);
     }
 
-//4744
     public function getProductsData()
     {
         $userId = Auth::user()->id;

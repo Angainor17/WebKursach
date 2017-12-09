@@ -543,9 +543,14 @@
     <column id="127" parent="20" name="trainingType">
       <Position>12</Position>
       <DataType>int(11)|0</DataType>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <key id="128" parent="20" name="PRIMARY">
+    <column id="128" parent="20" name="body_type">
+      <Position>13</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <key id="129" parent="20" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

@@ -30,23 +30,14 @@
                 trainTypeCheckBox.forEach(function (item, i, arr) {
                     alert(i + "here")
                     if ($(item).attr("checked")) {
-                        trainingType += $(item).val();//.attr("value")
+                        trainingType += $(item).val();
                     }
                 });
                 alert("" + trainingType);
-                //alert(i + ": " + item + " (массив:" + arr + ")");
+
             });
 
         }
-
-        //        function hideAreaClick(id) {
-        //            if ($("#" + id + "Area").is(":visible")) {
-        //                $("#" + id + "Area").css("visibility", "hidden");
-        //            } else {
-        //                $("#" + id + "Area").css("visibility", "visible");
-        //            }
-        //        }
-
 
     </script>
 

@@ -12,7 +12,6 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-
         return view(
             "client.account",
             [
@@ -21,6 +20,7 @@ class AccountController extends Controller
                 "gender" => $user->gender,
                 "weight" => $user->weight,
                 "trainingType" => $user->trainingType,
+                "bodyType" => $user->body_type,
                 "name" => $user->name,
                 "email" => $user->email,
             ]
