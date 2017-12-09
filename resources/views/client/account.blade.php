@@ -10,22 +10,15 @@
         function initFields() {
             $("#inputGender").val("{{$gender}}");
 
-            if ("{{$trainingType}}" === "1") {
-                $("#type1").attr('checked', 'checked');
-            } else {
-            //    $("#type1").attr('checked', 'unchecked');
-            }
+            $('#type1').prop('checked', "{{$trainingType}}" === "1");
+            $('#type2').prop('checked', "{{$trainingType}}" === "2");
+            $('#type3').prop('checked', "{{$trainingType}}" === "3");
 
+            $("[name='true']").prop("checked", true);
 
-            if ("{{$trainingType}}" === "2") {
-                $("#type2").attr('checked', 'checked');
-            }
-
-            if ("{{$trainingType}}" === "3") {
-                $("#type3").attr('checked', 'checked');
-            } else {
-                //$("#type3").attr('checked', 'unchecked');
-            }
+//            for (var i = 1; i < 8; i++) {
+//                $('#day' + i).prop('checked',);
+//            }
         }
 
         function menuActive() {
@@ -91,9 +84,8 @@
                 <div class="form-check form-check-inline">
                     @for($i=1; $i<8; $i++)
                         <label class="form-check-label">
-                            <input type="checkbox" class="trainTypeCb"
-                                   value="{{$i}}" {{\App\Http\BusinessModel\WeekDay::isSelected($trainingSchedule,$i)}}>
-                            {{\App\Http\BusinessModel\WeekDay::getString($i)}}
+                            <input id="day{{$i}}" type="checkbox"
+                                   name="{{\App\Http\BusinessModel\WeekDay::isSelected($trainingSchedule,$i)}}" class="trainTypeCb" value="{{$i}}">{{\App\Http\BusinessModel\WeekDay::getString($i)}}
                         </label>
                     @endfor
                 </div>

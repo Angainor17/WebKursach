@@ -35,10 +35,10 @@ class WeekDay
 
     public static function isSelected($string, $number)
     {
-        if (strpos($string, $number) !== false) {
-            return "checked";
+        if (strpos($string, strval($number)) !== false) {
+            return "true";
         } else {
-            return "";
+            return "false";
         }
     }
 
