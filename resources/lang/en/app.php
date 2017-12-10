@@ -163,4 +163,6 @@ return [
     'saturday' => 'Sat.',
     'sunday' => 'Sun.',
 
+    'customer' => 'Customer',
+
 ];

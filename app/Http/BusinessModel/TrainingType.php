@@ -11,9 +11,6 @@ namespace App\Http\BusinessModel;
 
 class TrainingType
 {
-//    public static $MASS = 'масса';
-//    public static $DRY = 'сушка';
-//    public static $STAMINA = 'выносливость';
 
     public static function toString($number)
     {

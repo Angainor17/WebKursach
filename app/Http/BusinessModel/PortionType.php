@@ -35,17 +35,4 @@ class PortionType
         }
     }
 
-//    public static function toInt($string)
-//    {
-//        switch ($string) {
-//            case PortionType::$ML:
-//                return 1;
-//            case PortionType::$GR:
-//                return 2;
-//            case PortionType::$PIECE:
-//                return 3;
-//            default:
-//                return 0;
-//        }
-//    }
 }

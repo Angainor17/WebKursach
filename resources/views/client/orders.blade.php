@@ -17,7 +17,7 @@
         .order {
             border: 2px solid #b9b9b9;
             width: 60%;
-            height: 100px;
+            height: 180px;
             margin: 20px;
             font-size: 16px;
             padding: 20px;
@@ -59,14 +59,18 @@
 
     <script type="text/x-kendo-template" id="template">
         <div class="order">
-            <p>Name: #:name#</p>
-            <p>Cost: #:cost#</p>
-            <p>Date: #:date#</p>
+            <p>{{trans('app.customer')}}: #:name#</p>
+            <p>{{trans('app.totalCostLabel')}}: #:cost# {{trans('app.rub')}}</p>
+            <p>{{trans('app.dateColumn')}}: #:date#</p>
 
-            {{--<div class="imageDiv">--}}
-                {{--<a href="/product/#:id#"><img class="card-img-top" src="{{asset('/uploads/')}}/#:imageId#"--}}
-                                              {{--style="height: 200px; "></a>--}}
+            # for (var i = 0; i < products.length; i++) { #
+
+            <div style="display: inline-block">
+                <img src="http://mynutritionway.com/uploads/#:products[i].imageId#" style="height: 70px">
             </div>
+            # } #
+
+        </div>
         </div>
     </script>
 

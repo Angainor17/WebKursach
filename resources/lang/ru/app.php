@@ -161,4 +161,6 @@ return [
     'friday' => 'Пт.',
     'saturday' => 'Суб.',
     'sunday' => 'Вс.',
+
+    'customer' => 'Заказчик',
 ];

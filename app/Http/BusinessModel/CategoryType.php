@@ -11,12 +11,6 @@ namespace App\Http\BusinessModel;
 
 class CategoryType
 {
-    public static $PROTEIN = 'Protein';
-    public static $VITAMIN = 'Vitamin';
-    public static $TONIK = 'Tonik';
-    public static $AMINOACID = 'Amino';
-    public static $GAINER = 'Gainer';
-
     public static function toString($number)
     {
         switch ($number) {
@@ -34,22 +28,4 @@ class CategoryType
                 return "";
         }
     }
-
-//    public static function toInt($string)
-//    {
-//        switch ($string) {
-//            case CategoryType::$PROTEIN:
-//                return 1;
-//            case CategoryType::$VITAMIN:
-//                return 2;
-//            case CategoryType::$TONIK:
-//                return 3;
-//            case CategoryType::$TONIK:
-//                return 3;
-//            case CategoryType::$TONIK:
-//                return 3;
-//            default:
-//                return 0;
-//        }
-//    }
 }

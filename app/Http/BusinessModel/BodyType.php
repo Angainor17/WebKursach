@@ -11,9 +11,6 @@ namespace App\Http\BusinessModel;
 
 class BodyType
 {
-//    public static $ECTOMORPH = 'Ectomorph';
-//    public static $ENDOMORPH = 'Endomorph';
-//    public static $MEZOMORPH = 'Mezomorph';
 
     public static function toString($number)
     {
@@ -28,19 +25,4 @@ class BodyType
                 return "";
         }
     }
-
-//    public function toInt($string)
-//    {
-//        switch ($string) {
-//            case BodyType::$ECTOMORPH:
-//                return 1;
-//            case BodyType::$ENDOMORPH:
-//                return 2;
-//            case BodyType::$MEZOMORPH:
-//                return 3;
-//            default:
-//                return 0;
-//        }
-//    }
-
 }
