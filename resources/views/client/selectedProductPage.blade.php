@@ -97,7 +97,7 @@
             <div class="title">{{trans('app.portionHeader')}}:</div>
             <br>
             <div class="text">{{trans('app.portion1') . $item->portionTotal . trans('app.portion2'). $item->portionSize . ' '
-             . \App\Http\BusinessModel\PortionType::toString($item->potionType)}}</div>
+             . \App\Http\BusinessModel\PortionType::toString($item->portionType)}}</div>
             <br>
             <div class="text">{{trans('app.break'). $item->breakTime. trans('app.break2'). $item->breakTime.'  '.trans('app.daysLabel')}}</div>
         </div>

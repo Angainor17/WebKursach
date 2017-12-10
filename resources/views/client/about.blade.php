@@ -1,4 +1,4 @@
-@extends("layouts.app", ["title"=>trans('app.app.aboutLabel')])
+@extends("layouts.app", ["title"=>trans('app.aboutLabel')])
 
 @section("content")
 
