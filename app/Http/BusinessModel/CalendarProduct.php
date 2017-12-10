@@ -17,4 +17,5 @@ class CalendarProduct
     public $portionSize;
     public $portionType;
     public $productsTotal;
+    public $category;
 }

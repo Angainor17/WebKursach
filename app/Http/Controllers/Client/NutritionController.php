@@ -83,26 +83,27 @@ class NutritionController extends Controller
             $calendarDay->weekDay = date("l", $nextDay);
             $calendarDay->weekDayInt = date('N', strtotime($calendarDay->weekDay));
 
-            if (strpos($user->trainingSchedule, $calendarDay->weekDayInt)!==false) {
+            if (strpos($user->trainingSchedule, $calendarDay->weekDayInt) !== false) {
 
                 foreach ($products as $productKey => $product) {
                     foreach ($strategys as $strategy) {
-                        if ($strategy->titleId == $product->productId) {
+                        if ($strategy->titleId == $product->category) {
                             $newNotification = new NotificationType;
-
+                            $iId = Product::where('id', '=', $product->productId)->get()->first()->imageId;
+                            $newNotification->imageId = asset("/uploads/" . $iId);
                             if ($product->portionsLast > 0) {
+
                                 $newNotification->type = 1;
 
-                                $iId = Product::where('id', '=', $product->productId)->get()->first()->imageId;
 
-                                $newNotification->imageId = asset("/uploads/" . $iId);
-                                //тут надо бы проверять по типу телосложения
+                                //тут надо бы проверять по типу телосложения и возрасту
                                 $newNotification->text = "Примите " . $product->portionSize . " " . PortionType::toString($product->portionType);
                             } else {
+
                                 $newNotification->type = 0;
-                                $newNotification->imageId = asset("/uploads/default/not.png");
+                                //$newNotification->imageId = asset("/uploads/default/not.png");
                                 $newNotification->text = "Продукт закончился";
-                                //unset($products[$productKey]);
+                                unset($products[$productKey]);
 
                             }
                             array_push($calendarDay->notification, $newNotification);
@@ -151,6 +152,7 @@ class NutritionController extends Controller
             $product->portionsLast = $product->productsTotal * $product->product->portionTotal;
             $product->portionSize = $product->product->portionSize;
             $product->portionType = $product->product->portionType;
+            $product->category = $product->product->category;
         }
 
         $meals = Auth::user()->meals()->get();
