@@ -17,9 +17,8 @@ class SelectedProductController extends Controller
                 if ($locale == "en") {
                     $data->title = $data->title_en;
                     $data->full = $data->full_en;
-                    return $data;
                 }
-                return "";
+                return $data;
             }
         );
     }
@@ -30,23 +29,23 @@ class SelectedProductController extends Controller
         $product = $this->getItemById($locale, $id)[0];
 
         $title = "";
-        if(app()->getLocale()=="en"){
+        if (app()->getLocale() == "en") {
             $title = $product->name_en;
             $product->name = $product->name_en;
             $product->description = $product->description_en;
-        }else{
+        } else {
             $title = $product->name;
         }
 
         $isInBasket = false;
-        if(!Auth::guest()){
+        if (!Auth::guest()) {
             $userId = Auth::user()->id;
             $isInBasket = !Basket::where('user_id', '=', $userId)->where('product_id', '=', $id)->get()->isEmpty();
         }
 
-        if($isInBasket){
+        if ($isInBasket) {
             $buyBtn = trans('app.alreadyInCartLabel');
-        }else{
+        } else {
             $buyBtn = trans('app.inCartLabel');
         }
 
