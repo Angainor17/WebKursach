@@ -2,12 +2,20 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Http\BusinessModel\BodyType;
 use App\Http\BusinessModel\CalendarDay;
 use App\Http\BusinessModel\CalendarProduct;
+use App\Http\BusinessModel\CategoryType;
+use App\Http\BusinessModel\NotificationType;
+use App\Http\BusinessModel\NSBodyTypeListItem;
+use App\Http\BusinessModel\NSListItem;
+use App\Http\BusinessModel\NSPortionItem;
+use App\Http\BusinessModel\PortionType;
 use App\Http\Controllers\Controller;
 use App\Http\DBModel\Order;
 use App\Http\DBModel\OrderProduct;
 use App\Http\DBModel\Product;
+use App\Http\DBModel\ProductTypeStrategy;
 use Illuminate\Support\Facades\Auth;
 
 class NutritionController extends Controller
@@ -23,27 +31,88 @@ class NutritionController extends Controller
         );
     }
 
+    public function getStrategyList()
+    {
+        $mainList = [];
+        $mainTable = ProductTypeStrategy::all();
+
+        foreach ($mainTable as $item) {
+            $mainListItem = new NSListItem;
+
+            $mainListItem->title = CategoryType::toString($item->productType);
+            $mainListItem->titleId = $item->productType;
+            $mainListItem->trainingTypeId = $item->trainingType;
+            $mainListItem->ageFrom = $item->ageFrom;
+            $mainListItem->ageTo = $item->ageTo;
+
+            $bodyTypesList = $item->bodyStrategys()->get();
+            foreach ($bodyTypesList as $bodyTypesListItem) {
+                $newBodyType = new NSBodyTypeListItem;
+                $newBodyType->typeId = $bodyTypesListItem->body_type;
+                $newBodyType->typeTitle = BodyType::toString($bodyTypesListItem->body_type);
+
+                $portions = $bodyTypesListItem->portions()->get();
+                foreach ($portions as $portion) {
+                    $newPortion = new NSPortionItem();
+                    $newPortion->size = $portion->size;
+                    $newPortion->typeId = $portion->type;
+                    $newPortion->type = PortionType::toString($portion->type);
+                    $newBodyType->portion[$portion->type] = $newPortion;
+                }
+
+                array_push($mainListItem->bodyTypes, $newBodyType);
+            }
+            array_push($mainList, $mainListItem);
+        }
+        return $mainList;
+    }
+
     public function getDays()
     {
         $products = $this->getProductsData();
         $user = Auth::user();
+        $strategys = $this->getStrategyList();
 
         $calendarDays = [];
+
         for ($dayInt = 0; $dayInt <= 30; $dayInt++) {
             $calendarDay = new CalendarDay;
 
             $nextDay = mktime(0, 0, 0, date("m"), date("d") + $dayInt, date("Y"));
             $calendarDay->dateString = date("d.m.y", $nextDay);
             $calendarDay->weekDay = date("l", $nextDay);
-            $calendarDay->weekDayInt = date('N', strtotime( $calendarDay->weekDay));
+            $calendarDay->weekDayInt = date('N', strtotime($calendarDay->weekDay));
 
-            if(strpos($user->trainingSchedule ,$calendarDay->weekDayInt)){
+            if (strpos($user->trainingSchedule, $calendarDay->weekDayInt)!==false) {
 
+                foreach ($products as $productKey => $product) {
+                    foreach ($strategys as $strategy) {
+                        if ($strategy->titleId == $product->productId) {
+                            $newNotification = new NotificationType;
+
+                            if ($product->portionsLast > 0) {
+                                $newNotification->type = 1;
+
+                                $iId = Product::where('id', '=', $product->productId)->get()->first()->imageId;
+
+                                $newNotification->imageId = asset("/uploads/" . $iId);
+                                //тут надо бы проверять по типу телосложения
+                                $newNotification->text = "Примите " . $product->portionSize . " " . PortionType::toString($product->portionType);
+                            } else {
+                                $newNotification->type = 0;
+                                $newNotification->imageId = asset("/uploads/default/not.png");
+                                $newNotification->text = "Продукт закончился";
+                                //unset($products[$productKey]);
+
+                            }
+                            array_push($calendarDay->notification, $newNotification);
+                        }
+                    }
+                }
             }
-
-
             array_push($calendarDays, $calendarDay);
         }
+        return $calendarDays;
     }
 
     public function getProductsData()

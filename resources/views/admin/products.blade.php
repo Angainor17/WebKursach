@@ -5,10 +5,9 @@
 @section("content")
 
     <script>
-        $(function () {
+        function doOnStart() {
+
             table = $('#products-table').DataTable({
-                processing: false,
-                serverSide: true,
                 ajax: {
                     url: '/admin/product/list'
                 },
@@ -22,9 +21,7 @@
                     {data: 'portionsSize', name: 'portionsSize'}
                 ]
             });
-        });
 
-        function doOnStart() {
             initProductTable();
 
             $("#form").submit(function (event) {
@@ -33,7 +30,7 @@
                 return false;
             });
 
-            $("#editBtn").text({{trans('app.editBtn')}});
+            $("#editBtn").text("{{trans('app.editBtn')}}");
 
 
             $("#editBtn").click(function () {
@@ -44,7 +41,6 @@
             $("#deleteBtn").click(function () {
                 deleteProductBtnEvent();
             });
-
             cleanAllProductsFields();
         }
 
@@ -81,11 +77,11 @@
         }
 
         function editBtnClickEvent() {
-            if (!($("#editBtn").text() == "Edit\n" || $("#editBtn").text() == 'Edit')) {
+            if (!($("#editBtn").text() == "{{trans('app.editBtn')}}" || $("#editBtn").text() == "{{trans('app.editBtn')}}\n")) {
 
                 setBtnEnable('#addBtn', true);
                 setBtnEnable('#deleteBtn', true);
-                $("#editBtn").text({{trans('app.editBtn')}});
+                $("#editBtn").text("{{trans('app.editBtn')}}");
                 updateProductById(editId);
             } else {
                 if ($('#products-table').DataTable().row('.selected').count() > 0) {
@@ -96,14 +92,14 @@
                         type: 'GET',
                         success: function (result) {
                             fillAllProductsFields(JSON.parse(result));
-                            $("#editBtn").text({{trans('app.updateBtn')}});
+                            $("#editBtn").text("{{trans('app.updateBtn')}}");
                             scrollUp();
                             setBtnEnable('#addBtn', false);
                             setBtnEnable('#deleteBtn', false);
                         }
                     });
                 } else {
-                    alert({{trans('app.chooseItemAlert')}});
+                    alert("{{trans('app.chooseItemAlert')}}");
                 }
             }
         }
@@ -414,7 +410,6 @@
             <th>{{trans('app.portions')}}</th>
         </tr>
         </thead>
-
     </table>
 
 @endsection

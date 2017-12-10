@@ -91,14 +91,13 @@ class NutritionStrategyController extends Controller
             $bodyTypesNew = $array[$i]['bodyTypes'];
             for ($j = 0; $j < 3; $j++) {
                 for ($k = 0; $k < 3; $k++) {
-                    $portionItem = $bodyTypes[$j]->portions()->get()->where('type', '=', $k+1)->first();
-                    //return $bodyTypesNew[$j]['portion'];
+                    $portionItem = $bodyTypes[$j]->portions()->get()->where('type', '=', $k + 1)->first();
                     $newValue = $bodyTypesNew[$j]['portion'][$k];
                     if (empty($newValue)) {
                         $newValue = 0;
                     }
 
-                    $portionItem->size = intval($newValue);
+                    $portionItem->size = doubleval($newValue);
                     $portionItem->save();
                 }
             }

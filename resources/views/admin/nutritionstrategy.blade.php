@@ -61,7 +61,6 @@
                     bodyTypeItem.typeId = $(item).find("#typeId").attr('name');
                     var potionsView = $(item).find(".portionListItem").toArray();
                     var portions = [];
-                    //portions.push("");
                     potionsView.forEach(function (item, i, arr) {
                         var value = $(item).find(".form-control").val();
                         portions.push(value);

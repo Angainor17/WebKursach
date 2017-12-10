@@ -6,6 +6,7 @@ return [
     'products' => 'Продукты',
     'nutritionStrategy' => 'Стратегия питания',
 
+    'title' => 'Заголовок',
     'titleRu' => 'Заголовок (RU)',
     'titleEn' => 'Заголовок (EN)',
 
@@ -62,7 +63,7 @@ return [
 
     'ml' => 'Миллилитр',
     'pcs' => 'Штук',
-    'gr' => 'Грамм',
+    'gr' => 'Грамм/1кг',
 
     'portionSizeLabel' => 'Размер порции',
     'portionTypeLabel' => 'Вид порции',

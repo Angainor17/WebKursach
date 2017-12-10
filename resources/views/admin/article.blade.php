@@ -114,9 +114,12 @@
             </table>
         </div>
     </div>
+
     <script>
         var table;
-        $(function () {
+
+
+        $(document).ready(function () {
             table = $('#articles-table').DataTable({
                 processing: false,
                 serverSide: true,
@@ -131,14 +134,8 @@
                     {data: 'type', name: 'type'}
                 ]
             });
-        });
-
-        $(document).ready(function () {
             doOnStart();
         });
-    </script>
-
-    <script>
 
         function setBtnEnable(id, isEnable) {
             if (isEnable) {
@@ -164,7 +161,7 @@
             });
 
 
-            $("#editBtn").text("Edit");
+            $("#editBtn").text("{{trans('app.editBtn')}}");
             cleanAllFields();
             $('#articles-table tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
@@ -220,18 +217,18 @@
                                         $('#inputRbNews').prop('checked', false);
                                     }
 
-                                    $("#editBtn").text({{trans('app.updateBtn')}});
+                                    $("#editBtn").text("{{trans('app.updateBtn')}}");
                                 }
                             });
                         } else {
-                            $("#editBtn").text({{trans('app.editBtn')}});
+                            $("#editBtn").text("{{trans('app.editBtn')}}");
                             alert(editId);
                             updateById(editId);
                             setBtnEnable('#addBtn', true);
                             setBtnEnable('#deleteBtn', true);
                         }
                     } else {
-                        alert({{trans('app.chooseItemAlert')}})
+                        alert("{{trans('app.chooseItemAlert')}}");
                     }
                 }
             );
@@ -282,11 +279,11 @@
             });
         }
 
-        function addItem($imageId) {
+        function addItem(imageId) {
             var body = {
                 short: $('#inputShortRu').val(),
                 full: $('#inputFullRu').val(),
-                imageId: $imageId,
+                imageId: imageId,
                 type: $('input[name="gridRadios"]:checked').val(),
                 short_en: $('#inputShortEn').val(),
                 full_en: $('#inputFullEn').val(),
@@ -296,9 +293,6 @@
 
             var jsonBody = JSON.stringify(body);
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
                 url: "/admin/article/add",
                 type: "POST",
                 data: jsonBody,

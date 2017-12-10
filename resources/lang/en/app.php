@@ -6,6 +6,7 @@ return [
     'products' => 'Products',
     'nutritionStrategy' => 'Nutrition Strategy',
 
+    'title' => 'Title',
     'titleRu' => 'Title (RU)',
     'titleEn' => 'Title (EN)',
 
@@ -62,7 +63,7 @@ return [
 
     'ml' => 'ML',
     'pcs' => 'PCs',
-    'gr' => 'GR',
+    'gr' => 'GR/Kg',
 
     'portionSizeLabel' => 'Portion Size',
     'portionTypeLabel' => 'Portion Type',
