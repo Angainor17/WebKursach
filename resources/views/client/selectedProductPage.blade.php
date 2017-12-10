@@ -62,7 +62,7 @@
         #mainField img {
             height: 300px;
             position: absolute;
-            right: 0;
+            right: 20%;
             top: 0;
             margin-top: 15%;
         }
