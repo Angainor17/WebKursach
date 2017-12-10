@@ -22,13 +22,17 @@ class NutritionController extends Controller
 {
     public function getView()
     {
-        $item = dump($this->getDays());
         return view(
             "client.nutrition",
             [
-                "dump" => $item
+
             ]
         );
+    }
+
+    public function getList()
+    {
+        return json_encode($this->getDays());
     }
 
     public function getStrategyList()
@@ -83,7 +87,7 @@ class NutritionController extends Controller
             $calendarDay->weekDay = date("l", $nextDay);
             $calendarDay->weekDayInt = date('N', strtotime($calendarDay->weekDay));
 
-            if (strpos($user->trainingSchedule, $calendarDay->weekDayInt)!==false) {
+            if (strpos($user->trainingSchedule, $calendarDay->weekDayInt) !== false) {
 
                 foreach ($products as $productKey => $product) {
                     foreach ($strategys as $strategy) {
