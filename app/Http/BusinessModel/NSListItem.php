@@ -12,6 +12,7 @@ namespace App\Http\BusinessModel;
 class NSListItem
 {
     public $title;
+    public $titleId;
     public $trainingTypeId;
     public $ageFrom;
     public $ageTo;

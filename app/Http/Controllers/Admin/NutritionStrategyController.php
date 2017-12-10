@@ -17,6 +17,7 @@ use App\Http\BusinessModel\NSPortionItem;
 use App\Http\BusinessModel\PortionType;
 use App\Http\Controllers\Controller;
 use App\Http\DBModel\ProductTypeStrategy;
+use Illuminate\Http\Request;
 
 class NutritionStrategyController extends Controller
 {
@@ -40,6 +41,7 @@ class NutritionStrategyController extends Controller
             $mainListItem = new NSListItem;
 
             $mainListItem->title = CategoryType::toString($item->productType);
+            $mainListItem->titleId = $item->productType;
             $mainListItem->trainingTypeId = $item->trainingType;
             $mainListItem->ageFrom = $item->ageFrom;
             $mainListItem->ageTo = $item->ageTo;
@@ -66,8 +68,41 @@ class NutritionStrategyController extends Controller
         return $mainList;
     }
 
-    public function update()
+    public function update(Request $request)
     {
+        $content = $request->getContent(false);
+        $array = json_decode($content, true);
 
+        $mainTable = ProductTypeStrategy::all();
+
+        for ($i = 0; $i < count($mainTable); $i++) {
+            $mainTable[$i]->ageFrom = $array[$i]['ageFrom'];
+            $mainTable[$i]->ageTo = $array[$i]['ageTo'];
+
+            $newTrainingType = $array[$i]['trainingTypeId'];
+            if (empty($newTrainingType)) {
+                $newTrainingType = 123;
+            }
+
+            $mainTable[$i]->trainingType = $newTrainingType;
+
+
+            $bodyTypes = $mainTable[$i]->bodyStrategys()->get();
+            $bodyTypesNew = $array[$i]['bodyTypes'];
+            for ($j = 0; $j < 3; $j++) {
+                for ($k = 0; $k < 3; $k++) {
+                    $portionItem = $bodyTypes[$j]->portions()->get()->where('type', '=', $k+1)->first();
+                    //return $bodyTypesNew[$j]['portion'];
+                    $newValue = $bodyTypesNew[$j]['portion'][$k];
+                    if (empty($newValue)) {
+                        $newValue = 0;
+                    }
+
+                    $portionItem->size = intval($newValue);
+                    $portionItem->save();
+                }
+            }
+            $mainTable[$i]->save();
+        }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Http\BusinessModel\CalendarDay;
 use App\Http\BusinessModel\CalendarProduct;
 use App\Http\Controllers\Controller;
 use App\Http\DBModel\Order;
@@ -13,7 +14,7 @@ class NutritionController extends Controller
 {
     public function getView()
     {
-        $item = $this->getR();
+        $item = dump($this->getDays());
         return view(
             "client.nutrition",
             [
@@ -22,11 +23,27 @@ class NutritionController extends Controller
         );
     }
 
-    public function getR()
+    public function getDays()
     {
-        $result = $this->getProductsData();
+        $products = $this->getProductsData();
+        $user = Auth::user();
 
-        return dump($result);
+        $calendarDays = [];
+        for ($dayInt = 0; $dayInt <= 30; $dayInt++) {
+            $calendarDay = new CalendarDay;
+
+            $nextDay = mktime(0, 0, 0, date("m"), date("d") + $dayInt, date("Y"));
+            $calendarDay->dateString = date("d.m.y", $nextDay);
+            $calendarDay->weekDay = date("l", $nextDay);
+            $calendarDay->weekDayInt = date('N', strtotime( $calendarDay->weekDay));
+
+            if(strpos($user->trainingSchedule ,$calendarDay->weekDayInt)){
+
+            }
+
+
+            array_push($calendarDays, $calendarDay);
+        }
     }
 
     public function getProductsData()

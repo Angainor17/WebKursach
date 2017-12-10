@@ -11,8 +11,9 @@ namespace App\Http\BusinessModel;
 
 class CalendarDay
 {
-    public $date;
+    public $dateString;
+    public $weekDay;
+    public $weekDayInt;
 
-    public $meals = [];//MealType
-    public $reminders = [];//Reminder
+    public $notification = [];//NotificationType
 }

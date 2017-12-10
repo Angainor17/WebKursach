@@ -9,34 +9,72 @@
         });
 
         function saveBtnClick() {
-            getData();
+            var jsonData = JSON.stringify(getData());
+            $.ajax({
+                url: "/admin/updateNs",
+                type: "POST",
+                dataType: "json",
+                data: jsonData
+            });
         }
 
-        //
         function getData() {
             var resultList = [];
-
 
             var mainList = $(".listItem").toArray();
 
             mainList.forEach(function (item, i, arr) {
                 var result = {
-                    title: $(".header").innerHTML,
-                    trainingTypeId: ""
+                    title: $(item).find(".header").text(),
+                    titleId: $(item).find(".headerId").attr("name"),
+                    trainingTypeId: "",
+                    ageFrom: "",
+                    ageTo: "",
+                    bodyTypes: ""
                 };
-                var trainTypeCheckBox = $(item).children(".trainTypeCb").toArray();
+
+                var ageFrom = $(item).find("[name=ageFrom]").val();
+                var ageTo = $(item).find("[name=ageTo]").val();
+
+                result.ageFrom = ageFrom;
+                result.ageTo = ageTo;
+
+
+                var trainTypeCheckBox = $(item).find(".trainTypeCb").toArray();
 
                 var trainingType = "";
                 trainTypeCheckBox.forEach(function (item, i, arr) {
-                    alert(i + "here")
-                    if ($(item).attr("checked")) {
+                    if ($(item).prop("checked")) {
                         trainingType += $(item).val();
                     }
                 });
-                alert("" + trainingType);
+                result.trainingTypeId = trainingType;
+                var bodyTypes = [];
 
+                var viewBodyTypes = $(item).find(".innerListItem").toArray();
+
+                viewBodyTypes.forEach(function (item, i, arr) {
+                    var bodyTypeItem = {
+                        typeId: "",
+                        portion: ""
+                    };
+                    bodyTypeItem.typeId = $(item).find("#typeId").attr('name');
+                    var potionsView = $(item).find(".portionListItem").toArray();
+                    var portions = [];
+                    //portions.push("");
+                    potionsView.forEach(function (item, i, arr) {
+                        var value = $(item).find(".form-control").val();
+                        portions.push(value);
+                    });
+
+                    bodyTypeItem.portion = portions;
+                    bodyTypes.push(bodyTypeItem);
+                });
+
+                result.bodyTypes = bodyTypes;
+                resultList.push(result);
             });
-
+            return resultList;
         }
 
     </script>
@@ -106,18 +144,23 @@
                             {{$mainListItem->title}}
                         </div>
 
+                        <div class="headerId" name="{{$mainListItem->titleId}}" style="display: none">
+
+                        </div>
+
+
                         <div id="{{$mainListItem->trainingTypeId}}Area" class="hideArea">
                             <div class="form-group row">
                                 <div class="input-group" style="margin-top: 20px">
                                     <span class="input-group-addon"
                                           style="width: auto">{{trans('app.ageFromLabel')}}</span>
-                                    <select class="form-control" style="width: 10px">
+                                    <select class="form-control" style="width: 10px" name="ageFrom">
                                         @include("spinner",['selection'=>$mainListItem->ageFrom])
                                     </select>
 
                                     <span class="input-group-addon"
                                           style="width: auto">{{trans('app.ageToLabel')}}</span>
-                                    <select class="form-control" style="width: 10px">
+                                    <select class="form-control" style="width: 10px" name="ageTo">
                                         @include("spinner",['selection'=>$mainListItem->ageTo])
                                     </select>
                                 </div>
@@ -133,13 +176,13 @@
 
 
                                     <label class="form-check-label">
-                                        <input type="checkbox"
+                                        <input type="checkbox" class="trainTypeCb"
                                                value="2" {{\App\Http\BusinessModel\TrainingType::isSelected($mainListItem->trainingTypeId,'2')}}> {{trans('app.dry')}}
                                     </label>
 
 
                                     <label class="form-check-label">
-                                        <input type="checkbox"
+                                        <input type="checkbox" class="trainTypeCb"
                                                value="3" {{\App\Http\BusinessModel\TrainingType::isSelected($mainListItem->trainingTypeId,'3')}}>
                                         {{trans('app.stamina')}}
                                     </label>
@@ -149,6 +192,7 @@
 
                             @foreach($mainListItem->bodyTypes as $bodyTypeItem )
                                 <div class="innerListItem">
+                                    <div style="display: none" id="typeId" name="{{$bodyTypeItem->typeId}}"></div>
                                     {{trans('app.bodyType')}} {{$bodyTypeItem->typeTitle}}
 
                                     @foreach($bodyTypeItem->portion as $portionItem)
@@ -159,7 +203,7 @@
                                                     <span class="input-group-addon"
                                                           style="width: auto">{{trans('app.portionSizeLabel')}}</span>
                                                     <input id="inputPortionSize" type="text"
-                                                           class="form-control is-valid" style="width: 100px"
+                                                           class="form-control" style="width: 100px"
                                                            placeholder="0" value="{{$portionItem->size}}"
                                                            pattern="\d+(\.\d{2})?" required>
 

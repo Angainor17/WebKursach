@@ -9,9 +9,10 @@
 namespace App\Http\BusinessModel;
 
 
-class MealType
+class NotificationType
 {
-    public $portion;
+    public $text;
     public $imageId;
+
     public $type;
 }
