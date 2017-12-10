@@ -62,6 +62,8 @@ class BasketController extends Controller
 
         foreach ($productList as $product) {
             Order::where('id', '=', $order->id)->get()->first()->products()->attach($product['id'], ['amount' => $product['amount']]);
+
+            //уменьшить количство товара в базе
             Auth::user()->products()->detach($product['id']);
         }
 
