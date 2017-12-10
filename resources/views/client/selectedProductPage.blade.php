@@ -62,7 +62,7 @@
         #mainField img {
             height: 300px;
             position: absolute;
-            right: 0;
+            right: 20%;
             top: 0;
             margin-top: 15%;
         }
@@ -97,7 +97,7 @@
             <div class="title">{{trans('app.portionHeader')}}:</div>
             <br>
             <div class="text">{{trans('app.portion1') . $item->portionTotal . trans('app.portion2'). $item->portionSize . ' '
-             . \App\Http\BusinessModel\PortionType::toString($item->potionType)}}</div>
+             . \App\Http\BusinessModel\PortionType::toString($item->portionType)}}</div>
             <br>
             <div class="text">{{trans('app.break'). $item->breakTime. trans('app.break2'). $item->breakTime.'  '.trans('app.daysLabel')}}</div>
         </div>
@@ -108,9 +108,7 @@
             <div class="text">{{$item->description}}</div>
         </div>
 
-
         <div class="buyArea">
-
             @if($item->instock <=0)
                 {{trans('app.instockNo')}}
             @else()
@@ -121,10 +119,7 @@
                 <button class="btn btn success" onclick="addInCart('{{$item->id}}')"
                         id="buyBtn">{{$buyButtonText}}</button>
             @endif
-
-
         </div>
-
     </div>
 
 @endsection

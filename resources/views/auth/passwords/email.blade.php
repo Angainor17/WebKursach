@@ -1,4 +1,4 @@
-@extends('layouts.app',['title'=>trans('app.app.rememberPassPage')])
+@extends('layouts.app',['title'=>trans('app.rememberPassPage')])
 
 @section('content')
     <div class="container">

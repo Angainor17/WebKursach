@@ -30,12 +30,12 @@ class SelectedNewsController extends Controller
     public function getView($id)
     {
         $locale = app()->getLocale();
-        $product = $this->getItemById($locale, $id)[0];
+        $article = $this->getItemById($locale, $id)[0];
 
-        return view("client.selectedProductPage",
+        return view("client.selectedNewsPage",
             [
-                "title" => $product->name,
-                "item" => $product,
+                "title" => $article->title,
+                "item" => $article,
             ]
         );
     }

@@ -13,6 +13,15 @@
 
     </script>
 
+    <script type="text/x-kendo-template" id="template">
+        <div class="product">
+
+            <p></p>
+
+        </div>
+    </script>
+
+
     {{$dump}}
 
 @endsection

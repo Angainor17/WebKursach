@@ -132,7 +132,6 @@
                 enctype: 'multipart/form-data',
                 processData: false,
                 success: function (imageId) {
-                    alert(imageId);
                     addProductItem(imageId);
                 }
             });
@@ -167,6 +166,10 @@
                 success: function (result) {
                     cleanAllProductsFields();
                     refreshProductTable()
+                },
+                error: function (error) {
+                    cleanAllProductsFields();
+                    refreshProductTable();
                 }
             });
         }
@@ -199,7 +202,10 @@
                 data: jsonBody,
                 dataType: "json",
                 success: function (result) {
-                    alert(result);
+                    cleanAllProductsFields();
+                    refreshProductTable();
+                },
+                error: function (error) {
                     cleanAllProductsFields();
                     refreshProductTable();
                 }
@@ -257,21 +263,24 @@
                 <div class="input-group">
                     <span class="input-group-addon" style="width: auto">{{trans('app.nameRu')}}</span>
 
-                    <input type="text" class="form-control is-valid" id="inputNameRu" placeholder="{{trans('app.nameRu')}}"
+                    <input type="text" class="form-control is-valid" id="inputNameRu"
+                           placeholder="{{trans('app.nameRu')}}"
                            pattern=".{1,100}" required>
                 </div>
 
                 <div class="input-group" style="margin-top: 20px">
                     <span class="input-group-addon" style="width: auto">{{trans('app.nameEn')}}</span>
 
-                    <input type="text" class="form-control is-valid" id="inputNameEn" placeholder="{{trans('app.nameEn')}}"
+                    <input type="text" class="form-control is-valid" id="inputNameEn"
+                           placeholder="{{trans('app.nameEn')}}"
                            pattern=".{1,100}" required>
                 </div>
 
                 <div class="input-group" style="margin-top: 20px">
                     <span class="input-group-addon" style="width: auto">{{trans('app.producerLabel')}}</span>
 
-                    <input type="text" class="form-control is-valid" id="inputProducer" placeholder="{{trans('app.producerLabel')}}"
+                    <input type="text" class="form-control is-valid" id="inputProducer"
+                           placeholder="{{trans('app.producerLabel')}}"
                            pattern=".{1,100}" required>
                 </div>
             </div>
@@ -314,7 +323,8 @@
             <div class="form-group row" style="margin-top: 20px">
                 <div class="input-group">
                     <span class="input-group-addon" style="width: auto">{{trans('app.costLabel')}}</span>
-                    <input id="inputCost" type="text" class="form-control is-valid" name="msg" placeholder="0.00 {{trans('app.rub')}}"
+                    <input id="inputCost" type="text" class="form-control is-valid" name="msg"
+                           placeholder="0.00 {{trans('app.rub')}}"
                            pattern="\d+(\.\d{2})?" required>
                 </div>
 
@@ -382,7 +392,8 @@
             <div class="form-group row" style="margin-bottom: 20px">
                 <div style="float: left; margin-bottom: 50px">
                     <p>
-                        <button id="deleteBtn" type="button" class="btn btn-outline-primary">{{trans('app.deleteBtn')}}</button>
+                        <button id="deleteBtn" type="button"
+                                class="btn btn-outline-primary">{{trans('app.deleteBtn')}}</button>
                         <button id="addBtn" type="submit" class="btn btn-outline-primary" style="margin-left: 10px">
                             {{trans('app.addBtn')}}
                         </button>
