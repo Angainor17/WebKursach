@@ -29,7 +29,6 @@ class SelectedProductController extends Controller
         $locale = app()->getLocale();
         $product = $this->getItemById($locale, $id)[0];
 
-
         $title = "";
         if(app()->getLocale()=="en"){
             $title = $product->name_en;

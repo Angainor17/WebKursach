@@ -132,7 +132,6 @@
                 enctype: 'multipart/form-data',
                 processData: false,
                 success: function (imageId) {
-                    alert(imageId);
                     addProductItem(imageId);
                 }
             });

@@ -108,9 +108,7 @@
             <div class="text">{{$item->description}}</div>
         </div>
 
-
         <div class="buyArea">
-
             @if($item->instock <=0)
                 {{trans('app.instockNo')}}
             @else()
@@ -121,10 +119,7 @@
                 <button class="btn btn success" onclick="addInCart('{{$item->id}}')"
                         id="buyBtn">{{$buyButtonText}}</button>
             @endif
-
-
         </div>
-
     </div>
 
 @endsection
