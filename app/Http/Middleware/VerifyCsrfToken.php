@@ -25,5 +25,6 @@ class VerifyCsrfToken extends BaseVerifier
         '/makeOrder',
         '/admin/updateNs',
         '/accountRefresh',
+        '/addMeal'
     ];
 }

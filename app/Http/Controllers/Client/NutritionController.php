@@ -12,10 +12,13 @@ use App\Http\BusinessModel\NSListItem;
 use App\Http\BusinessModel\NSPortionItem;
 use App\Http\BusinessModel\PortionType;
 use App\Http\Controllers\Controller;
+use App\Http\DBModel\Meal;
+use App\Http\DBModel\MealUser;
 use App\Http\DBModel\Order;
 use App\Http\DBModel\OrderProduct;
 use App\Http\DBModel\Product;
 use App\Http\DBModel\ProductTypeStrategy;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class NutritionController extends Controller
@@ -71,7 +74,29 @@ class NutritionController extends Controller
         return $mainList;
     }
 
-    public function getDays()
+    public function addMeal(Request $request)
+    {
+        $mealsCount = Auth::user()->meals()
+            ->get()->where('product_id', '=', $request->id)->count();
+        if ($mealsCount > 0) {
+            $item = Auth::user()->meals()->get()->where('product_id', '=', $request->id)->first();
+            $item->portions_user = +$item->portions_user + Product::where('id', '=', $request->id)->first()->portionSize;
+            $item->save();
+        } else {
+            $meal = new Meal;
+            $meal->product_id = $request->id;
+            $meal->portions_used = Product::where('id', '=', $request->id)->first()->portionSize;
+            $meal->save();
+
+            $mealUser = new MealUser;
+            $mealUser->meal_id = $meal->id;
+            $mealUser->user_id = Auth::user()->id;
+            $mealUser->save();
+        }
+    }
+
+    public
+    function getDays()
     {
         $products = $this->getProductsData();
         $user = Auth::user();
@@ -93,7 +118,9 @@ class NutritionController extends Controller
                     foreach ($strategys as $strategy) {
                         if ($strategy->titleId == $product->category) {
                             $newNotification = new NotificationType;
+                            $newNotification->productId = $product->productId;
                             $iId = Product::where('id', '=', $product->productId)->get()->first()->imageId;
+
                             $newNotification->imageId = asset("/uploads/" . $iId);
                             if ($product->portionsLast > 0) {
 
@@ -120,7 +147,8 @@ class NutritionController extends Controller
         return $calendarDays;
     }
 
-    public function getProductsData()
+    public
+    function getProductsData()
     {
         $userId = Auth::user()->id;
         $allOrders = Order::where('userId', '=', $userId)->get();

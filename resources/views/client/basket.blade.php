@@ -89,7 +89,7 @@
                 },
                 success: function (data) {
                     alert(data);
-                    //window.location.href = "/home";
+                   //window.location.href = "/home";
                 },
                 error: function () {
 
@@ -141,7 +141,6 @@
                 autoBind: true
             }).data("kendoListView");
         }
-
 
     </script>
 

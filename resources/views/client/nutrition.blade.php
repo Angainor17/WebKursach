@@ -21,8 +21,8 @@
 
         .inline {
             display: inline-block;
-            margin-left:30px;
-            margin-right:30px;
+            margin-left: 30px;
+            margin-right: 30px;
         }
 
         .day {
@@ -38,11 +38,23 @@
     <script>
 
         function checkProduct(id) {
+            $.ajax({
+                url: "/addMeal",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function () {
 
+                }
+            });
+            $("#addMeal" + id).html('Checked!');
+            $("#addMeal" + id).attr('disabled', true);
         }
 
         function goToProduct(id) {
-
+            window.location.href = "/product/" + id;
         }
 
         $(document).ready(function () {
@@ -80,17 +92,19 @@
         <div class="day">
 
             <p style="text-align: left">#:weekDay# #:dateString#</p>
-            <div  style="text-align: left; width: 700px">
+            <div style="text-align: left; width: 700px">
                 # for (var i = 0; i < notification.length; i++) { #
                 <div style="text-align: left;">
                     <img class="inline" src="#:notification[i].imageId#" style="height: 70px;">
                     <p class="inline">#:notification[i].text#</p>
                     # if (notification[i].type == 1) { #
-                    <button class="inline" onclick="checkProduct(#:#)">{{trans('app.check')}}</button>
+                    <button class="inline" id="addMeal#:notification[i].productId#" class="btn btn-success"
+                            onclick="checkProduct('#:notification[i].productId#')">{{trans('app.check')}}</button>
                     # } #
 
                     # if (notification[i].type == 0) { #
-                    <button class="inline" onclick="goToProduct()">{{trans('app.inCartLabel')}}</button>
+                    <button class="inline" class="btn btn-success"
+                            onclick="goToProduct('#:notification[i].productId#')">{{trans('app.inCartLabel')}}</button>
                     # } #
 
                 </div>

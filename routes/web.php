@@ -41,6 +41,7 @@ Route::get("/orderslist", "Client\OrdersController@getOrderList");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/nutritionStrategy", "Client\NutritionController@getView")->name("nutrition");
 Route::get("/nutritionStrategyList", "Client\NutritionController@getList");
+Route::post("/addMeal", "Client\NutritionController@addMeal");
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Route::get("/admin", "Admin\ArticleController@getView");
 Route::get("/admin/article/list", "Admin\ArticleController@getArticleDataTable");
