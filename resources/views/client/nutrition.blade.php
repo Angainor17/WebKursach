@@ -37,7 +37,7 @@
 
     <script>
 
-        function checkProduct(id) {
+        function checkProduct(week, id) {
             $.ajax({
                 url: "/addMeal",
                 type: "POST",
@@ -49,8 +49,8 @@
 
                 }
             });
-            $("#addMeal" + id).html('Checked!');
-            $("#addMeal" + id).attr('disabled', true);
+            $("#"+week+"addMeal" + id).html('Checked!');
+            $("#"+week+"addMeal" + id).attr('disabled', true);
         }
 
         function goToProduct(id) {
@@ -98,8 +98,8 @@
                     <img class="inline" src="#:notification[i].imageId#" style="height: 70px;">
                     <p class="inline">#:notification[i].text#</p>
                     # if (notification[i].type == 1) { #
-                    <button class="inline" id="addMeal#:notification[i].productId#" class="btn btn-success"
-                            onclick="checkProduct('#:notification[i].productId#')">{{trans('app.check')}}</button>
+                    <button class="inline" id="#:weekDay#addMeal#:notification[i].productId#" class="btn btn-success"
+                            onclick="checkProduct('#:weekDay#','#:notification[i].productId#')">{{trans('app.check')}}</button>
                     # } #
 
                     # if (notification[i].type == 0) { #
