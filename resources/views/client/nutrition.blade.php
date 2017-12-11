@@ -19,18 +19,32 @@
             margin-right: 6%;
         }
 
+        .inline {
+            display: inline-block;
+            margin-left:30px;
+            margin-right:30px;
+        }
+
         .day {
             border: 1px solid #b9b9b9;
-            width: 700px;
-            height: 350px;
+            width: 900px;
+            height: auto;
             margin: 20px;
             font-size: 16px;
             padding: 20px;
-            text-align: center;
         }
     </style>
 
     <script>
+
+        function checkProduct(id) {
+
+        }
+
+        function goToProduct(id) {
+
+        }
+
         $(document).ready(function () {
             menuActive();
         });
@@ -65,24 +79,23 @@
     <script type="text/x-kendo-template" id="template">
         <div class="day">
 
-            <p style="text-align: left">#:dateString# #:weekDay#</p>
+            <p style="text-align: left">#:weekDay# #:dateString#</p>
+            <div  style="text-align: left; width: 700px">
+                # for (var i = 0; i < notification.length; i++) { #
+                <div style="text-align: left;">
+                    <img class="inline" src="#:notification[i].imageId#" style="height: 70px;">
+                    <p class="inline">#:notification[i].text#</p>
+                    # if (notification[i].type == 1) { #
+                    <button class="inline" onclick="checkProduct(#:#)">{{trans('app.check')}}</button>
+                    # } #
 
-            # for (var i = 0; i < notification.length; i++) { #
-            lol
-            <div>
-                #:notification[1].type#
-                <p>#:notification[i].text#</p>
-                <img src="http://mynutritionway.com/uploads/#:notification[i].imageId#" style="height: 70px">
-                # if (notification[i].type === 1) { #
-                <button>Check</button>
+                    # if (notification[i].type == 0) { #
+                    <button class="inline" onclick="goToProduct()">{{trans('app.inCartLabel')}}</button>
+                    # } #
+
+                </div>
                 # } #
-
-                # if (notification[i].type != 0) { #
-                <button>Buy</button>
-                # } #
-
             </div>
-            # } #
         </div>
     </script>
 

@@ -13,6 +13,7 @@ class NotificationType
 {
     public $text;
     public $imageId;
+    public $productId;
 
     public $type;
 }

@@ -165,5 +165,6 @@ return [
     'sunday' => 'Sun.',
 
     'customer' => 'Customer',
+    'check' => 'Check',
 
 ];
