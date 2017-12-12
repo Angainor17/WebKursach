@@ -49,8 +49,8 @@
 
                 }
             });
-            $("#"+week+"addMeal" + id).html('Checked!');
-            $("#"+week+"addMeal" + id).attr('disabled', true);
+            $("#" + week + "addMeal" + id).html('Checked!');
+            $("#" + week + "addMeal" + id).attr('disabled', true);
         }
 
         function goToProduct(id) {

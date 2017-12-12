@@ -2,7 +2,12 @@
 
 @section('innerContent')
     <script>
+
         $(document).ready(function () {
+            $('#i1').tooltipster();
+            $('#i2').tooltipster();
+            $('#i3').tooltipster();
+
             menuActive();
             initFields();
 
@@ -132,6 +137,23 @@
                 </select>
             </div>
 
+            <div class="tooltip_templates" style="display: none">
+                <div id="tooltip_content_ecto" style="word-wrap: break-word;max-width: 200px">
+                    <img src="{{asset("/default/ecto.jpg")}}"/> {{trans('app.ecto_text')}}
+                </div>
+            </div>
+
+            <div class="tooltip_templates" style="display: none;width: 400px">
+                <div id="tooltip_content_mezo" style="word-wrap: break-word;max-width: 200px">
+                    <img src="{{asset("/default/mezo.jpg")}}"/> {{trans('app.mezo_text')}}</div>
+            </div>
+
+            <div class="tooltip_templates" style="display: none">
+                <div id="tooltip_content_endo" style="word-wrap: break-word;max-width: 200px">
+                    <img src="{{asset("/default/endo.jpg")}}"/> {{trans('app.endo_text')}}
+                </div>
+            </div>
+
             <div style="margin-top: 35px">
                 <div class="form-check form-check-inline">
                     @for($i=1; $i<8; $i++)
@@ -159,6 +181,7 @@
                     </label>
                 </div>
 
+
                 <div class="form-check form-check-inline">
                     <label class="form-check-input">
                         <input id="type3" type="radio" name="inlineRadioOptions"
@@ -169,20 +192,20 @@
             </div>
             <div style="margin-top: 30px">
                 <div class="form-check form-check-inline">
-                    <label class="form-check-input">
+                    <label id="i1" class="form-check-input" data-tooltip-content="#tooltip_content_ecto">
                         <input id="typeBody1" type="radio" name="inlineRadioOptions1" value="1">
                         {{trans('app.ectomorph')}}
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <label class="form-check-input">
+                    <label id="i2" class="form-check-input" data-tooltip-content="#tooltip_content_endo">
                         <input id="typeBody2" type="radio" name="inlineRadioOptions1"
                                value="2"> {{trans('app.endomorph')}}
                     </label>
                 </div>
 
                 <div class="form-check form-check-inline">
-                    <label class="form-check-input">
+                    <label id="i3" class="form-check-input" data-tooltip-content="#tooltip_content_mezo">
                         <input id="typeBody3" type="radio" name="inlineRadioOptions1" value="3">
                         {{trans('app.mezomorph')}}
                     </label>

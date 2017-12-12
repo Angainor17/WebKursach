@@ -167,4 +167,9 @@ return [
     'customer' => 'Customer',
     'check' => 'Check',
 
+    'ecto_text' => 'An ectomorph tends to be thin, and struggles to gain weight as either body fat or muscle. They can eat piles of food and stay looking the same, even when gaining muscular weight is their biggest goal. People who battle to gain muscle are often known as "hardgainers."',
+    'mezo_text' => 'The mesomorph has a middle-of-the-road build that takes the best of both worlds. They tend to have wide shoulders, a narrow waist, relatively thin joints, and round muscle bellies.',
+    'endo_text' => 'The endomorph tends to gain weight and keep it on. Their build is a little wider than an ectomorph or mesomorph, with a thick ribcage, wide hips, and shorter limbs. They may have more muscle than either of the other body types, but they often struggle to gain it without significant amounts of accompanying body fat.',
+
+
 ];

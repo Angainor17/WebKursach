@@ -15,10 +15,13 @@
     <link href="{{ asset('css/kendo.common.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/kendo.default.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/kendo.default.mobile.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tooltipster.bundle.min.css') }}" rel="stylesheet">
 
 
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/kendo.all.min.js') }}"></script>
+    <script src="{{ asset('js/tooltipster.bundle.min.js') }}"></script>
+
     <script>
         $(document).ready(
             function () {

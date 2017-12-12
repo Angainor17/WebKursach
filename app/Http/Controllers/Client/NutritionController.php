@@ -28,7 +28,7 @@ class NutritionController extends Controller
         return view(
             "client.nutrition",
             [
-
+                "lol" => dump($this->getDays())
             ]
         );
     }
@@ -80,7 +80,7 @@ class NutritionController extends Controller
             ->get()->where('product_id', '=', $request->id)->count();
         if ($mealsCount > 0) {
             $item = Auth::user()->meals()->get()->where('product_id', '=', $request->id)->first();
-            $item->portions_user = +$item->portions_user + Product::where('id', '=', $request->id)->first()->portionSize;
+            $item->portions_used = +1;//$item->portions_user + Product::where('id', '=', $request->id)->first()->portionSize;
             $item->save();
         } else {
             $meal = new Meal;
@@ -95,8 +95,7 @@ class NutritionController extends Controller
         }
     }
 
-    public
-    function getDays()
+    public function getDays()
     {
         $products = $this->getProductsData();
         $user = Auth::user();
@@ -119,25 +118,25 @@ class NutritionController extends Controller
                         if ($strategy->titleId == $product->category) {
                             $newNotification = new NotificationType;
                             $newNotification->productId = $product->productId;
-                            $iId = Product::where('id', '=', $product->productId)->get()->first()->imageId;
+                            $iId = $product->product->imageId;
 
                             $newNotification->imageId = asset("/uploads/" . $iId);
                             if ($product->portionsLast > 0) {
-
                                 $newNotification->type = 1;
 
+                                $ageValid = ($strategy->ageTo <= $product->product->ageTo) && ($strategy->ageFrom >= $product->product->ageFrom);
+                                $trainingValid = true;//strpos($strategy->trainingTypeId, Auth::user()->trainingType) !== false;
 
-                                //тут надо бы проверять по типу телосложения и возрасту
-                                $newNotification->text = "Примите " . $product->portionSize . " " . PortionType::toString($product->portionType);
+                                if ($ageValid && $trainingValid) {
+                                    $newNotification->text = "Примите " . $product->portionSize . " " . PortionType::toString($product->portionType);
+                                    array_push($calendarDay->notification, $newNotification);
+                                }
                             } else {
-
                                 $newNotification->type = 0;
-                                //$newNotification->imageId = asset("/uploads/default/not.png");
                                 $newNotification->text = "Продукт закончился";
                                 unset($products[$productKey]);
-
+                                array_push($calendarDay->notification, $newNotification);
                             }
-                            array_push($calendarDay->notification, $newNotification);
                         }
                     }
                 }
@@ -147,8 +146,7 @@ class NutritionController extends Controller
         return $calendarDays;
     }
 
-    public
-    function getProductsData()
+    public function getProductsData()
     {
         $userId = Auth::user()->id;
         $allOrders = Order::where('userId', '=', $userId)->get();
