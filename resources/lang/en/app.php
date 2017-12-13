@@ -165,7 +165,7 @@ return [
     'sunday' => 'Sun.',
 
     'customer' => 'Customer',
-    'check' => 'Check',
+    'check' => '+',
 
     'ecto_text' => 'An ectomorph tends to be thin, and struggles to gain weight as either body fat or muscle. They can eat piles of food and stay looking the same, even when gaining muscular weight is their biggest goal. People who battle to gain muscle are often known as "hardgainers."',
     'mezo_text' => 'The mesomorph has a middle-of-the-road build that takes the best of both worlds. They tend to have wide shoulders, a narrow waist, relatively thin joints, and round muscle bellies.',

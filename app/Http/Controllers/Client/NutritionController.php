@@ -28,7 +28,7 @@ class NutritionController extends Controller
         return view(
             "client.nutrition",
             [
-                "lol" => dump($this->getDays())
+//                "lol" => mp($this->getDays())
             ]
         );
     }
